@@ -3,20 +3,17 @@
         <h2 class="titre">Mes Celliers</h2>
         <p class="bouton-filtre"><button mat-button (click)="formulaireAjout(listeCelliers)"><mat-icon>add</mat-icon></button></p>
     </div>
-    <div *ngFor="let cellier of listeCelliers">
-        <div class="resultat" >
-            <div class="resultat-cellier">
-                <div class="nom-cellier">
-                    <a routerLink="/celliers/{{cellier.id}}" [state]="cellier">
-                        <h3>{{ cellier.nom }}</h3>
-                    </a>
-                    <div class="action-cellier">
-                        <button (click)="formulaireModification(cellier)"><mat-icon>edit</mat-icon></button>
-                        <button (click)="supprimerCellier(cellier.id)"><mat-icon>delete</mat-icon></button>
-                    </div>
-                </div>
-                <p>{{cellier.description}}</p>
+    <div *ngFor="let cellier of listeCelliers" class="resultat-cellier">
+        <div class="nom-cellier">
+            <a routerLink="/celliers/{{cellier.id}}" [state]="cellier">
+                <h3>{{ cellier.nom }}</h3>
+            </a>
+            <div class="action-cellier">
+                <button (click)="formulaireModification(cellier)"><mat-icon>edit</mat-icon>test</button>
+                <button (click)="supprimerCellier(cellier.id)"><mat-icon>delete</mat-icon></button>
             </div>
         </div>
+
+        <p>{{cellier.description}}</p>
     </div>
 </div>
