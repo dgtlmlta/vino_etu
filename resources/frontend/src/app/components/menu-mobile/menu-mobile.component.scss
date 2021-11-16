@@ -1,7 +1,6 @@
 
 .mat-toolbar{
     position: fixed;
-    background-color:#FFF;
     bottom: 0;
     left: 0;
     z-index: 100;
@@ -23,11 +22,14 @@
     border-radius: var(--espacement-petit);
     margin: var(--espacement-petit);
     text-decoration: none;
-    color: #000;
 }
 
 .none{
     display: none;
+}
+
+.menu-mobile {
+    color: var(--couleur-gris-200);
 }
 
 .menu-mobile mat-icon[data-mat-icon-type="font"] {
