@@ -23,12 +23,11 @@ export class ModifierCellierComponent implements OnInit {
   modifierCellier = new FormGroup({
     nom: new FormControl('', Validators.required),
     description: new FormControl(''),
-    id: new FormControl('')
+    id: new FormControl(''),
   });
 
   // Émetteur d'événnement afin d'afficher la liste des celliers sans refresh après la modification
   @Output("chargerCelliers") chargerCelliers: EventEmitter<any> = new EventEmitter();
-
 
   constructor(
       public formulaireRef: MatDialogRef<ModifierCellierComponent>,
@@ -51,7 +50,7 @@ export class ModifierCellierComponent implements OnInit {
     this.modifierCellier.patchValue({
         nom: this.data.nom,
         description: this.data.description,
-        id: this.data.id
+        id: this.data.id,
     })
 }
 
@@ -83,8 +82,7 @@ export class ModifierCellierComponent implements OnInit {
           this.snackBar.open(`Vous avez modifier votre cellier `, "Fermer", {duration: 3000, panelClass: 'notif'});
 
         });
-
-
   }
+
 
 }

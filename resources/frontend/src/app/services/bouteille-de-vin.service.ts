@@ -164,6 +164,7 @@ export class BouteilleDeVinService {
         let body = {
             'nom': data.nom,
             'description': data.description,
+            'image': data.image,
         }
 
         return this.http.put<any>(this.url + '/celliers/'+ idCellier, body);

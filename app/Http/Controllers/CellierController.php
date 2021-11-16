@@ -70,6 +70,7 @@ class CellierController extends Controller {
         $nouveauCellier->nom = $request->nom;
         $nouveauCellier->description = $request->description;
         $nouveauCellier->users_id = $request->users_id;
+        $nouveauCellier->image = $request->image;
         $nouveauCellier->save();
 
         return response()->json([
@@ -101,6 +102,7 @@ class CellierController extends Controller {
 
         $cellier->nom = $request->nom;
         $cellier->description = $request->description;
+        $cellier->image = $request->description;
 
         $cellier->save();
 
