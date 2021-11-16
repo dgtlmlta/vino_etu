@@ -257,4 +257,6 @@ export class AuthService {
             this.utilisateurToken :
             false;
     }
+
+
 }

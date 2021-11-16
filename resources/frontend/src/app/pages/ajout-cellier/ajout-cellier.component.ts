@@ -39,6 +39,11 @@ export class AjoutCellierComponent implements OnInit {
     return this.ajoutCellier.controls;
   }
 
+  // fermer le modal avec un X
+  close(): void {
+    this.formulaireRef.close();
+  }
+
   // Fonction qui permet l'ajout d'un nouveau cellier par un utilisateur authentifie
   postCellier(cellier: any) {
     console.log(cellier)

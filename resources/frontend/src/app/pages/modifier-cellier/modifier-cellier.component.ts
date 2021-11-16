@@ -61,6 +61,11 @@ export class ModifierCellierComponent implements OnInit {
     return this.modifierCellier.controls;
   }
 
+  // fermer le modal avec un X
+  close(): void {
+    this.formulaireRef.close();
+  }
+
   postCellier(cellier:any){
 
     this.idUtilisateur = this.servAuth.getIdUtilisateurAuthentifie();

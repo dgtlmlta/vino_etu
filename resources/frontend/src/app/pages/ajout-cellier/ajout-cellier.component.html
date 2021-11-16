@@ -1,5 +1,8 @@
 <div>
     <form [formGroup]="ajoutCellier" (ngSubmit)=postCellier(ajoutCellier.value)>
+        <header class="card-action">
+            <a (click)='close()'><mat-icon>close</mat-icon></a>
+        </header>
         <div class="formulaire-contenu">
             <mat-form-field appearance="fill" class="input-case">
                 <mat-label for="nom" class="required">Nom</mat-label>
