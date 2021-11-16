@@ -1,14 +1,7 @@
 import { DatePipe, formatCurrency } from '@angular/common';
-import {
-    Component,
-    Inject,
-    OnInit,
-} from '@angular/core';
-import {
-    FormControl,
-    FormGroup,
-    Validators
-} from '@angular/forms';
+import {Component, Inject, OnInit,} from '@angular/core';
+import {FormControl,FormGroup,Validators} from '@angular/forms';
+
 import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
 import { MatSnackBar } from '@angular/material/snack-bar';
 import { ActivatedRoute, Router } from '@angular/router';
@@ -48,6 +41,7 @@ export class AjoutBouteilleComponent implements OnInit {
         private datePipe: DatePipe,
         private stringHelp: StringHelpersService,
         private elementsActifs: ElementsActifsService,
+
     ) { }
 
     ngOnInit(): void {
@@ -74,8 +68,6 @@ export class AjoutBouteilleComponent implements OnInit {
                     this.ajoutBouteille.controls.cellierId.setValue(cellierActif);
                 }
             })
-
-
     }
 
     // Affichage des erreurs quand le champs n'est pas rempli
@@ -125,13 +117,17 @@ export class AjoutBouteilleComponent implements OnInit {
 
     /**
      *
-     * Comparer les valeurs des options de celliers afin de sélectionner celle qui correspond à la valeur donnée au formControl.
+     * Comparer les valeurs des options d'id de celliers afin de sélectionner celle qui correspond à la valeur donnée au formControl.
      *
      * @param {number} id1
      * @param {number|string} id2
      * @returns {boolean}
      */
-    comparerCellierId(id1: number, id2: string|number): boolean {
+     comparerCellierId(id1: number, id2: string|number): boolean {
         return id1 == id2;
     }
+
+
+
+
 }
