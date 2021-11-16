@@ -69,11 +69,12 @@ export class ModifierUtilisateurComponent implements OnInit {
     });
   }
 
-  // Revenir à la page précédente
-  back(): void {
-    this.location.back()
+  // Fermer le modal avec X
+  close(): void {
+    this.formModifierUtilisateur.close();
   }
 
+  // Fonction pour modifier les information de l'utilisateur
   putUtilisateur(nouvelleInfo:any){
     console.log(nouvelleInfo);
 
@@ -84,7 +85,6 @@ export class ModifierUtilisateurComponent implements OnInit {
 
       this.profilUtilisateur.emit();
 
-      //this.router.navigate(['profil']);
     });
   }
 }

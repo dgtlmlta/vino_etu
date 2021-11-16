@@ -2,10 +2,14 @@
   <mat-card class="card">
     <mat-card-header>
         <a mat-button ><img class="header-image" src="./assets/img/avatar.png" alt="avatar"></a>
-      <h2>{{utilisateur.first_name}}</h2>
+      <h2>{{utilisateur.first_name}} {{utilisateur.last_name}}</h2>
       <div class="text-secondary">
         <mat-icon>email</mat-icon>
         <span>{{utilisateur.email}}</span>
+      </div>
+      <div class="text-secondary">
+        <mat-icon>location_city</mat-icon>
+        <span *ngIf= 'utilisateur.city'>{{utilisateur.city}}</span>
       </div>
     </mat-card-header>
 
