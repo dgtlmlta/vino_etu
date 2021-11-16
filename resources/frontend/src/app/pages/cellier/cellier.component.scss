@@ -3,27 +3,34 @@ main[_ngcontent-vfb-c129] {
 }
 
 .content{
-  //  margin: 60px 0;
     overflow: hidden;
     padding-bottom: 3.75rem;
 }
 
 .content-header{
     display: flex;
-    justify-content: space-around;
+    justify-content: space-between;
+    margin: 0 10px;
 }
 
-.content h2{
+.content-header .titre-container{
+    margin: 0 auto;
+}
+
+.content .titre, .content h2{
     font-family: 'Dancing Script', cursive;
     font-size: 2rem;
     margin: 15px 0;
     color: #4c1920;
 }
 
-.content button{
+.content button, .content .bouton-ajout{
     background-color: #4c1920;
     color: #fff;
+    min-width: 50px;
+    padding: 0;
 }
+
 
 /* css pour le side-nav */
 
@@ -57,4 +64,14 @@ main[_ngcontent-vfb-c129] {
 
 .none{
     display: none;
+}
+
+
+.action-button{
+    display: flex;
+}
+
+.action-button p{
+    margin-left: 5px;
+    margin-right: 5px;
 }
