@@ -4,7 +4,7 @@ import { Injectable } from '@angular/core';
     providedIn: 'root'
 })
 export class ElementsActifsService {
-    private cellierActifId!: number;
+    private cellierActifId: number|null = null;
 
     constructor() { }
 
@@ -16,5 +16,9 @@ export class ElementsActifsService {
         }
 
         this.cellierActifId =  id;
+    }
+
+    getCellierActif(): number|null {
+        return this.cellierActifId;
     }
 }

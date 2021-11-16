@@ -14,6 +14,7 @@ import { MatSnackBar } from '@angular/material/snack-bar';
 import { ActivatedRoute, Router } from '@angular/router';
 import { AuthService } from '@services/auth.service';
 import { BouteilleDeVinService } from '@services/bouteille-de-vin.service';
+import { ElementsActifsService } from '@services/elements-actifs.service';
 import { StringHelpersService } from '@services/helpers/string-helpers.service';
 
 @Component({
@@ -46,7 +47,7 @@ export class AjoutBouteilleComponent implements OnInit {
         private router: Router,
         private datePipe: DatePipe,
         private stringHelp: StringHelpersService,
-
+        private elementsActifs: ElementsActifsService,
     ) { }
 
     ngOnInit(): void {
@@ -65,7 +66,16 @@ export class AjoutBouteilleComponent implements OnInit {
         this.servBouteilleDeVin.getListeCelliersParUtilisateur(this.authService.getIdUtilisateurAuthentifie())
             .subscribe((data: any) => {
                 this.listeCelliers = data;
+
+                // Si un cellier actif existe dans le service, le sélectionner comme option initiale du select
+                const cellierActif = this.elementsActifs.getCellierActif();
+
+                if (cellierActif) {
+                    this.ajoutBouteille.controls.cellierId.setValue(cellierActif);
+                }
             })
+
+
     }
 
     // Affichage des erreurs quand le champs n'est pas rempli
@@ -111,6 +121,18 @@ export class AjoutBouteilleComponent implements OnInit {
         const nombre = this.stringHelp.recupererNombreDeDevise(this.ajoutBouteille.get("prix_paye")?.value);
         // Formatter le prix en device canadienne au fur et à mesure que l'utilisateur interagit
         this.ajoutBouteille.get("prix_paye")?.setValue(this.stringHelp.formaterNombreEnDollarsCanadiens(nombre));
+    }
+
+    /**
+     *
+     * Comparer les valeurs des options de celliers afin de sélectionner celle qui correspond à la valeur donnée au formControl.
+     *
+     * @param {number} id1
+     * @param {number|string} id2
+     * @returns {boolean}
+     */
+    comparerCellierId(id1: number, id2: string|number): boolean {
+        return id1 == id2;
     }
 
 
