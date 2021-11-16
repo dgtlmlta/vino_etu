@@ -9,6 +9,8 @@ export class ElementsActifsService {
     constructor() { }
 
     setCellierActif(id: number): void {
+        console.log(id);
+
         if(!id) {
             return;
         }
