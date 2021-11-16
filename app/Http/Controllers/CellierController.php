@@ -96,7 +96,7 @@ class CellierController extends Controller {
      * @return \Illuminate\Http\Response
      */
     public function update(Request $request, int $cellierId) {
-        
+
         $cellier = Cellier::find($cellierId);
 
         $cellier->nom = $request->nom;
