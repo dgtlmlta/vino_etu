@@ -11,13 +11,47 @@ class Cellier extends Model {
 
     protected $guarded = [];
 
-    public function bouteilles() {
-        return $this->belongsToMany(Bouteille::class, "celliers_bouteilles", "celliers_id", "bouteilles_id")->withPivot(["inventaire"]);
+    public function bouteilles_achetees() {
+        return $this->belongsToMany(
+            BouteilleAchetee::class,
+            "celliers_bouteilles_achetees",
+            "celliers_id",
+            "bouteilles_achetees_id"
+        )
+            ->withPivot(["inventaire"]);
     }
 
-    static public function obtenirCelliersParUtilisateur(int $userId) {
-        return Cellier::where("users_id", $userId)
+    static public function obtenirCelliersParUtilisateur($userId) {
+        // $query = Cellier::withSum([
+        //     "bouteilles_achetees as total_bouteilles_vin_rouge" => function ($query) {
+        //         $query->whereRaw("bouteilles_achetees.categories_id = 1");
+        //     }
+        // ], "cellier_bouteilles_achetees.inventaire")
+        //     ->whereRaw("users_id = 1");
+
+        // return Cellier::getEloquentSqlWithBindings($query);
+
+
+
+        $query =
+            Cellier::withSum([
+                "bouteilles_achetees as total_bouteilles_vin_blanc" => function ($query) {
+                    $query->where("bouteilles_achetees.categories_id", 1);
+                },
+                "bouteilles_achetees as total_bouteilles_vin_rouge" => function ($query) {
+                    $query->where("bouteilles_achetees.categories_id", 2);
+                }
+            ], "celliers_bouteilles_achetees.inventaire")
+            ->where("users_id", $userId)
             ->get();
+
+        return $query;
+    }
+
+    public static function getEloquentSqlWithBindings($query) {
+        return response()->json(["message" => str_replace('?', '%s', $query->toSql()), collect($query->getBindings())->map(function ($binding) {
+            return is_numeric($binding) ? $binding : "'{$binding}'";
+        })->toArray()]);
     }
 
     /**
