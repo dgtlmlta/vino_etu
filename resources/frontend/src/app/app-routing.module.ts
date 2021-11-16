@@ -14,6 +14,7 @@ import { AuthGuard } from "@services/auth.guard";
 import { BouteillesCellierResolver } from '@services/bouteilles-cellier.resolver';
 import { ProfilUtilisateurComponent } from '@pages/profil-utilisateur/profil-utilisateur.component';
 import { ModifierUtilisateurComponent } from '@pages/modifier-utilisateur/modifier-utilisateur.component';
+import { CreationBouteilleComponent } from '@pages/creation-bouteille/creation-bouteille.component';
 
 const routes: Routes = [
     {
@@ -66,6 +67,11 @@ const routes: Routes = [
         resolve: {
             bouteille: BouteilleResolverServiceService
         }
+    },
+    {
+        path: "bouteilles-personnalise/ajout",
+        component: CreationBouteilleComponent,
+        canActivate: [AuthGuard],
     },
 ];
 

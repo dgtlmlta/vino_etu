@@ -9,11 +9,24 @@
                 <h3>{{ cellier.nom }}</h3>
             </a>
             <div class="action-cellier">
-                <button (click)="formulaireModification(cellier)"><mat-icon>edit</mat-icon></button>
-                <button (click)="supprimerCellier(cellier.id)"><mat-icon>delete</mat-icon></button>
+                <button class="button-edit" mat-button (click)="formulaireModification(cellier)"><mat-icon>edit</mat-icon></button>
+                <button class="button-delete" mat-button (click)="supprimerCellier(cellier.id)"><mat-icon>delete</mat-icon></button>
             </div>
         </div>
 
-        <p>{{cellier.description}}</p>
+        
+        <p style="margin: 0;">{{cellier.description}}</p>
+
+        <dl>
+            <div *ngIf='cellier.total_bouteilles_vin_blanc'>
+                <dt><strong>Vin blanc : </strong></dt>
+                <dd>&nbsp;{{cellier.total_bouteilles_vin_blanc}} bouteilles</dd>
+            </div>
+            <div *ngIf='cellier.total_bouteilles_vin_rouge'>
+                <dt><strong>Vin rouge : </strong></dt>
+                <dd>&nbsp;{{cellier.total_bouteilles_vin_rouge}} bouteilles</dd>
+            </div>
+        </dl>
+
     </div>
 </div>
