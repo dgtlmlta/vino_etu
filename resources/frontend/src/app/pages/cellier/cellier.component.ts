@@ -4,9 +4,10 @@ import { FormControl } from '@angular/forms';
 import { Subject } from 'rxjs';
 import { debounceTime, distinctUntilChanged } from 'rxjs/operators';
 import { MatDrawerMode } from '@angular/material/sidenav';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { AuthService } from '@services/auth.service';
 import { Location } from '@angular/common';
+import { ElementsActifsService } from '@services/elements-actifs.service';
 
 @Component({
     selector: 'app-cellier',
@@ -43,6 +44,8 @@ export class CellierComponent implements OnInit {
         private servBouteilleDeVin: BouteilleDeVinService,
         private actRoute: ActivatedRoute,
         private location: Location,
+        private elementsActifs: ElementsActifsService,
+        private router: Router,
     ) {
 
     }
@@ -126,5 +129,12 @@ export class CellierComponent implements OnInit {
 
     cellierContientBouteille() {
         return this.bouteillesCellier.length > 0;
+    }
+
+    ajouterBouteilleAuCellier(): void {
+        // Stocker l'id du présent cellier comme étant le cellier actif
+        this.elementsActifs.setCellierActif(this.cellierId);
+
+        this.router.navigate(["/bouteilles"]);
     }
 }

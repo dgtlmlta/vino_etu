@@ -6,15 +6,17 @@
 
     <div class="content">
         <div class="content-header">
-            <div class="titre-container">
+           <div class="titre-container">
                 <h2 class="titre">{{ cellier.nom }}</h2>
             </div>
             <div class="action-button">
                 <p class="bouton-filtre"><button mat-button (click)="sidenav.toggle()"><mat-icon>filter_alt</mat-icon></button></p>
-                <p><a class="bouton-ajout" mat-button ><mat-icon>add</mat-icon></a></p>
-            </div>
+                <p><button class="bouton-ajout" mat-button (click)="ajouterBouteilleAuCellier()" ><mat-icon>add</mat-icon></button></p>
+            </div> 
         </div>
-        <mat-form-field class="recherche">
+
+
+<mat-form-field class="recherche">
             <mat-label><mat-icon>search</mat-icon>Trouvez une bouteille</mat-label>
             <input matInput (keyup)="recherche($event)" [formControl]="texteRecherche">
         </mat-form-field>
