@@ -41,6 +41,7 @@ import { StringHelpersService } from '@services/helpers/string-helpers.service';
 import { ProfilUtilisateurComponent } from './pages/profil-utilisateur/profil-utilisateur.component';
 import { ModifierUtilisateurComponent } from './pages/modifier-utilisateur/modifier-utilisateur.component';
 import { ModifierCellierComponent } from './pages/modifier-cellier/modifier-cellier.component';
+import { ListeAchatsComponent } from './pages/liste-achats/liste-achats.component';
 
 @NgModule({
     declarations: [
@@ -62,6 +63,7 @@ import { ModifierCellierComponent } from './pages/modifier-cellier/modifier-cell
         ProfilUtilisateurComponent,
         ModifierUtilisateurComponent,
         ModifierCellierComponent,
+        ListeAchatsComponent,
 
     ],
     imports: [
