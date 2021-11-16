@@ -12,7 +12,7 @@
             <div class="action-button">
                 <p class="bouton-filtre"><button mat-button (click)="sidenav.toggle()"><mat-icon>filter_alt</mat-icon></button></p>
                 <p><button class="bouton-ajout" mat-button (click)="ajouterBouteilleAuCellier()" ><mat-icon>add</mat-icon></button></p>
-            </div> 
+            </div>
         </div>
 
 
@@ -51,6 +51,10 @@
                 </ng-template>
             </section>
         </ng-template>
+    </div>
+
+    <div class="action-ajouter">
+        <button mat-raised-button (click)="ajouterBouteilleAuCellier()">+ Ajouter une bouteille au cellier</button>
     </div>
 
 </mat-sidenav-container>

@@ -1,6 +1,5 @@
 <header class="card-action">
     <a class="retour" (click)='back()'><mat-icon>arrow_back</mat-icon>Retour</a>
-    <button (click)="formulaireAjout(bouteille)">ajouter au cellier</button>
 </header>
 
 <div *ngIf="bouteille" class="content">
@@ -22,13 +21,13 @@
                     <dt><strong>Catégorie</strong></dt>
                     <dd>{{bouteille.categories }}</dd>
                 </div>
-    
+
                 <div *ngIf="bouteille.pays">
                     <dt><strong>Origine</strong></dt>
                     <dd>{{bouteille.pays }}</dd>
                 </div>
             </dl>
-    
+
             <div class="card-link">
                 <div>
                     <mat-icon>local_grocery_store</mat-icon><a class="inline-link" href="{{bouteille.url_achat}}">Acheter à la SAQ</a>
@@ -39,4 +38,8 @@
             </div>
         </mat-card-content>
     </mat-card>
+
+    <div class="action-ajouter">
+        <button mat-raised-button (click)="formulaireAjout(bouteille)">+ Ajouter cette bouteille à mon cellier</button>
+    </div>
 </div>

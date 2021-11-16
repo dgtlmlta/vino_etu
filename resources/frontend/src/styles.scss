@@ -1,6 +1,6 @@
 // Custom Theming for Angular Material
 // For more information: https://material.angular.io/guide/theming
-@use '~@angular/material' as mat;
+@use "~@angular/material" as mat;
 // Plus imports for other components in your app.
 
 // Include the common styles for Angular Material. We include this here so that you only
@@ -19,13 +19,15 @@ $angular-warn: mat.define-palette(mat.$red-palette);
 
 // Create the theme object. A theme consists of configurations for individual
 // theming systems such as "color" or "typography".
-$angular-theme: mat.define-light-theme((
-  color: (
-    primary: $angular-primary,
-    accent: $angular-accent,
-    warn: $angular-warn,
-  )
-));
+$angular-theme: mat.define-light-theme(
+    (
+        color: (
+            primary: $angular-primary,
+            accent: $angular-accent,
+            warn: $angular-warn,
+        ),
+    )
+);
 
 // Include theme styles for core and each component used in your app.
 // Alternatively, you can import and @include the theme mixins for each component
@@ -34,25 +36,46 @@ $angular-theme: mat.define-light-theme((
 
 /* You can add global styles to this file, and also import other style files */
 
-
 /* Générale */
 
-html, body { height: 100%; }
-body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
-
+html,
+body {
+    height: 100%;
+}
+body {
+    margin: 0;
+    font-family: Roboto, "Helvetica Neue", sans-serif;
+}
 
 :root {
-  --couleur-primaire: #4c1920;
-  --espacement-petit: .4rem;
+    --couleur-primaire: #4c1920;
+    --couleur-primaire-800: #29060a;
+    --couleur-secondaire: #184c44;
+    // --couleur-secondaire: #96694f;
+    --couleur-gris-200: #fafafa;
+
+
+    --texte-pale: var(--couleur-gris-200);
+
+
+    --elevation-3: #ffffffaa;
+
+    --espacement-petit: 0.4rem;
+    --headerHauteur: 60px;
+    --footerHauteur: 60px;
 }
 
 * {
     box-sizing: border-box;
 }
 
+body {
+    background-color: var(--couleur-gris-200);
+}
+
 main {
-  padding: 3.75rem 1rem;
-  width: 100%;
+    padding: 3.75rem 1rem;
+    width: 100%;
 }
 
 a.inline-link {
@@ -66,65 +89,61 @@ a.inline-link {
     color: var(--couleur-primaire);
 }
 
-
 /* Correction sur les mat-button */
-.mat-mini-fab:not([class*=mat-elevation-z]){
-  box-shadow: none;
+.mat-mini-fab:not([class*="mat-elevation-z"]) {
+    box-shadow: none;
 }
-
 
 /* Correction sur les mat-form */
 
 .mat-form-field-wrapper {
-  padding-bottom: 1rem;
+    padding-bottom: 1rem;
 }
 
 .mat-form-field-underline {
-  width: 0;
+    width: 0;
 }
 
-.mat-form-field-appearance-fill .mat-form-field-flex{
-  background-color: white;
+.mat-form-field-appearance-fill .mat-form-field-flex {
+    background-color: white;
 }
-
 
 /* Css pour les notifications (snackBar) */
 
 [class*="notif"] {
-  position: relative;
-  bottom: 50px;
+    position: relative;
+    bottom: 50px;
 }
 
 .notif-danger {
-  color: #8a1a25;
-  background-color: #f1d1d1;
-  border-color: #e6c3c5 ;
-  .mat-simple-snackbar-action {
-      color: #8a1a25;
-  }
+    color: #8a1a25;
+    background-color: #f1d1d1;
+    border-color: #e6c3c5;
+    .mat-simple-snackbar-action {
+        color: #8a1a25;
+    }
 }
 
 .notif-success {
-  color: #155724;
-  background-color: #d4edda;
-  border-color: #c3e6cb ;
-  .mat-simple-snackbar-action {
-      color: #155724;
-  }
+    color: #155724;
+    background-color: #d4edda;
+    border-color: #c3e6cb;
+    .mat-simple-snackbar-action {
+        color: #155724;
+    }
 }
 
 /* correction du stroke pour l'icone du catalogue */
 
-.mat-icon[svgIcon="catalogue"]{
-  stroke-width: .1;
+.mat-icon[svgIcon="catalogue"] {
+    stroke-width: 0.1;
 }
-
 
 /* Taille de tous les modals */
 mat-dialog-container.mat-dialog-container {
-  width: 80vw;
-  max-height: 80vh;
-  padding: 20px;
+    width: 80vw;
+    max-height: 80vh;
+    padding: 20px;
 }
 
 /* Aligner la loupe dans les champs de recherche */
@@ -133,7 +152,39 @@ mat-label {
     align-items: center;
 }
 
-/* Indice visuel pour les boutons de retour */
-.retour {
+/* Indice visuel pour les boutons de retour et de fermeture */
+.retour,
+.fermer-modal {
     cursor: pointer;
+}
+
+/* Déstyliser les boutons pour les rendre à plat */
+.fermer-modal {
+    border: none;
+    background-color: transparent;
+}
+
+/* Boutons d'ajout de bas de page */
+.action-ajouter {
+    position: fixed;
+    bottom: calc(var(--footerHauteur) + 20px);
+    left: 0;
+    display: flex;
+    justify-content: center;
+
+    width: 100%;
+}
+
+.action-ajouter button {
+    color: var(--texte-pale);
+    background-color: var(--couleur-secondaire);
+}
+
+/* En-tête et footer */
+.mat-toolbar {
+    background-color: var(--couleur-primaire);
+}
+
+.mat-card {
+    background-color: var(--elevation-3);
 }
