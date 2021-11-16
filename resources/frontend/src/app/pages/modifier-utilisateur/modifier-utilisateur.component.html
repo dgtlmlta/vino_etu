@@ -1,7 +1,7 @@
 <div>
     <form [formGroup]="modifierDonneesUtilisateur" (ngSubmit)=putUtilisateur(modifierDonneesUtilisateur.value)>
         <header class="card-action">
-            <a class="retour" (click)='back()'><mat-icon>arrow_back</mat-icon>Retour</a>
+            <a (click)='close()'><mat-icon>close</mat-icon></a>
         </header>
         <div class="header">
             <img class="header-image" src="./assets/img/avatar.png" alt="avatar">

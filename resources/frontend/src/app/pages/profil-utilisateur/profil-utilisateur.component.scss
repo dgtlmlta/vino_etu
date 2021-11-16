@@ -1,6 +1,7 @@
 .card {
     position: relative;
     margin-top: 4rem;
+    box-shadow: rgba(0, 0, 0, 0.1) 0px 1px 3px 0px, rgba(0, 0, 0, 0.06) 0px 1px 2px 0px;
 }
 
 .mat-card-header {
@@ -58,4 +59,16 @@ img {
 
 .mat-form-prefix .mat-icon {
     line-height: 1.25;
+}
+
+.text-secondary{
+    display: flex;
+    flex-direction: column;
+    
+}
+
+.utilisateur-info{
+    display: flex;
+    align-items: center;
+    margin-bottom: 5px;
 }

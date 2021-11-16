@@ -73,6 +73,11 @@ export class AjoutBouteilleComponent implements OnInit {
         return this.ajoutBouteille.controls;
     }
 
+    // fermer le modal avec un X
+    close(): void {
+        this.formulaireRef.close();
+    }
+
     openSnackBar(message: any, action: any) {
         this.snackBar.open(message, action, {
             duration: 3000,

@@ -69,9 +69,9 @@ export class ModifierUtilisateurComponent implements OnInit {
     });
   }
 
-  // Revenir à la page précédente
-  back(): void {
-    this.location.back()
+  // fermer le modal avec un X
+  close(): void {
+    this.formModifierUtilisateur.close();
   }
 
   putUtilisateur(nouvelleInfo:any){
