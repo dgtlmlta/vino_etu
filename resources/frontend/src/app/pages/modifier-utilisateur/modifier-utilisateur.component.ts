@@ -37,7 +37,6 @@ export class ModifierUtilisateurComponent implements OnInit {
     public formModifierUtilisateur: MatDialogRef<ModifierUtilisateurComponent>,
     @Inject(MAT_DIALOG_DATA) public data:any,
     private router: Router,
-    private location: Location,
   ) { }
 
   ngOnInit(): void {
@@ -69,7 +68,7 @@ export class ModifierUtilisateurComponent implements OnInit {
     });
   }
 
-  // Fermer le modal avec X
+  // fermer le modal avec un X
   close(): void {
     this.formModifierUtilisateur.close();
   }

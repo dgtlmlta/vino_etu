@@ -127,4 +127,8 @@ export class CellierComponent implements OnInit {
     cellierContientBouteille() {
         return this.bouteillesCellier.length > 0;
     }
+
+    catalogueBouteilles() {
+
+    }
 }

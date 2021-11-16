@@ -4,12 +4,14 @@
         <a mat-button ><img class="header-image" src="./assets/img/avatar.png" alt="avatar"></a>
       <h2>{{utilisateur.first_name}} {{utilisateur.last_name}}</h2>
       <div class="text-secondary">
-        <mat-icon>email</mat-icon>
-        <span>{{utilisateur.email}}</span>
-      </div>
-      <div class="text-secondary">
-        <mat-icon>location_city</mat-icon>
-        <span *ngIf= 'utilisateur.city'>{{utilisateur.city}}</span>
+        <div class="utilisateur-info">
+          <mat-icon>email</mat-icon>
+          <span>{{utilisateur.email}}</span>
+        </div>
+        <div *ngIf="utilisateur.city" class="utilisateur-info">
+          <mat-icon>location_city</mat-icon>
+          <span>{{utilisateur.city}}</span>
+        </div>
       </div>
     </mat-card-header>
 
@@ -18,7 +20,7 @@
       <a mat-button (click)="formulaireModifierUtilisateur(utilisateur)">
         <div class="mat-form-prefix">
           <mat-icon>person</mat-icon>
-          <span>Informartions personnelles</span>
+          <span>Informartions personnelles</span><mat-icon>edit</mat-icon>
         </div>
       </a>
       <a mat-button routerLink="/celliers">
