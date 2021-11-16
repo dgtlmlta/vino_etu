@@ -50,11 +50,15 @@ body {
 :root {
     --couleur-primaire: #4c1920;
     --couleur-primaire-800: #29060a;
-    --couleur-secondaire: #184C44;
+    --couleur-secondaire: #184c44;
     // --couleur-secondaire: #96694f;
     --couleur-gris-200: #fafafa;
 
+
     --texte-pale: var(--couleur-gris-200);
+
+
+    --elevation-3: #ffffffaa;
 
     --espacement-petit: 0.4rem;
     --headerHauteur: 60px;
@@ -148,15 +152,23 @@ mat-label {
     align-items: center;
 }
 
-/* Indice visuel pour les boutons de retour */
-.retour {
+/* Indice visuel pour les boutons de retour et de fermeture */
+.retour,
+.fermer-modal {
     cursor: pointer;
+}
+
+/* Déstyliser les boutons pour les rendre à plat */
+.fermer-modal {
+    border: none;
+    background-color: transparent;
 }
 
 /* Boutons d'ajout de bas de page */
 .action-ajouter {
     position: fixed;
     bottom: calc(var(--footerHauteur) + 20px);
+    left: 0;
     display: flex;
     justify-content: center;
 
@@ -171,4 +183,8 @@ mat-label {
 /* En-tête et footer */
 .mat-toolbar {
     background-color: var(--couleur-primaire);
+}
+
+.mat-card {
+    background-color: var(--elevation-3);
 }
