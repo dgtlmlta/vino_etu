@@ -6,7 +6,7 @@
         <div class="formulaire-contenu">
             <mat-form-field appearance="fill" class="input-case">
                 <mat-label for="cellierId" class="required">Choisir le cellier </mat-label>
-                <mat-select formControlName="cellierId">
+                <mat-select formControlName="cellierId" [compareWith]="comparerCellierId">
                     <mat-option *ngFor="let cellier of listeCelliers" [value]="cellier.id">
                         {{ cellier.nom }}
                     </mat-option>
