@@ -42,6 +42,7 @@ import { ProfilUtilisateurComponent } from './pages/profil-utilisateur/profil-ut
 import { ModifierUtilisateurComponent } from './pages/modifier-utilisateur/modifier-utilisateur.component';
 import { ModifierCellierComponent } from './pages/modifier-cellier/modifier-cellier.component';
 import { ListeAchatsComponent } from './pages/liste-achats/liste-achats.component';
+import { CreationBouteilleComponent } from './pages/creation-bouteille/creation-bouteille.component';
 
 @NgModule({
     declarations: [
@@ -64,6 +65,7 @@ import { ListeAchatsComponent } from './pages/liste-achats/liste-achats.componen
         ModifierUtilisateurComponent,
         ModifierCellierComponent,
         ListeAchatsComponent,
+        CreationBouteilleComponent,
 
     ],
     imports: [

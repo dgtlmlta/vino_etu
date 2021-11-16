@@ -19,6 +19,8 @@ export class ElementsActifsService {
     }
 
     getCellierActif(): number|null {
+
+        console.log(this.cellierActifId);
         return this.cellierActifId;
     }
 }
