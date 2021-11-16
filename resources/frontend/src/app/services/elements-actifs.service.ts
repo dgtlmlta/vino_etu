@@ -1,9 +1,18 @@
 import { Injectable } from '@angular/core';
 
 @Injectable({
-  providedIn: 'root'
+    providedIn: 'root'
 })
 export class ElementsActifsService {
+    private cellierActifId!: number;
 
-  constructor() { }
+    constructor() { }
+
+    setCellierActif(id: number): void {
+        if(!id) {
+            return;
+        }
+
+        this.cellierActifId =  id;
+    }
 }
