@@ -11,8 +11,8 @@ import { MatConfirmDialogComponent } from '@components/mat-confirm-dialog/mat-co
 })
 export class BouteilleDeVinService {
 
-    // private url:string = "http://127.0.0.1:8000/api";
-    private url: string = "http://kalimotxo-vino.akira.dev/api";
+    private url:string = "http://127.0.0.1:8000/api";
+    //private url: string = "http://kalimotxo-vino.akira.dev/api";
     // private url: string = new URL(window.location.href).origin + "/api";
 
 
@@ -159,7 +159,7 @@ export class BouteilleDeVinService {
      *
      * @returns
      */
-     modifierCellier(data: any, idCellier : any) {
+    modifierCellier(data: any, idCellier : any) {
 
         let body = {
             'nom': data.nom,
@@ -168,7 +168,6 @@ export class BouteilleDeVinService {
         }
 
         return this.http.put<any>(this.url + '/celliers/'+ idCellier, body);
-
     }
 
 
