@@ -43,11 +43,22 @@ body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
 
 :root {
   --couleur-primaire: #4c1920;
+  --couleur-secondaire: #184C44;
+  --couleur-gris-200: #fafafa;
+
+  --texte-pale: var(--couleur-gris-200);
+
   --espacement-petit: .4rem;
+  --headerHauteur: 60px;
+  --footerHauteur: 60px;
 }
 
 * {
     box-sizing: border-box;
+}
+
+body {
+    background-color: var(--couleur-gris-200);
 }
 
 main {
@@ -136,4 +147,19 @@ mat-label {
 /* Indice visuel pour les boutons de retour */
 .retour {
     cursor: pointer;
+}
+
+/* Boutons d'ajout de bas de page */
+.action-ajouter {
+    position: fixed;
+    bottom: calc(var(--footerHauteur) + 20px);
+    display: flex;
+    justify-content: center;
+
+    width: 100%;
+}
+
+.action-ajouter button {
+    color: var(--texte-pale);
+    background-color: var(--couleur-secondaire);
 }

@@ -29,8 +29,8 @@ main[_ngcontent-vfb-c129] {
 
 .example-container {
     position: absolute;
-    top: 3.75rem;
-    bottom: 0;
+    top: var(--headerHauteur);
+    bottom: var(--footerHauteur);
     left: 0;
     right: 0;
 }
@@ -42,7 +42,7 @@ main[_ngcontent-vfb-c129] {
 
 .mat-drawer{
     width: 75%;
-    overflow: hidden;
+    overflow: scroll;
 }
 
 .mat-form-field{

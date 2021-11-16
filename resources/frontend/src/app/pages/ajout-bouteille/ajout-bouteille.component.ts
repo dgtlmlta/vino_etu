@@ -125,7 +125,7 @@ export class AjoutBouteilleComponent implements OnInit {
 
     /**
      *
-     * Comparer les valeurs des options de celliers afin de sélectionner celle qui correspond à la valeur donnée au formControl.
+     * Comparer les valeurs des options d'id de celliers afin de sélectionner celle qui correspond à la valeur donnée au formControl.
      *
      * @param {number} id1
      * @param {number|string} id2

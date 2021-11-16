@@ -8,7 +8,7 @@
         <div class="content-header">
             <h2 class="titre">{{ cellier.nom }}</h2>
             <p class="bouton-filtre none"><button mat-button (click)="sidenav.toggle()">Filtrer</button></p>
-            <p class="bouton-filtre"><button mat-button (click)="ajouterBouteilleAuCellier()">Ajouter</button></p>
+            <!-- <p class="bouton-filtre"><button mat-button (click)="ajouterBouteilleAuCellier()">Ajouter</button></p> -->
         </div>
         <mat-form-field class="recherche">
             <mat-label><mat-icon>search</mat-icon>Trouvez une bouteille</mat-label>
@@ -45,6 +45,10 @@
                 </ng-template>
             </section>
         </ng-template>
+    </div>
+
+    <div class="action-ajouter">
+        <button mat-raised-button (click)="ajouterBouteilleAuCellier()">+ Ajouter une bouteille au cellier</button>
     </div>
 
 </mat-sidenav-container>
