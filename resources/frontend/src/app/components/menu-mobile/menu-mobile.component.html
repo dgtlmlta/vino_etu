@@ -19,9 +19,27 @@
             <a mat-button routerLink="/celliers">
                 <mat-icon svgIcon="cellier"></mat-icon>
             </a>
-            <a mat-button routerLink="/profil">
-                <mat-icon>account_circle</mat-icon>
+
+            <a mat-icon-button [matMenuTriggerFor]="menu">
+                <mat-icon>more_vert</mat-icon>
             </a>
+            <mat-menu #menu="matMenu">
+                <a mat-menu-item routerLink="/profil">
+                    <mat-icon>account_circle</mat-icon>
+                    <span>Mon profil</span>
+                </a>
+                <a mat-menu-item routerLink="/listeAchats">
+                    <mat-icon>post_add</mat-icon>
+                    <span>Liste d'achat</span>
+                </a>
+                <a mat-menu-item (click)='deconnexion()'>
+                    <mat-icon>logout</mat-icon>
+                    <span>Se déconnecter</span>
+                </a>
+            </mat-menu>
+            <!-- <a mat-button routerLink="/profil">
+                <mat-icon>account_circle</mat-icon>
+            </a> -->
             <!-- <a mat-button (click)='deconnexion()'>
                 <mat-icon>logout</mat-icon>
             </a> -->

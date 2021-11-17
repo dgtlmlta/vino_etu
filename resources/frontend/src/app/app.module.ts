@@ -41,7 +41,9 @@ import { StringHelpersService } from '@services/helpers/string-helpers.service';
 import { ProfilUtilisateurComponent } from './pages/profil-utilisateur/profil-utilisateur.component';
 import { ModifierUtilisateurComponent } from './pages/modifier-utilisateur/modifier-utilisateur.component';
 import { ModifierCellierComponent } from './pages/modifier-cellier/modifier-cellier.component';
+import { ListeAchatsComponent } from './pages/liste-achats/liste-achats.component';
 import { CreationBouteilleComponent } from './pages/creation-bouteille/creation-bouteille.component';
+import {MatMenuModule} from '@angular/material/menu';
 
 @NgModule({
     declarations: [
@@ -63,6 +65,7 @@ import { CreationBouteilleComponent } from './pages/creation-bouteille/creation-
         ProfilUtilisateurComponent,
         ModifierUtilisateurComponent,
         ModifierCellierComponent,
+        ListeAchatsComponent,
         CreationBouteilleComponent,
 
     ],
@@ -84,6 +87,7 @@ import { CreationBouteilleComponent } from './pages/creation-bouteille/creation-
         MatExpansionModule,
         MatSelectModule,
         FormsModule,
+        MatMenuModule,
     ],
     providers: [
         BouteilleDeVinService,

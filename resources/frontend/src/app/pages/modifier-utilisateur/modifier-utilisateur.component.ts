@@ -37,7 +37,6 @@ export class ModifierUtilisateurComponent implements OnInit {
     public formModifierUtilisateur: MatDialogRef<ModifierUtilisateurComponent>,
     @Inject(MAT_DIALOG_DATA) public data:any,
     private router: Router,
-    private location: Location,
   ) { }
 
   ngOnInit(): void {
@@ -73,6 +72,7 @@ export class ModifierUtilisateurComponent implements OnInit {
     this.formModifierUtilisateur.close();
   }
 
+  // Fonction pour modifier les information de l'utilisateur
   putUtilisateur(nouvelleInfo:any){
     console.log(nouvelleInfo);
 
@@ -83,7 +83,6 @@ export class ModifierUtilisateurComponent implements OnInit {
 
       this.profilUtilisateur.emit();
 
-      //this.router.navigate(['profil']);
     });
   }
 }
