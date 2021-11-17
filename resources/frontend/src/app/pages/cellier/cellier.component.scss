@@ -2,6 +2,10 @@ main[_ngcontent-vfb-c129] {
     padding: 0;
 }
 
+.liste-de-bouteilles > * + * {
+    border-block-start: solid 1px var(--voile-noir-100);
+}
+
 .content{
     padding-block-end: 4rem;
     overflow: hidden;
