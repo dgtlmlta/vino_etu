@@ -103,6 +103,10 @@ main .main-content {
     margin-block-start: var(--espacement);
 }
 
+.flow-content-centi > * + * {
+    margin-block-start: var(--espacement-petit);
+}
+
 a.inline-link {
     color: var(--couleur-primaire);
 }

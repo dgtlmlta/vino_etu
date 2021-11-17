@@ -4,42 +4,44 @@
     flex-wrap: wrap;
 }
 
-.resultat{
+.resultat {
     padding-bottom: 10px;
 }
 
 .resultat-vin {
-    clear: both;
+    display: flex;
+    gap: var(--espacement);
+
     min-height: 45px;
-    margin: 0 -10px;
     padding: 10px 10px;
+
+}
+
+.liste-de-bouteilles article {
     border-top: 1px solid #e9e8e5;
+}
+
+/* Retirer la bordure du haut pour le premier élément */
+.liste-de-bouteilles article:first-of-type {
+    border-top: 0;
 }
 
 .titre {
     display: flex;
     justify-content: center;
-    font-family: 'Dancing Script', cursive;
+    font-family: "Dancing Script", cursive;
     font-size: 2rem;
     margin: 20px 0;
     color: #4c1920;
 }
 
 img {
-
-    float: left;
-    margin-right: 10px;
+    object-fit: contain;
     display: block;
     width: 70px;
 }
 
-.resultat-vin-data {
-    padding-right: 25px;
-    margin-left: 55px;
-}
-
 .vin-data-droit {
-    float: right;
     font-size: 12px;
 }
 
@@ -47,12 +49,19 @@ img {
     text-decoration: none;
     font-weight: 700;
     font-size: 16px;
-    Color: #000;
+    color: #000;
+}
+
+.bouteille-infos small {
+    display: block;
 }
 
 .subtexte {
-    display: inline-block;
-    padding-right: 15px;
+    display: block;
     font-weight: 500;
     font-size: 14px;
+}
+
+.bouteille-infos {
+    clear: both;
 }
