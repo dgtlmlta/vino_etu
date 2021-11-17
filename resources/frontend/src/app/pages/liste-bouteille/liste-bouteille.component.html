@@ -15,7 +15,9 @@
                 <img src="{{uneBouteille.url_image}}" alt="une bouteille">
 
                 <div class="bouteille-infos flow-content">
-                    <a class="target-link" routerLink="/ficheBouteille/{{uneBouteille.id}}">{{uneBouteille.nom}}</a>
+                    <h3>
+                        <a class="inline-link" routerLink="/ficheBouteille/{{uneBouteille.id}}">{{uneBouteille.nom}}</a>
+                    </h3>
 
                     <div class="flow-content-centi">
                         <span class="subtexte">{{uneBouteille.categorie}}</span>

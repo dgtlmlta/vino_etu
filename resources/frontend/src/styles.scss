@@ -83,6 +83,11 @@ main {
     overflow-y: scroll;
 }
 
+/* Retirer les marges du haut des en-têtes */
+h3 {
+    margin-block-start: 0;
+}
+
 main .main-content {
     padding-block-end: var(--footerHauteur);
     padding-inline: 1rem;
@@ -108,6 +113,15 @@ main .main-content {
 }
 
 a.inline-link {
+    text-underline-offset: 4px;
+    color: var(--couleur-primaire);
+
+    transition-property: color;
+    transition-duration: 300ms;
+    transition-timing-function: cubic-bezier(0.165, 0.84, 0.44, 1);
+}
+
+.inline-link:active {
     color: var(--couleur-secondaire);
 }
 
