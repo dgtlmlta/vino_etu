@@ -1,8 +1,8 @@
 
-<div class="content">
+<div class="main-content">
     <h2 class="titre">Catalogue de bouteilles</h2>
     <!-- Filtre -->
-    <mat-form-field>
+    <mat-form-field class="recherche">
         <mat-label><mat-icon>search</mat-icon>Trouvez une bouteille</mat-label>
         <input matInput (keyup)="recherche($event)" [formControl]="texteRecherche">
     </mat-form-field>
