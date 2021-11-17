@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class CreateListesAchats extends Migration
+class CreateListesAchatsBouteillesTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,9 +13,10 @@ class CreateListesAchats extends Migration
      */
     public function up()
     {
-        Schema::create('listes_achats', function (Blueprint $table) {
+        Schema::create('listes_achats_bouteilles', function (Blueprint $table) {
             $table->id();
-            $table->foreignId("users_id")->constrained()->cascadeOnUpdate()->nullOnDelete();
+            $table->foreignId("bouteilles_id")->constrained()->cascadeOnUpdate()->nullOnDelete();
+            $table->foreignId("listes_achats_id")->constrained()->cascadeOnUpdate()->nullOnDelete();
             $table->timestamps();
         });
     }
@@ -27,6 +28,6 @@ class CreateListesAchats extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('listes_achats');
+        Schema::dropIfExists('listes_achats_bouteilles');
     }
 }

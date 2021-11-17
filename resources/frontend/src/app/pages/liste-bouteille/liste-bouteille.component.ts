@@ -61,7 +61,9 @@ export class ListeBouteilleComponent implements OnInit {
             });
     }
 
+    // Fonction pour ajouter la bouteille à la liste d'achat
     ajouterListeAchats(bouteilleId:any) {
         console.log(bouteilleId)
+        
     }
 }

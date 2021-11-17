@@ -20,4 +20,8 @@ class Bouteille extends Model
     public function categorie() {
         return $this->belongsTo(Categorie::class, "categories_id", "id");
     }
+
+    public function listesAchats() {
+        return $this->belongsToMany(ListeAchat::class, "listes_achats_bouteilles");
+    }
 }

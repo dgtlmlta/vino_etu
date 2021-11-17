@@ -9,14 +9,16 @@ import { BouteilleDeVinService } from '@services/bouteille-de-vin.service';
 export class ListeAchatsComponent implements OnInit {
 
   bouteille: any;
+  
 
   constructor(
     private servBouteilleDeVin: BouteilleDeVinService,
   ) { }
 
   ngOnInit(): void {
+    
 
   }
 
-
+  
 }

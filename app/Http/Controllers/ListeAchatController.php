@@ -14,7 +14,8 @@ class ListeAchatController extends Controller
      */
     public function index()
     {
-        //
+      $items = ListeAchat::all();
+
     }
 
     /**
@@ -35,7 +36,16 @@ class ListeAchatController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $nouvelItem = new ListeAchat();
+
+        $nouvelItem->users_id = $request->users_id;
+        $nouvelItem->bouteille_id = $request->bouteille_id;
+        $nouvelItem->save();
+
+        return response()->json([
+            "message" => "ajout réussi ! id : $nouvelItem->id"
+        ], 200);
+
     }
 
     /**

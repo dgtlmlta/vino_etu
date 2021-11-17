@@ -10,10 +10,10 @@ class ListeAchat extends Model
     use HasFactory;
 
     public function bouteilles() {
-        return $this->hasMany(Bouteille::class);
+        return $this->belongsToMany(Bouteille::class, 'listes_achats_bouteilles');
     }
 
-    public function users() {
-        return $this->hasMany(User::class);
+    public function user() {
+        return $this->belongsTo(User::class);
     }
 }
