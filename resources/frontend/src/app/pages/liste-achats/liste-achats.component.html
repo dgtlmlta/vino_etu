@@ -2,11 +2,11 @@
     <header>
         <h2>Liste d'achats</h2>
     </header>
-    <div>
-        <ul>
-            <li>
-                
-            </li>
-        </ul>
-    </div>
+
+    <mat-selection-list #shoes>
+        <mat-list-option *ngFor="let shoe of typesOfShoes">
+            {{shoe}}
+        </mat-list-option>
+    </mat-selection-list>
+
 </section>

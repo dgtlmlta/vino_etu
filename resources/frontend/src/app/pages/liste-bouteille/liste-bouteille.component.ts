@@ -60,4 +60,8 @@ export class ListeBouteilleComponent implements OnInit {
                 this.bouteille = bouteille.data;
             });
     }
+
+    ajouterListeAchats(bouteilleId:any) {
+        console.log(bouteilleId)
+    }
 }

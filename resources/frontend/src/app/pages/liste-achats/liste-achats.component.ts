@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { BouteilleDeVinService } from '@services/bouteille-de-vin.service';
 
 @Component({
   selector: 'app-liste-achats',
@@ -7,10 +8,14 @@ import { Component, OnInit } from '@angular/core';
 })
 export class ListeAchatsComponent implements OnInit {
 
+  bouteille: any;
 
-  constructor() { }
+  constructor(
+    private servBouteilleDeVin: BouteilleDeVinService,
+  ) { }
 
   ngOnInit(): void {
+
   }
 
 
