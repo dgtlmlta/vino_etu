@@ -1,8 +1,8 @@
 <div class="content">
     <div class="content-header">
         <h2 class="titre">Mes Celliers</h2>
-        <p class="bouton-filtre"><button mat-button (click)="formulaireAjout(listeCelliers)"><mat-icon>add</mat-icon></button></p>
     </div>
+
     <div *ngFor="let cellier of listeCelliers" class="resultat-cellier">
         <div class="nom-cellier">
             <a routerLink="/celliers/{{cellier.id}}" [state]="cellier">
@@ -14,7 +14,7 @@
             </div>
         </div>
 
-        
+
         <p style="margin: 0;">{{cellier.description}}</p>
 
         <dl>
@@ -27,6 +27,9 @@
                 <dd>&nbsp;{{cellier.total_bouteilles_vin_rouge}} bouteilles</dd>
             </div>
         </dl>
+    </div>
 
+    <div class="action-ajouter">
+        <button mat-raised-button (click)="formulaireAjout(listeCelliers)">+ Ajouter un cellier</button>
     </div>
 </div>

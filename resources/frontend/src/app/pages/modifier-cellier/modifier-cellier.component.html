@@ -1,9 +1,10 @@
 
 <div>
-    <form [formGroup]="modifierCellier" (ngSubmit)=postCellier(modifierCellier.value)>
+    <form class="flow-content" [formGroup]="modifierCellier" (ngSubmit)=postCellier(modifierCellier.value)>
         <header class="card-action">
-            <button class="fermer-modal" (click)='close()'><mat-icon>close</mat-icon></button>
+            <button type="button" class="fermer-modal" (click)='close()'><mat-icon>close</mat-icon></button>
         </header>
+
         <div class="formulaire-contenu">
             <mat-form-field appearance="fill" class="input-case">
                 <mat-label for="nom" class="required">Nom</mat-label>
@@ -25,7 +26,6 @@
                 <mat-label for="id">Id</mat-label>
                 <input matInput type="number" id="id" formControlName="id" class="step__input">
             </mat-form-field>
-
         </div>
 
         <small>( * ) Champ obligatoire</small>
@@ -33,6 +33,5 @@
         <mat-dialog-actions>
             <button type="submit" mat-raised-button>Modifier le cellier</button>
         </mat-dialog-actions>
-
     </form>
 </div>

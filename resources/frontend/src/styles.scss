@@ -60,7 +60,8 @@ body {
 
     --elevation-3: #ffffffaa;
 
-    --espacement-petit: 0.4rem;
+    --espacement: 1rem;
+    --espacement-petit: calc(var(--espacement) * .5);
     --headerHauteur: 60px;
     --footerHauteur: 60px;
 }
@@ -76,6 +77,11 @@ body {
 main {
     padding: 3.75rem 1rem;
     width: 100%;
+}
+
+/* Rythme vertical */
+.flow-content > * + * {
+    margin-block-start: var(--espacement);
 }
 
 a.inline-link {
@@ -143,7 +149,15 @@ a.inline-link {
 mat-dialog-container.mat-dialog-container {
     width: 80vw;
     max-height: 80vh;
-    padding: 20px;
+}
+
+.modal-base .mat-dialog-actions {
+    margin-bottom: 0;
+}
+
+/* Agrandir la surface de hit des boutons de modals */
+.mat-dialog-actions button {
+    padding-block: var(--espacement-petit);
 }
 
 /* Aligner la loupe dans les champs de recherche */
@@ -176,6 +190,8 @@ mat-label {
 }
 
 .action-ajouter button {
+    padding-block: var(--espacement-petit);
+
     color: var(--texte-pale);
     background-color: var(--couleur-secondaire);
 }

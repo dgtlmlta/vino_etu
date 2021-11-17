@@ -126,8 +126,4 @@ export class AjoutBouteilleComponent implements OnInit {
      comparerCellierId(id1: number, id2: string|number): boolean {
         return id1 == id2;
     }
-
-
-
-
 }

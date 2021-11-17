@@ -27,7 +27,7 @@ import { MatCardModule } from '@angular/material/card';
 import { MatSnackBarModule } from '@angular/material/snack-bar';
 import { ModifierCellierBouteilleComponent } from './pages/modifier-cellier-bouteille/modifier-cellier-bouteille.component';
 import { MatSidenavModule } from '@angular/material/sidenav';
-import { MatDialogModule } from '@angular/material/dialog';
+import { MatDialogModule, MAT_DIALOG_DEFAULT_OPTIONS } from '@angular/material/dialog';
 import { MatExpansionModule } from '@angular/material/expansion';
 import { MatConfirmDialogComponent } from './components/mat-confirm-dialog/mat-confirm-dialog.component';
 import { MatSelectModule } from '@angular/material/select'
@@ -94,11 +94,17 @@ import { CreationBouteilleComponent } from './pages/creation-bouteille/creation-
             useClass: TokenInterceptor,
             multi: true,
         },
+        {
+            provide: MAT_DIALOG_DEFAULT_OPTIONS,
+            useValue: {
+                panelClass: "modal-base",
+            }
+        },
         DatePipe,
         StringHelpersService,
     ],
     bootstrap: [AppComponent],
-    entryComponents:[MatConfirmDialogComponent],
+    entryComponents: [MatConfirmDialogComponent],
 })
 export class AppModule {
     constructor() {
