@@ -96,7 +96,6 @@ export class AuthService {
                 this.snackBar.open(
                     `Salut, ${this.getPrenomUtilisateurAuthentifie()} ! Heureux de vous revoir`,
                     "Fermer",
-                    { duration: 3000, panelClass: 'notif' }
                 );
                 this.router.navigate(['/']);
             },

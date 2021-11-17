@@ -1,4 +1,4 @@
-<mat-sidenav-container class="example-container">
+<mat-sidenav-container class="main-content">
 
     <mat-sidenav #sidenav [mode]="mode">
         <p><button mat-button (click)="sidenav.toggle()">Toggle</button></p>
@@ -6,18 +6,23 @@
 
     <div class="content">
         <div class="content-header">
-           <div class="titre-container">
+            <div class="titre-container">
                 <h2 class="titre">{{ cellier.nom }}</h2>
             </div>
             <div class="action-button">
-                <p class="bouton-filtre"><button mat-button (click)="sidenav.toggle()"><mat-icon>filter_alt</mat-icon></button></p>
-                <p><button class="bouton-ajout" mat-button (click)="ajouterBouteilleAuCellier()" ><mat-icon>add</mat-icon></button></p>
+                <p class="bouton-filtre">
+                    <button mat-button (click)="sidenav.toggle()">
+                        <mat-icon>filter_alt</mat-icon>
+                    </button>
+                </p>
             </div>
         </div>
 
 
         <mat-form-field class="recherche">
-            <mat-label><mat-icon>search</mat-icon>Trouvez une bouteille</mat-label>
+            <mat-label>
+                <mat-icon>search</mat-icon>Trouvez une bouteille
+            </mat-label>
             <input matInput (keyup)="recherche($event)" [formControl]="texteRecherche">
         </mat-form-field>
 
@@ -25,19 +30,20 @@
         </ng-container>
 
         <ng-template #bouteille>
-            <section *ngFor="let uneBouteille of bouteillesCellier" class="resultat">
-                <app-cellier-bouteille
-                    [uneBouteille]='uneBouteille'
-                    (chargerBouteilles)="chargerBouteilles()"
-                    [cellierId]="cellierId">
-                </app-cellier-bouteille>
+            <section class="liste-de-bouteilles">
+                <div *ngFor="let uneBouteille of bouteillesCellier">
+                    <app-cellier-bouteille
+                        [uneBouteille]='uneBouteille'
+                        (chargerBouteilles)="chargerBouteilles()"
+                        [cellierId]="cellierId">
+                    </app-cellier-bouteille>
+                </div>
             </section>
         </ng-template>
 
         <ng-template #pasBouteille>
             <section class="ajouter-bouteille">
-                <ng-container
-                    *ngIf="estFiltre; then msgFiltre; else msgInitial">
+                <ng-container *ngIf="estFiltre; then msgFiltre; else msgInitial">
                 </ng-container>
 
                 <ng-template #msgFiltre>
@@ -54,7 +60,7 @@
     </div>
 
     <div class="action-ajouter">
-        <button mat-raised-button (click)="ajouterBouteilleAuCellier()">+ Ajouter une bouteille au cellier</button>
+        <button class="ajouter-bouton" mat-raised-button (click)="ajouterBouteilleAuCellier()">+ Ajouter une bouteille au cellier</button>
     </div>
 
 </mat-sidenav-container>

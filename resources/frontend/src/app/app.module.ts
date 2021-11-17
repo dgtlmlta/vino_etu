@@ -24,10 +24,10 @@ import { MatInputModule } from '@angular/material/input';
 import { CellierBouteilleComponent } from './components/cellier-bouteille/cellier-bouteille.component';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { MatCardModule } from '@angular/material/card';
-import { MatSnackBarModule } from '@angular/material/snack-bar';
+import { MatSnackBarModule, MAT_SNACK_BAR_DEFAULT_OPTIONS } from '@angular/material/snack-bar';
 import { ModifierCellierBouteilleComponent } from './pages/modifier-cellier-bouteille/modifier-cellier-bouteille.component';
 import { MatSidenavModule } from '@angular/material/sidenav';
-import { MatDialogModule } from '@angular/material/dialog';
+import { MatDialogModule, MAT_DIALOG_DEFAULT_OPTIONS } from '@angular/material/dialog';
 import { MatExpansionModule } from '@angular/material/expansion';
 import { MatConfirmDialogComponent } from './components/mat-confirm-dialog/mat-confirm-dialog.component';
 import { MatSelectModule } from '@angular/material/select'
@@ -98,11 +98,24 @@ import {MatMenuModule} from '@angular/material/menu';
             useClass: TokenInterceptor,
             multi: true,
         },
+        {
+            provide: MAT_DIALOG_DEFAULT_OPTIONS,
+            useValue: {
+                panelClass: "modal-base",
+            }
+        },
+        {
+            provide: MAT_SNACK_BAR_DEFAULT_OPTIONS,
+            useValue: {
+                duration: 100000,
+                panelClass: "notif",
+            }
+        },
         DatePipe,
         StringHelpersService,
     ],
     bootstrap: [AppComponent],
-    entryComponents:[MatConfirmDialogComponent],
+    entryComponents: [MatConfirmDialogComponent],
 })
 export class AppModule {
     constructor() {

@@ -82,7 +82,6 @@ export class AjoutBouteilleComponent implements OnInit {
 
     openSnackBar(message: any, action: any) {
         this.snackBar.open(message, action, {
-            duration: 3000,
             panelClass: 'notif-success'
         });
     }
@@ -126,8 +125,4 @@ export class AjoutBouteilleComponent implements OnInit {
      comparerCellierId(id1: number, id2: string|number): boolean {
         return id1 == id2;
     }
-
-
-
-
 }

@@ -36,9 +36,10 @@
     display: flex;
     justify-content: space-around;
 }
-.content-header button{
-    background-color: #4c1920;
-    color: #fff;
+
+.content-header button {
+    background-color: var(--couleur-primaire);
+    color: var(--couleur-gris-200);
 }
 .content a {
     text-decoration: none;
@@ -55,12 +56,6 @@
     text-transform: capitalize;
     font-size: 1.2em;
     color: var(--couleur-primaire);
-    margin: 0 0 1rem 0;
-
-}
-
-.nom-cellier .mat-icon{
-    font-size: 1.2rem; 
 }
 
 .nom-cellier .mat-icon:hover{
@@ -71,29 +66,18 @@
     min-width: 40px;
 }
 
-.nom-cellier .button-edit{
-    padding: 0px;
-    margin: 0;
-    margin-left: 10px;
-    width: 30px;
-    height: 30px;
+.action-cellier {
+    display: flex;
+    gap: var(--espacement-petit);
+}
+
+.action-cellier button {
     background-color: var(--couleur-primaire);
-    color: #fff;
-    
+    color: var(--couleur-gris-200);
 }
 
 .nom-cellier .button-delete{
-    padding: 0px;
-    margin: 0;
-    margin-left: 10px;
-    width: 30px;
-    height: 30px;
     background-color: #8a1a25;
-    color: #fff;
-}
-
-.action-cellier{
-    display: flex;
 }
 
 .mat-expansion-panel-header{
