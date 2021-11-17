@@ -42,12 +42,13 @@ export class ProfilUtilisateurComponent implements OnInit {
   }
 
   // Fonction pour se deconnecter et envoyer une notification de confirmation
-    deconnexion() {
+    /* deconnexion() {
         this.authService.deconnexion();
         this.router.navigate(['/connection']);
         this.snackbar.open(`Vous etes maintenant déconnecté`, "Fermer", {duration: 3000, panelClass: 'notif'});
 
-    }
+    } */
+
 
   formulaireModifierUtilisateur(utilisateur: any): void {
 

@@ -15,6 +15,7 @@ import { BouteillesCellierResolver } from '@services/bouteilles-cellier.resolver
 import { ProfilUtilisateurComponent } from '@pages/profil-utilisateur/profil-utilisateur.component';
 import { ModifierUtilisateurComponent } from '@pages/modifier-utilisateur/modifier-utilisateur.component';
 import { CreationBouteilleComponent } from '@pages/creation-bouteille/creation-bouteille.component';
+import { ListeAchatsComponent } from '@pages/liste-achats/liste-achats.component';
 
 const routes: Routes = [
     {
@@ -71,6 +72,11 @@ const routes: Routes = [
     {
         path: "bouteilles-personnalise/ajout",
         component: CreationBouteilleComponent,
+        canActivate: [AuthGuard],
+    },
+    {
+        path: "listeAchats",
+        component: ListeAchatsComponent,
         canActivate: [AuthGuard],
     },
 ];
