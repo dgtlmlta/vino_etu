@@ -2,7 +2,9 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Bouteille;
 use App\Models\ListeAchat;
+use App\Models\ListeAchatBouteille;
 use Illuminate\Http\Request;
 
 class ListeAchatController extends Controller
@@ -14,7 +16,14 @@ class ListeAchatController extends Controller
      */
     public function index()
     {
-      $items = ListeAchat::all();
+
+    }
+
+
+    public function afficherListeAchatParUtilisateur(Request $request)
+    {
+        $userId = $request->userId;
+        $liste = ListeAchatBouteille::find($userId);
 
     }
 
@@ -29,21 +38,25 @@ class ListeAchatController extends Controller
     }
 
     /**
-     * Store a newly created resource in storage.
+     * Ajouter une bouteille à la liste d'achat
      *
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
     public function store(Request $request)
     {
-        $nouvelItem = new ListeAchat();
 
-        $nouvelItem->users_id = $request->users_id;
-        $nouvelItem->bouteille_id = $request->bouteille_id;
+        $nouvelItem = new ListeAchat();
+        $nouvelItem->users_id = $request->userId;
+        $nouvelItem->bouteilles_id = $request->bouteilleId;
         $nouvelItem->save();
 
+        $nouvelleBouteilleListe = new ListeAchatBouteille();
+        $nouvelleBouteilleListe->listes_achats_id = $nouvelItem->id;
+        $nouvelleBouteilleListe->bouteilles_id = $nouvelItem->bouteillesId;
+
         return response()->json([
-            "message" => "ajout réussi ! id : $nouvelItem->id"
+            "message" => "ajout réussi"
         ], 200);
 
     }

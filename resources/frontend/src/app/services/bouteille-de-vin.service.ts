@@ -171,6 +171,15 @@ export class BouteilleDeVinService {
     }
 
 
+    ajouterBouteilleListeAchats(data: any) {
+        console.log(data)
+        let body = {
+            'user_id': data.userId,
+            'bouteille_id': data.bouteilleId,
+        }
+        return this.http.post<any>(this.url + '/listesAchats', body)
+    }
+
 }
 
 

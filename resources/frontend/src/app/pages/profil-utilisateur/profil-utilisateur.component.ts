@@ -49,7 +49,7 @@ export class ProfilUtilisateurComponent implements OnInit {
 
     } */
 
-  
+
   formulaireModifierUtilisateur(utilisateur: any): void {
 
     let modifierUtilisateur = this.dialog.open(ModifierUtilisateurComponent, {

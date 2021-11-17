@@ -77,6 +77,7 @@ const routes: Routes = [
     {
         path: "listeAchats",
         component: ListeAchatsComponent,
+        canActivate: [AuthGuard],
     },
 ];
 

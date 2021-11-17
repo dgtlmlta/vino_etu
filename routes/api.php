@@ -9,6 +9,7 @@ use App\Http\Controllers\PaysController;
 use App\Http\Controllers\UnionsController;
 use App\Http\Controllers\UserController;
 use App\Http\Controllers\CustomAuthController;
+use App\Http\Controllers\ListeAchatController;
 use App\Models\Cellier;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
@@ -93,8 +94,11 @@ Route::group(['middleware' => ["auth:sanctum"]], function () {
     // Supprimer une bouteille
     Route::delete('supprimer/{cellierBouteilleAchetee}', [CellierBouteilleAcheteeController::class, "supprimerBouteille"]);
 
-     // Modifier les informations d'un utilisateur
-     Route::put('user/{userId}', [CustomAuthController::class, "update"]);
+    // Ajout d'une bouteille à la liste d'achat
+    Route::post('listesAchats', [ListeAchatController::class, "store"]);
+
+    // Modifier les informations d'un utilisateur
+    Route::put('user/{userId}', [CustomAuthController::class, "update"]);
 
     //Deconnexion
     Route::post('deconnexion', [CustomAuthController::class, "deconnexion"]);
