@@ -1,21 +1,35 @@
-
-<div class="content">
+<div class="main-content">
     <h2 class="titre">Catalogue de bouteilles</h2>
     <!-- Filtre -->
-    <mat-form-field>
-        <mat-label><mat-icon>search</mat-icon>Trouvez une bouteille</mat-label>
+    <mat-form-field class="recherche">
+        <mat-label>
+            <mat-icon>search</mat-icon>Trouvez une bouteille
+        </mat-label>
         <input matInput (keyup)="recherche($event)" [formControl]="texteRecherche">
     </mat-form-field>
-    <section  *ngFor="let uneBouteille of bouteille" class="resultat">
-        <div class="resultat-vin" routerLink="/ficheBouteille/{{uneBouteille.id}}">
-            <img src="{{uneBouteille.url_image}}" alt="une bouteille">
-            <div class="resultat-vin-data"><a class="target-link" routerLink="/ficheBouteille/{{uneBouteille.id}}" >{{uneBouteille.nom}}</a></div>
-            <div class="vin-data-droit">{{uneBouteille.format}}</div>
-            <span class="subtexte">{{uneBouteille.categorie}}</span>
-            <div>
-                <span class="subtexte">{{uneBouteille.pays}}</span>
+
+    <div class="liste-de-bouteilles">
+        <article *ngFor="let uneBouteille of bouteille" class="resultat"
+            routerLink="/ficheBouteille/{{uneBouteille.id}}">
+            <div class="resultat-vin">
+                <img src="{{uneBouteille.url_image}}" alt="une bouteille">
+
+                <div class="bouteille-infos flow-content">
+                    <h3>
+                        <a class="inline-link" routerLink="/ficheBouteille/{{uneBouteille.id}}">{{uneBouteille.nom}}</a>
+                    </h3>
+
+                    <div class="flow-content-centi">
+                        <span class="subtexte">{{uneBouteille.categorie}}</span>
+                        <span class="subtexte">{{uneBouteille.pays}}</span>
+                        <small>{{uneBouteille.format}}</small>
+                    </div>
+                </div>
             </div>
-        </div>
-        <button class="vin-data-droit" mat-mini-fab (click)="ajouterListeAchats(uneBouteille.id)"><mat-icon>post_add</mat-icon></button>
-    </section>
+
+            <div>
+                <div class="subtexte"></div>
+            </div>
+        </article>
+    </div>
 </div>

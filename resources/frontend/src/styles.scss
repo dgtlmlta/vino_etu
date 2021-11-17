@@ -54,13 +54,13 @@ body {
     // --couleur-secondaire: #96694f;
     --couleur-gris-200: #fafafa;
 
-
     --texte-pale: var(--couleur-gris-200);
 
-
     --elevation-3: #ffffffaa;
+    --voile-noir-100: #00000020;
 
-    --espacement-petit: 0.4rem;
+    --espacement: 1rem;
+    --espacement-petit: calc(var(--espacement) * 0.5);
     --headerHauteur: 60px;
     --footerHauteur: 60px;
 }
@@ -74,12 +74,56 @@ body {
 }
 
 main {
-    padding: 3.75rem 1rem;
+    position: absolute;
+    left: 0;
+    top: var(--headerHauteur);
+    bottom: var(--footerHauteur);
+
     width: 100%;
+
+    overflow-y: scroll;
+}
+
+/* Retirer les marges du haut des en-têtes */
+h3 {
+    margin-block-start: 0;
+}
+
+main .main-content {
+    padding-block-end: var(--footerHauteur);
+    padding-inline: 1rem;
+
+}
+
+.mat-drawer {
+    bottom: unset !important;
+    left: 0 !important;
+}
+
+.mat-sidenav {
+    padding: var(--espacement);
+}
+
+/* Rythme vertical */
+.flow-content > * + * {
+    margin-block-start: var(--espacement);
+}
+
+.flow-content-centi > * + * {
+    margin-block-start: var(--espacement-petit);
 }
 
 a.inline-link {
+    text-underline-offset: 4px;
     color: var(--couleur-primaire);
+
+    transition-property: color;
+    transition-duration: 300ms;
+    transition-timing-function: cubic-bezier(0.165, 0.84, 0.44, 1);
+}
+
+.inline-link:active {
+    color: var(--couleur-secondaire);
 }
 
 /* champs obligatoires */
@@ -105,14 +149,13 @@ a.inline-link {
 }
 
 .mat-form-field-appearance-fill .mat-form-field-flex {
-    background-color: white;
+    background-color: transparent;
 }
 
 /* Css pour les notifications (snackBar) */
-
 [class*="notif"] {
-    position: relative;
-    bottom: 50px;
+    margin-bottom: calc(var(--headerHauteur) + 10px) !important;
+    margin-block-end: var(--headerHauteur);
 }
 
 .notif-danger {
@@ -143,13 +186,26 @@ a.inline-link {
 mat-dialog-container.mat-dialog-container {
     width: 80vw;
     max-height: 80vh;
-    padding: 20px;
+}
+
+.modal-base .mat-dialog-actions {
+    margin-bottom: 0;
+}
+
+/* Agrandir la surface de hit des boutons de modals */
+.mat-dialog-actions button {
+    padding-block: var(--espacement-petit);
 }
 
 /* Aligner la loupe dans les champs de recherche */
 mat-label {
     display: flex;
     align-items: center;
+}
+
+/* Permettre à tous les champs de recherche textuelle de prendre tout l'espace horizontal */
+.recherche {
+    width: 100%;
 }
 
 /* Indice visuel pour les boutons de retour et de fermeture */
@@ -175,7 +231,10 @@ mat-label {
     width: 100%;
 }
 
-.action-ajouter button {
+button.ajouter-bouton {
+    display: block;
+    padding: var(--espacement-petit) var(--espacement);
+
     color: var(--texte-pale);
     background-color: var(--couleur-secondaire);
 }

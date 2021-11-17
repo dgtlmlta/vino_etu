@@ -1,6 +1,5 @@
-.wrapper{
+.wrapper {
     display: flex;
-    border-top: 1px solid #e9e8e5;
     flex-direction: row;
     justify-content: space-between;
 }
@@ -44,7 +43,7 @@ img {
     text-decoration: none;
     font-weight: 700;
     font-size: 16px;
-    Color: #000;
+    color: #000;
 }
 
 .subtexte {
@@ -55,35 +54,34 @@ img {
 }
 
 .mat-mini-fab {
-   transform: scale()
+    transform: scale();
 }
 
-.mat-mini-fab.mat-accent{
+.mat-mini-fab.mat-accent {
     background-color: var(--couleur-primaire);
 }
 
-.mat-mini-fab.mat-accent:disabled{
+.mat-mini-fab.mat-accent:disabled {
     background-color: #ababab;
 }
 
 .mat-form-field {
     max-width: 6ch;
-    padding: 0 0 0 .75em;
+    padding: 0 0 0 0.75em;
 }
 
 .mat-form-field-appearance-fill {
     padding: 0;
 }
 
-.wrapper{
+.wrapper {
     display: flex;
-    border-top: 1px solid #e9e8e5;
 }
 
-.boutons-inventaire{
-  display: flex;
-  align-items: center;
-  justify-content: center;
+.boutons-inventaire {
+    display: flex;
+    align-items: center;
+    justify-content: center;
 }
 
 .boutons-inventaire > div {
@@ -96,8 +94,6 @@ img {
     text-align: center;
 }
 
-
-
 /* Panneau extensible */
 .mat-expansion-panel {
     background-color: transparent;
@@ -107,16 +103,14 @@ img {
     display: flex;
     justify-content: space-evenly;
     padding: 1rem;
-
-
 }
 
-.mat-expansion-panel:not(.mat-expanded):not([aria-disabled=true]) .mat-expansion-panel-header:hover {
+.mat-expansion-panel:not(.mat-expanded):not([aria-disabled="true"])
+    .mat-expansion-panel-header:hover {
     background: inherit;
 }
 
-
-.mat-flat-button{
+.mat-flat-button {
     background-color: var(--couleur-primaire);
     color: #fff;
 }

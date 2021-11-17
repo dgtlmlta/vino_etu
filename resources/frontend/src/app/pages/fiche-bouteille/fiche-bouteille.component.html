@@ -1,45 +1,52 @@
-<header class="card-action">
-    <a class="retour" (click)='back()'><mat-icon>arrow_back</mat-icon>Retour</a>
-</header>
+<div class="main-content">
+    <header class="card-action">
+        <a class="retour" (click)='back()'><mat-icon>arrow_back</mat-icon>Retour</a>
+    </header>
 
-<div *ngIf="bouteille" class="content">
-    <mat-card class="example-card">
-        <img mat-card-image src="{{bouteille.url_image}}" alt="Photo of a Shiba Inu">
-        <mat-card-header class="card-header">
-            <h2>{{bouteille.nom}}</h2>
-            <mat-card-subtitle></mat-card-subtitle>
-        </mat-card-header>
-        <mat-card-content class="card-content">
+    <div *ngIf="bouteille" class="content">
+        <mat-card class="example-card">
+            <img mat-card-image src="{{bouteille.url_image}}" alt="Photo of a Shiba Inu">
+            <mat-card-header class="card-header">
+                <h2>{{bouteille.nom}}</h2>
+                <mat-card-subtitle></mat-card-subtitle>
+            </mat-card-header>
+            <mat-card-content class="card-content flow-content">
 
-            <dl>
-                <div *ngIf="bouteille.format">
-                    <dt><strong>Format</strong></dt>
-                    <dd>{{bouteille.format}}</dd>
+                <dl>
+                    <div *ngIf="bouteille.prix">
+                        <dt><strong>Prix</strong></dt>
+                        <dd>{{bouteille.prix | currency : "CAD" : "$" : "1.2" : "fr-CA"}}</dd>
+                    </div>
+
+                    <div *ngIf="bouteille.format">
+                        <dt><strong>Format</strong></dt>
+                        <dd>{{bouteille.format}}</dd>
+                    </div>
+
+                    <div *ngIf="bouteille.categorie">
+                        <dt><strong>Catégorie</strong></dt>
+                        <dd>{{bouteille.categorie }}</dd>
+                    </div>
+
+                    <div *ngIf="bouteille.pays">
+                        <dt><strong>Origine</strong></dt>
+                        <dd>{{bouteille.pays }}</dd>
+                    </div>
+                </dl>
+
+                <div class="card-link">
+                    <div>
+                        <mat-icon>local_grocery_store</mat-icon><a class="inline-link" href="{{bouteille.url_achat}}">Acheter à la SAQ</a>
+                    </div>
+                    <div class="voir-info">
+                        <mat-icon>playlist_add</mat-icon><a class="inline-link" href="{{bouteille.url_infos}}">Voir les informartion</a>
+                    </div>
                 </div>
 
-                <div *ngIf="bouteille.categories">
-                    <dt><strong>Catégorie</strong></dt>
-                    <dd>{{bouteille.categories }}</dd>
-                </div>
-
-                <div *ngIf="bouteille.pays">
-                    <dt><strong>Origine</strong></dt>
-                    <dd>{{bouteille.pays }}</dd>
-                </div>
-            </dl>
-
-            <div class="card-link">
-                <div>
-                    <mat-icon>local_grocery_store</mat-icon><a class="inline-link" href="{{bouteille.url_achat}}">Acheter à la SAQ</a>
-                </div>
-                <div class="voir-info">
-                    <mat-icon>playlist_add</mat-icon><a class="inline-link" href="{{bouteille.url_infos}}">Voir les informartion</a>
-                </div>
-            </div>
-        </mat-card-content>
-    </mat-card>
-
-    <div class="action-ajouter">
-        <button mat-raised-button (click)="formulaireAjout(bouteille)">+ Ajouter cette bouteille à mon cellier</button>
+                <mat-card-actions>
+                    <button class="ajouter-bouton" mat-raised-button (click)="formulaireAjout(bouteille)">+ Ajouter cette bouteille à mon cellier</button>
+                </mat-card-actions>
+            </mat-card-content>
+        </mat-card>
     </div>
 </div>

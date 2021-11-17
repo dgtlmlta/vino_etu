@@ -27,18 +27,14 @@ select{
     box-sizing: border-box;
 }
 
-input[type=date] {
-    color: #000;
-    background-color: #fff;
-}
 
 .formulaire button {
     text-transform: uppercase;
     border: none;
     font-size: 0.725rem;
-    color: #ffffff;
+    color: var(--couleur-gris-200);
     font-weight: bold;
-    background-color: #4c1920;
+    background-color: var(--couleur-primaire);
     width: 10rem;
     display: block;
     padding: 0.875rem 1rem;

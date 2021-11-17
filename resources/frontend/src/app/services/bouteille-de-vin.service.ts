@@ -121,8 +121,6 @@ export class BouteilleDeVinService {
 
     confirmDialog(msg: string) {
         return this.dialog.open(MatConfirmDialogComponent, {
-            width: '400px',
-            panelClass: 'confirm-dialog-container',
             disableClose: true,
             data: {
                 message: msg
