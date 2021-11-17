@@ -38,6 +38,9 @@
 img {
     object-fit: contain;
     display: block;
+
+    align-self: flex-start;
+
     width: 70px;
 }
 
