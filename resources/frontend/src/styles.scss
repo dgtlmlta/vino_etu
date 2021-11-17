@@ -108,7 +108,7 @@ main .main-content {
 }
 
 a.inline-link {
-    color: var(--couleur-primaire);
+    color: var(--couleur-secondaire);
 }
 
 /* champs obligatoires */
@@ -216,8 +216,9 @@ mat-label {
     width: 100%;
 }
 
-.action-ajouter button {
-    padding-block: var(--espacement-petit);
+button.ajouter-bouton {
+    display: block;
+    padding: var(--espacement-petit) var(--espacement);
 
     color: var(--texte-pale);
     background-color: var(--couleur-secondaire);
