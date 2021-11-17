@@ -24,7 +24,7 @@ import { MatInputModule } from '@angular/material/input';
 import { CellierBouteilleComponent } from './components/cellier-bouteille/cellier-bouteille.component';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { MatCardModule } from '@angular/material/card';
-import { MatSnackBarModule } from '@angular/material/snack-bar';
+import { MatSnackBarModule, MAT_SNACK_BAR_DEFAULT_OPTIONS } from '@angular/material/snack-bar';
 import { ModifierCellierBouteilleComponent } from './pages/modifier-cellier-bouteille/modifier-cellier-bouteille.component';
 import { MatSidenavModule } from '@angular/material/sidenav';
 import { MatDialogModule, MAT_DIALOG_DEFAULT_OPTIONS } from '@angular/material/dialog';
@@ -98,6 +98,13 @@ import { CreationBouteilleComponent } from './pages/creation-bouteille/creation-
             provide: MAT_DIALOG_DEFAULT_OPTIONS,
             useValue: {
                 panelClass: "modal-base",
+            }
+        },
+        {
+            provide: MAT_SNACK_BAR_DEFAULT_OPTIONS,
+            useValue: {
+                duration: 3000,
+                panelClass: "notif",
             }
         },
         DatePipe,

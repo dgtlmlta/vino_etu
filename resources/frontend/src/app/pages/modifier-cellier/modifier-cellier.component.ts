@@ -54,7 +54,7 @@ export class ModifierCellierComponent implements OnInit {
     })
 }
 
-  
+
   // Affichage d'erreur quand le champ obligatoire n'est pas rempli
   get erreur() {
     return this.modifierCellier.controls;
@@ -79,7 +79,7 @@ export class ModifierCellierComponent implements OnInit {
 
           this.chargerCelliers.emit();
 
-          this.snackBar.open(`Vous avez modifier votre cellier `, "Fermer", {duration: 3000, panelClass: 'notif'});
+          this.snackBar.open(`Vous avez modifier votre cellier `, "Fermer");
 
         });
   }

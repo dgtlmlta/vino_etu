@@ -117,7 +117,7 @@ a.inline-link {
 /* Css pour les notifications (snackBar) */
 
 [class*="notif"] {
-    position: relative;
+    position: fixed;
     bottom: 50px;
 }
 
