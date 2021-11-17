@@ -3,8 +3,8 @@ main[_ngcontent-vfb-c129] {
 }
 
 .content{
+    padding-block-end: 4rem;
     overflow: hidden;
-    padding-bottom: 7rem;
 }
 
 .content-header{
@@ -33,15 +33,6 @@ main[_ngcontent-vfb-c129] {
 
 
 /* css pour le side-nav */
-
-.example-container {
-    position: absolute;
-    top: var(--headerHauteur);
-    bottom: var(--footerHauteur);
-    left: 0;
-    right: 0;
-}
-
 .sidenav-content {
     text-align: center;
     padding: 10px;

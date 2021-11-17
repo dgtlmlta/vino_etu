@@ -103,7 +103,7 @@ import { CreationBouteilleComponent } from './pages/creation-bouteille/creation-
         {
             provide: MAT_SNACK_BAR_DEFAULT_OPTIONS,
             useValue: {
-                duration: 3000,
+                duration: 100000,
                 panelClass: "notif",
             }
         },

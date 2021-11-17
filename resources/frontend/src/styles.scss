@@ -54,14 +54,12 @@ body {
     // --couleur-secondaire: #96694f;
     --couleur-gris-200: #fafafa;
 
-
     --texte-pale: var(--couleur-gris-200);
-
 
     --elevation-3: #ffffffaa;
 
     --espacement: 1rem;
-    --espacement-petit: calc(var(--espacement) * .5);
+    --espacement-petit: calc(var(--espacement) * 0.5);
     --headerHauteur: 60px;
     --footerHauteur: 60px;
 }
@@ -75,8 +73,27 @@ body {
 }
 
 main {
-    padding: 3.75rem 1rem;
+    position: absolute;
+    left: 0;
+    top: var(--headerHauteur);
+    bottom: var(--footerHauteur);
+
+    overflow-y: scroll;
+}
+
+main .main-content {
+    padding-block-end: var(--footerHauteur);
+    padding-inline: 1rem;
     width: 100%;
+}
+
+.mat-drawer {
+    bottom: unset !important;
+    left: 0 !important;
+}
+
+.mat-sidenav {
+    padding: var(--espacement);
 }
 
 /* Rythme vertical */
@@ -111,14 +128,13 @@ a.inline-link {
 }
 
 .mat-form-field-appearance-fill .mat-form-field-flex {
-    background-color: white;
+    background-color: transparent;
 }
 
 /* Css pour les notifications (snackBar) */
-
 [class*="notif"] {
-    position: fixed;
-    bottom: 50px;
+    margin-bottom: calc(var(--headerHauteur) + 10px) !important;
+    margin-block-end: var(--headerHauteur);
 }
 
 .notif-danger {

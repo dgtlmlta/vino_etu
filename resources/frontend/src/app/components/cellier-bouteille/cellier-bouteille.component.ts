@@ -93,15 +93,11 @@ export class CellierBouteilleComponent implements OnInit {
             .subscribe()
     }
 
-
-
     openSnackBar(message: any, action: any) {
         this.snackBar.open(message, action, {
-            duration: 3000,
             panelClass: 'notif-success'
         });
     }
-
 
     // Fonction pour supprimer une bouteille dans le cellier et envoyer une notification de confirmation
     supprimerBouteille(){
