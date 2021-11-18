@@ -17,6 +17,17 @@
 
 }
 
+.filtrer {
+    display: flex;
+    align-items: center;
+    gap: var(--espacement)
+}
+
+.filtrer .recherche {
+    flex-basis: 60%;
+    flex-grow: 1;
+}
+
 .liste-de-bouteilles article {
     border-top: 1px solid #e9e8e5;
 }
@@ -42,6 +53,11 @@ img {
     align-self: flex-start;
 
     width: 70px;
+}
+
+.mat-drawer {
+    width: 75%;
+    padding: var(--espacement);
 }
 
 .vin-data-droit {

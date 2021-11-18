@@ -4,6 +4,7 @@ import { HttpClient } from '@angular/common/http';
 import { AuthService } from './auth.service';
 import { MatDialog } from '@angular/material/dialog';
 import { MatConfirmDialogComponent } from '@components/mat-confirm-dialog/mat-confirm-dialog.component';
+import { Categorie } from "@interfaces/categorie";
 
 
 @Injectable({
@@ -176,6 +177,10 @@ export class BouteilleDeVinService {
             'bouteille_id': data.bouteilleId,
         }
         return this.http.post<any>(this.url + '/listesAchats', body)
+    }
+
+    getToutesCategories(): any {
+        return this.http.get<Categorie[]>(`${this.url}categories`);
     }
 
 }

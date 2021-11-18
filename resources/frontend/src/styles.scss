@@ -63,6 +63,7 @@ body {
 
     --espacement: 1rem;
     --espacement-petit: calc(var(--espacement) * 0.5);
+    --espacement-mini: calc(var(--espacement) * 0.25);
     --headerHauteur: 60px;
     --footerHauteur: 60px;
 }
@@ -211,9 +212,10 @@ mat-label {
     width: 100%;
 }
 
-/* Indice visuel pour les boutons de retour et de fermeture */
+/* Indice visuel pour les éléments interactifs */
 .retour,
-.fermer-modal {
+.fermer-modal,
+summary {
     cursor: pointer;
 }
 
@@ -234,9 +236,9 @@ mat-label {
     width: 100%;
 }
 
-button.ajouter-bouton {
+.bouton-fab {
     display: block;
-    padding: var(--espacement-petit) var(--espacement);
+    padding: var(--espacement-mini) var(--espacement);
 
     color: var(--texte-pale);
     background-color: var(--couleur-secondaire);
