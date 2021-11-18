@@ -53,8 +53,10 @@ body {
     --couleur-secondaire: #184c44;
     // --couleur-secondaire: #96694f;
     --couleur-gris-200: #fafafa;
+    --couleur-gris-900: #2a2a2a;
 
     --texte-pale: var(--couleur-gris-200);
+    --texte-fonce: var(var(--couleur-gris-900));
 
     --elevation-3: #ffffffaa;
     --voile-noir-100: #00000020;
@@ -70,6 +72,7 @@ body {
 }
 
 body {
+    color: var(--couleur-gris-900);
     background-color: var(--couleur-gris-200);
 }
 
