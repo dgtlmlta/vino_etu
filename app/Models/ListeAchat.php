@@ -9,6 +9,11 @@ class ListeAchat extends Model
 {
     use HasFactory;
 
+
+    protected $table = "listes_achats";
+
+    protected $guarded = [];
+
     public function bouteilles() {
         return $this->belongsToMany(Bouteille::class, 'listes_achats_bouteilles');
     }

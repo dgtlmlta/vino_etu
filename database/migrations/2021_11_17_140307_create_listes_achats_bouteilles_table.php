@@ -15,8 +15,8 @@ class CreateListesAchatsBouteillesTable extends Migration
     {
         Schema::create('listes_achats_bouteilles', function (Blueprint $table) {
             $table->id();
-            $table->foreignId("bouteilles_id")->constrained()->cascadeOnUpdate()->nullOnDelete();
-            $table->foreignId("listes_achats_id")->constrained()->cascadeOnUpdate()->nullOnDelete();
+            $table->foreignId("bouteilles_id")->nullable()->constrained()->cascadeOnUpdate()->nullOnDelete();
+            $table->foreignId("listes_achats_id")->nullable()->constrained()->cascadeOnUpdate()->nullOnDelete();
             $table->timestamps();
         });
     }

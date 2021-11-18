@@ -10,6 +10,7 @@ use App\Http\Controllers\UnionsController;
 use App\Http\Controllers\UserController;
 use App\Http\Controllers\CustomAuthController;
 use App\Http\Controllers\ListeAchatController;
+use App\Http\Controllers\ListeAchatBouteilleController;
 use App\Models\Cellier;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
@@ -95,7 +96,7 @@ Route::group(['middleware' => ["auth:sanctum"]], function () {
     Route::delete('supprimer/{cellierBouteilleAchetee}', [CellierBouteilleAcheteeController::class, "supprimerBouteille"]);
 
     // Ajout d'une bouteille à la liste d'achat
-    Route::post('listesAchats', [ListeAchatController::class, "store"]);
+    Route::post('listes-achats/{id}/ajout-bouteille', [ListeAchatBouteilleController::class, "store"]);
 
     // Modifier les informations d'un utilisateur
     Route::put('user/{userId}', [CustomAuthController::class, "update"]);

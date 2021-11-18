@@ -3,4 +3,5 @@ export interface Utilisateur {
     first_name: string,
     city: string|null,
     email: string,
+    liste_achat_id: number,
 }

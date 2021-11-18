@@ -258,4 +258,11 @@ export class AuthService {
     }
 
 
+    getIdListeAchat(): number|null {
+        return (this.utilisateurAuthentifie) ?
+            this.utilisateurAuthentifie.liste_achat_id :
+            null;
+        }
+
+
 }
