@@ -1,12 +1,16 @@
-<section >
-    <header>
-        <h2>Liste d'achats</h2>
-    </header>
+<div class="main-content">
+    <div class="content-header">
+        <h2 class="titre">Ma liste d'achat</h2>
+    </div>
 
-    <!-- <mat-selection-list #shoes>
-        <mat-list-option *ngFor="let shoe of typesOfShoes">
-          {{shoe}}
-        </mat-list-option>
-      </mat-selection-list> -->
+ <mat-selection-list #listeBouteilles (selectionChange)='bouteilleSelected(listeBouteilles.selectedOptions.selected)'>
+    <mat-list-option *ngFor='let bouteille of listeAchat' [value]="bouteille">
+      {{bouteille.nom}}
+    </mat-list-option>
+  </mat-selection-list>
 
-</section>
+  <p>
+    Bouteilles sélectionnées : {{listeBouteilles.selectedOptions.selected.length}}
+  </p>
+
+</div>

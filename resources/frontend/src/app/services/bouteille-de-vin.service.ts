@@ -177,6 +177,28 @@ export class BouteilleDeVinService {
         return this.http.post<any>(this.url + '/listes-achats/' + this.servAuth.getIdListeAchat() + '/ajout-bouteille', body)
     }
 
+
+    /**
+     *
+     * Charger la liste d'achat de l'utilisateur donné
+     *
+     * @param {number} userId Id de l'utilisateur
+     * @returns {Observable} Liste d'achat de l'utilisateur
+     */
+     getListeAchatParUtilisateur(userId: number|null): any {
+        if(!userId) {
+            return false;
+        }
+
+        const options = {
+            params: {
+                userId: userId
+            }
+        }
+
+        return this.http.get<any>(this.url + "/listes-achats", options)
+    }
+
 }
 
 
