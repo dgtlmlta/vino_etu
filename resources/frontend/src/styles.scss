@@ -219,6 +219,12 @@ summary {
     cursor: pointer;
 }
 
+/* Changer la couleur du outline pour les boutons en focus */
+button:focus-visible {
+    outline-color: var(--couleur-secondaire);
+    outline-style: double;
+}
+
 /* Déstyliser les boutons pour les rendre à plat */
 .fermer-modal {
     border: none;
