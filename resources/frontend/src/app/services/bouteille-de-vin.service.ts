@@ -4,6 +4,7 @@ import { HttpClient } from '@angular/common/http';
 import { AuthService } from './auth.service';
 import { MatDialog } from '@angular/material/dialog';
 import { MatConfirmDialogComponent } from '@components/mat-confirm-dialog/mat-confirm-dialog.component';
+import { map } from 'rxjs/operators';
 
 
 @Injectable({
@@ -48,6 +49,13 @@ export class BouteilleDeVinService {
     ajoutBouteilleCellier(cellierId: any, bouteilleAchetee: any) {
 
         return this.http.post<any>(this.url + '/celliers/' + cellierId + '/bouteilles', bouteilleAchetee);
+
+    }
+
+
+    ajoutBouteilleCatalogue(bouteilleCatalogue: any) {
+
+        return this.http.post<any>(this.url + '/bouteilles', bouteilleCatalogue);
 
     }
 
@@ -115,6 +123,7 @@ export class BouteilleDeVinService {
         )
     }
 
+
     ajouterUtilisateur(data: any) {
         return this.http.post<any>(this.url + '/creerCompte', data)
     }
@@ -177,6 +186,31 @@ export class BouteilleDeVinService {
         }
         return this.http.post<any>(this.url + '/listesAchats', body)
     }
+
+    /**
+     *
+     * Charger les données concernant les pays d'origine des bouteilles
+     * 
+     * @returns {Observable}
+     */
+         getListePays(){
+            return this.http.get<any>(this.url + "/pays")
+    }
+
+    /**
+     *
+     * Charger la liste complète des catégories disponibles
+     *
+     * @returns {Observable}
+     */
+     getToutesCategories(): any {
+        return this.http.get<any>(`${this.url}/categories`)
+            .pipe(
+                map(data => data.data)
+            );
+    }
+
+    
 
 }
 

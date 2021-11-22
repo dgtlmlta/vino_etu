@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Http\Resources\UtilisateurResource;
 use App\Models\Cellier;
+use App\Models\ListeAchat;
 use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Str;
@@ -85,10 +86,16 @@ class CustomAuthController extends Controller {
             "users_id" => $utilisateur->id,
         ]);
 
+        // Création d'une liste d'achat initial de l'utilisateur.
+        $nouvelleListe = ListeAchat::create([
+            "users_id" => $utilisateur->id,
+        ]);
+
         $response = [
             'utilisateur'                => UtilisateurResource::make($utilisateur),
             'token'                      => $token,
             "nouvelUtilisateurCellierId" => $nouveauCellier->id,
+            'nouvelUtilisateurListeId' => $nouvelleListe->id,
         ];
 
         return response()->json($response, 201);

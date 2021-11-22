@@ -53,7 +53,18 @@ class BouteilleController extends Controller {
      * @return \Illuminate\Http\Response
      */
     public function store(Request $request) {
-        //
+        $nouvelleBouteille = new Bouteille();
+
+        $nouvelleBouteille->nom = $request->nom;
+        $nouvelleBouteille->pays_id = $request->pays_id;
+        $nouvelleBouteille->prix = $request->prix;
+        $nouvelleBouteille->categories_id = $request->categories_id;
+        $nouvelleBouteille->users_id = $request->users_id;
+        $nouvelleBouteille->save();
+
+        return response()->json([
+            "message" => "ajout réussi ! id : $nouvelleBouteille->id"
+        ], 200);
     }
 
     /**

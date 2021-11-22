@@ -1,0 +1,24 @@
+
+<section>
+    <header class="card-action">
+        <button class="fermer-modal" (click)='close()'><mat-icon class="fermer">close</mat-icon></button>
+    </header>
+    <div class="choix">
+        <a routerLink="/bouteilles" (click)='close()'>
+            <div class="background-icon">
+                <mat-icon svgIcon="catalogue"></mat-icon>
+                <p>Du catalogue</p>
+            </div>
+    
+        </a>
+        <a routerLink="bouteilles-personnalise/ajout" (click)='close()' >
+            <div class="background-icon">
+                <mat-icon svgIcon="catalogue"></mat-icon>
+                <p>personnalisée</p>
+            </div>
+  
+        </a>
+    </div>
+    
+</section>
+

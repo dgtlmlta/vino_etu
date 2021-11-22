@@ -27,6 +27,7 @@ class CreateBouteillesTable extends Migration
             $table->string("format")->nullable();
             $table->foreignId("pays_id")->constrained();
             $table->foreignId("categories_id")->constrained();
+            $table->foreignId("users_id")->nullable()->constrained();
             $table->timestamps();
         });
 
