@@ -49,10 +49,10 @@ export class ListeBouteilleComponent implements OnInit {
             );
 
         this.servBouteilleDeVin.getToutesCategories()
-                .subscribe((categories: any) => {
-                    this.categories = categories;
-                    this.initCheckboxes();
-                })
+            .subscribe((categories: any) => {
+                this.categories = categories;
+                this.initCheckboxes();
+            })
     }
 
     openSnackBar(message: any, action: any) {
@@ -63,40 +63,55 @@ export class ListeBouteilleComponent implements OnInit {
     }
 
     // Récupérer les 3 caractères inséré dans l'espace pour faire la recherche
-    recherche($event: any): void {
-
+    batirRechercheTextuelle(): null | string {
         if (this.texteRecherche?.value.length < 3 && this.bouteille != this.bouteillesInitiales) {
             this.bouteille = this.bouteillesInitiales;
-            return;
+            return null;
         }
 
+        return this.texteRecherche?.value.replace("-", " ");
+    }
+
+    // Fonction de recherche d'un bouteille dans le catalogue
+    batirRechercheFiltree(): void {
+        const categories = this.batirTableauFiltreCategories();
+        const rechercheTextuelle = this.batirRechercheTextuelle();
+
+
+        // this.servBouteilleDeVin
+        //     .getListeBouteille({
+        //         texteRecherche:
+        //     })
+        //     .subscribe(bouteille => {
+        //         this.bouteille = bouteille.data;
+        //     });
         if (this.rechercheSujet.observers.length === 0) {
             this.rechercheSujet
-                .pipe(debounceTime(700), distinctUntilChanged())
+                .pipe(
+                    debounceTime(700),
+                    distinctUntilChanged()
+                )
                 .subscribe(recherche => {
-                    if (this.texteRecherche?.value.length >= 3) {
-                        this.effectuerRechercheFiltree();
-                    }
+                    this.effectuerRechercheFiltree();
                 });
         }
 
         this.rechercheSujet.next(this.texteRecherche?.value);
     }
 
-    // Fonction de recherche d'un bouteille dans le cellier
-    effectuerRechercheFiltree(): void {
-        console.log(this.batirTableauFiltreCategories());
-        // this.servBouteilleDeVin
-        //     .getListeBouteille({
-        //         texteRecherche: this.texteRecherche?.value.replace("-", " ")
-        //     })
-        //     .subscribe(bouteille => {
-        //         this.bouteille = bouteille.data;
-        //     });
+    effectuerRechercheFiltree(filtres: ) {
+        let filtres = {};
+
+
+        this.servBouteilleDeVin
+            .getListeBouteille(filtres)
+            .subscribe(bouteille => {
+                this.bouteille = bouteille.data;
+            });
     }
 
     // Fonction pour ajouter la bouteille à la liste d'achat
-    ajouterListeAchats(bouteilleId:any) {
+    ajouterListeAchats(bouteilleId: any) {
         let userId = this.servAuth.getIdUtilisateurAuthentifie();
 
         this.itemListeAchat = { userId, bouteilleId }
@@ -112,7 +127,7 @@ export class ListeBouteilleComponent implements OnInit {
     batirTableauFiltreCategories(): number[] {
         // Récupérer un tableau des ids sélectionnés en utilisant la valeur (true / false) du tableau de checkboxes parallèlement au tableau des catégories
         const tableauIds = this.categories.reduce((tableauCategoriesId, categorie, index) => {
-            if(this.listeCategoriesEnFormArray.controls[index].value) {
+            if (this.listeCategoriesEnFormArray.controls[index].value) {
                 tableauCategoriesId.push(categorie.id);
             }
             return tableauCategoriesId;

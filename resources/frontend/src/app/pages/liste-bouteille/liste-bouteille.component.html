@@ -1,13 +1,13 @@
 <mat-drawer-container class="main-content">
 
-    <mat-drawer #sidenav>
+    <mat-drawer class="drawer-default" #sidenav>
         <div class="drawer-content flow-content">
             <div>
                 <button class="fermer-modal" (click)='sidenav.toggle()'>
                     <mat-icon>close</mat-icon>
                 </button>
             </div>
-            <details>
+            <details open>
                 <summary>Catégories</summary>
                 <fieldset [formGroup]="filtres">
                     <ng-container formArrayName="categories">
@@ -43,7 +43,7 @@
                         <mat-icon>search</mat-icon>Trouvez une bouteille
                     </mat-label>
                     <ng-container [formGroup]="filtres">
-                        <input matInput (keyup)="recherche($event)" formControlName="texteRecherche">
+                        <input matInput (keyup)="effectuerRechercheFiltree()" formControlName="texteRecherche">
                     </ng-container>
                 </mat-form-field>
             </div>

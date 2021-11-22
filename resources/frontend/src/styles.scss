@@ -140,6 +140,10 @@ main .main-content {
     left: 0 !important;
 }
 
+mat-drawer.drawer-default {
+    background-color: var(--couleur-gris-200);
+}
+
 .mat-sidenav {
     padding: var(--espacement);
 }
