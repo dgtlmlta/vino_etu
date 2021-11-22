@@ -11,8 +11,44 @@
 // Define the palettes for your theme using the Material Design palettes available in palette.scss
 // (imported above). For each palette, you can optionally specify a default, lighter, and darker
 // hue. Available color palettes: https://material.io/design/color/
+$lightGrey: #fafafa;
+$darkGrey: #2a2a2a;
+
+$secondary: (
+    50 : #e3eae9,
+    100 : #bac9c7,
+    200 : #8ca6a2,
+    300 : #5d827c,
+    400 : #3b6760,
+    500 : #184c44,
+    600 : #15453e,
+    700 : #113c35,
+    800 : #0e332d,
+    900 : #08241f,
+    A100 : #61ffdf,
+    A200 : #2effd5,
+    A400 : #00fac8,
+    A700 : #00e0b4,
+    contrast: (
+        50 : $darkGrey,
+        100 : $darkGrey,
+        200 : $darkGrey,
+        300 : $lightGrey,
+        400 : $lightGrey,
+        500 : $lightGrey,
+        600 : $lightGrey,
+        700 : $lightGrey,
+        800 : $lightGrey,
+        900 : $lightGrey,
+        A100 : $darkGrey,
+        A200 : $darkGrey,
+        A400 : $darkGrey,
+        A700 : $darkGrey,
+    )
+);
+
 $angular-primary: mat.define-palette(mat.$indigo-palette);
-$angular-accent: mat.define-palette(mat.$pink-palette, A200, A100, A400);
+$angular-accent: mat.define-palette($secondary, 500, 200, 800);
 
 // The warn palette is optional (defaults to red).
 $angular-warn: mat.define-palette(mat.$red-palette);
@@ -52,8 +88,8 @@ body {
     --couleur-primaire-800: #29060a;
     --couleur-secondaire: #184c44;
     // --couleur-secondaire: #96694f;
-    --couleur-gris-200: #fafafa;
-    --couleur-gris-900: #2a2a2a;
+    --couleur-gris-200: #{$lightGrey};
+    --couleur-gris-900: #{$darkGrey};
 
     --texte-pale: var(--couleur-gris-200);
     --texte-fonce: var(var(--couleur-gris-900));
