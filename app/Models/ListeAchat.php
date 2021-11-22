@@ -4,6 +4,7 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Support\Facades\DB;
 
 class ListeAchat extends Model
 {
@@ -20,6 +21,20 @@ class ListeAchat extends Model
 
     public function user() {
         return $this->belongsTo(User::class);
+    }
+
+
+    static public function obtenirListeAchatParUtilisateur($userId) {
+
+        $query =
+            ListeAchat::select('listes_achats.users_id', 'listes_achats_bouteilles.listes_achats_id', 'listes_achats_bouteilles.bouteilles_id', 'bouteilles.nom')
+            ->join('listes_achats_bouteilles', 'listes_achats_bouteilles.listes_achats_id',  '=', 'listes_achats.id')
+            ->join('bouteilles', 'bouteilles.id', '=', 'listes_achats_bouteilles.bouteilles_id')
+            ->where("users_id", $userId)
+            ->get();
+
+        return $query;
+
     }
 
 }

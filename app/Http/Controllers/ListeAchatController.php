@@ -20,12 +20,18 @@ class ListeAchatController extends Controller
     }
 
 
-    public function afficherListeAchatParUtilisateur(Request $request)
+    public function listeAchatParUtilisateur(Request $request) {
+        return ListeAchat::obtenirListeAchatParUtilisateur($request->userId);
+    }
+
+
+
+    /* public function afficherListeAchatParUtilisateur(Request $request)
     {
         $userId = $request->userId;
         $liste = ListeAchatBouteille::find($userId);
 
-    }
+    } */
 
     /**
      * Show the form for creating a new resource.
