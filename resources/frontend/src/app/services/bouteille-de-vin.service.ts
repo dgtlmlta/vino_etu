@@ -4,6 +4,8 @@ import { HttpClient } from '@angular/common/http';
 import { AuthService } from './auth.service';
 import { MatDialog } from '@angular/material/dialog';
 import { MatConfirmDialogComponent } from '@components/mat-confirm-dialog/mat-confirm-dialog.component';
+import { Categorie } from "@interfaces/categorie";
+import { map } from 'rxjs/operators';
 
 
 @Injectable({
@@ -11,8 +13,8 @@ import { MatConfirmDialogComponent } from '@components/mat-confirm-dialog/mat-co
 })
 export class BouteilleDeVinService {
 
-    private url:string = "http://127.0.0.1:8000/api";
-    // private url: string = "http://kalimotxo-vino.akira.dev/api";
+    // private url:string = "http://127.0.0.1:8000/api";
+    private url: string = "http://kalimotxo-vino.akira.dev/api";
     // private url: string = new URL(window.location.href).origin + "/api";
 
 
@@ -176,6 +178,19 @@ export class BouteilleDeVinService {
             'bouteille_id': data.bouteilleId,
         }
         return this.http.post<any>(this.url + '/listesAchats', body)
+    }
+
+    /**
+     *
+     * Charger la liste complète des catégories disponibles
+     *
+     * @returns {Observable}
+     */
+    getToutesCategories(): any {
+        return this.http.get<any>(`${this.url}/categories`)
+            .pipe(
+                map(data => data.data)
+            );
     }
 
 }

@@ -1,35 +1,78 @@
-<div class="main-content">
-    <h2 class="titre">Catalogue de bouteilles</h2>
-    <!-- Filtre -->
-    <mat-form-field class="recherche">
-        <mat-label>
-            <mat-icon>search</mat-icon>Trouvez une bouteille
-        </mat-label>
-        <input matInput (keyup)="recherche($event)" [formControl]="texteRecherche">
-    </mat-form-field>
+<mat-drawer-container class="main-content">
 
-    <div class="liste-de-bouteilles">
-        <article *ngFor="let uneBouteille of bouteille" class="resultat"
-            routerLink="/ficheBouteille/{{uneBouteille.id}}">
-            <div class="resultat-vin">
-                <img src="{{uneBouteille.url_image}}" alt="une bouteille">
+    <mat-drawer class="drawer-default" #sidenav>
+        <div class="drawer-content flow-content">
+            <div>
+                <button class="fermer-modal" (click)='sidenav.toggle()'>
+                    <mat-icon>close</mat-icon>
+                </button>
+            </div>
+            <details open>
+                <summary>Catégories</summary>
+                <fieldset [formGroup]="filtres">
+                    <ng-container formArrayName="categories">
+                        <mat-checkbox
+                            class="checkbox-pleine-largeur"
+                            [formControlName]="i"
+                            labelPosition="before"
+                            (change)="initierRechercheFiltree()"
+                            *ngFor="let categorie of listeCategoriesEnFormArray.controls; let i = index">
+                            {{ categories[i].nom }}
+                        </mat-checkbox>
+                        <label >
 
-                <div class="bouteille-infos flow-content">
-                    <h3>
-                        <a class="inline-link" routerLink="/ficheBouteille/{{uneBouteille.id}}">{{uneBouteille.nom}}</a>
-                    </h3>
+                        </label>
+                    </ng-container>
+                </fieldset>
+            </details>
+        </div>
+    </mat-drawer>
 
-                    <div class="flow-content-centi">
-                        <span class="subtexte">{{uneBouteille.categorie}}</span>
-                        <span class="subtexte">{{uneBouteille.pays}}</span>
-                        <small>{{uneBouteille.format}}</small>
+    <mat-drawer-content class="content">
+        <header class="content-header">
+            <h2 class="titre">Catalogue de bouteilles</h2>
+
+            <div class="filtrer">
+                <button class="bouton-fab" mat-button (click)="sidenav.toggle()">
+                    <mat-icon>filter_alt</mat-icon>
+                    Filtres
+                </button>
+
+                <mat-form-field class="recherche">
+                    <mat-label>
+                        <mat-icon>search</mat-icon>Trouvez une bouteille
+                    </mat-label>
+                    <ng-container [formGroup]="filtres">
+                        <input matInput (keyup)="initierRechercheFiltree()" formControlName="texteRecherche">
+                    </ng-container>
+                </mat-form-field>
+            </div>
+        </header>
+
+        <div class="liste-de-bouteilles">
+            <article *ngFor="let uneBouteille of bouteille" class="resultat"
+                routerLink="/ficheBouteille/{{uneBouteille.id}}">
+                <div class="resultat-vin">
+                    <img src="{{uneBouteille.url_image}}" alt="une bouteille">
+
+                    <div class="bouteille-infos flow-content">
+                        <h3>
+                            <a class="inline-link"
+                                routerLink="/ficheBouteille/{{uneBouteille.id}}">{{uneBouteille.nom}}</a>
+                        </h3>
+
+                        <div class="flow-content-centi">
+                            <span class="subtexte">{{uneBouteille.categorie}}</span>
+                            <span class="subtexte">{{uneBouteille.pays}}</span>
+                            <small>{{uneBouteille.format}}</small>
+                        </div>
                     </div>
                 </div>
-            </div>
 
-            <div>
-                <div class="subtexte"></div>
-            </div>
-        </article>
-    </div>
-</div>
+                <div>
+                    <div class="subtexte"></div>
+                </div>
+            </article>
+        </div>
+    </mat-drawer-content>
+</mat-drawer-container>

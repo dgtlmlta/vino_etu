@@ -30,7 +30,8 @@ import { MatSidenavModule } from '@angular/material/sidenav';
 import { MatDialogModule, MAT_DIALOG_DEFAULT_OPTIONS } from '@angular/material/dialog';
 import { MatExpansionModule } from '@angular/material/expansion';
 import { MatConfirmDialogComponent } from './components/mat-confirm-dialog/mat-confirm-dialog.component';
-import { MatSelectModule } from '@angular/material/select'
+import { MatSelectModule } from '@angular/material/select';
+import { MatCheckboxModule } from '@angular/material/checkbox'
 import { ListeCelliersComponent } from './pages/liste-celliers/liste-celliers.component';
 import { AjoutCellierComponent } from './pages/ajout-cellier/ajout-cellier.component'
 import { TokenInterceptor } from './token.interceptor';
@@ -86,6 +87,7 @@ import {MatMenuModule} from '@angular/material/menu';
         MatDialogModule,
         MatExpansionModule,
         MatSelectModule,
+        MatCheckboxModule,
         FormsModule,
         MatMenuModule,
     ],
@@ -107,7 +109,7 @@ import {MatMenuModule} from '@angular/material/menu';
         {
             provide: MAT_SNACK_BAR_DEFAULT_OPTIONS,
             useValue: {
-                duration: 100000,
+                duration: 3000,
                 panelClass: "notif",
             }
         },

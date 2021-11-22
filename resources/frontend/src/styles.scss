@@ -11,8 +11,44 @@
 // Define the palettes for your theme using the Material Design palettes available in palette.scss
 // (imported above). For each palette, you can optionally specify a default, lighter, and darker
 // hue. Available color palettes: https://material.io/design/color/
+$lightGrey: #fafafa;
+$darkGrey: #2a2a2a;
+
+$secondary: (
+    50 : #e3eae9,
+    100 : #bac9c7,
+    200 : #8ca6a2,
+    300 : #5d827c,
+    400 : #3b6760,
+    500 : #184c44,
+    600 : #15453e,
+    700 : #113c35,
+    800 : #0e332d,
+    900 : #08241f,
+    A100 : #61ffdf,
+    A200 : #2effd5,
+    A400 : #00fac8,
+    A700 : #00e0b4,
+    contrast: (
+        50 : $darkGrey,
+        100 : $darkGrey,
+        200 : $darkGrey,
+        300 : $lightGrey,
+        400 : $lightGrey,
+        500 : $lightGrey,
+        600 : $lightGrey,
+        700 : $lightGrey,
+        800 : $lightGrey,
+        900 : $lightGrey,
+        A100 : $darkGrey,
+        A200 : $darkGrey,
+        A400 : $darkGrey,
+        A700 : $darkGrey,
+    )
+);
+
 $angular-primary: mat.define-palette(mat.$indigo-palette);
-$angular-accent: mat.define-palette(mat.$pink-palette, A200, A100, A400);
+$angular-accent: mat.define-palette($secondary, 500, 200, 800);
 
 // The warn palette is optional (defaults to red).
 $angular-warn: mat.define-palette(mat.$red-palette);
@@ -52,15 +88,18 @@ body {
     --couleur-primaire-800: #29060a;
     --couleur-secondaire: #184c44;
     // --couleur-secondaire: #96694f;
-    --couleur-gris-200: #fafafa;
+    --couleur-gris-200: #{$lightGrey};
+    --couleur-gris-900: #{$darkGrey};
 
     --texte-pale: var(--couleur-gris-200);
+    --texte-fonce: var(var(--couleur-gris-900));
 
     --elevation-3: #ffffffaa;
     --voile-noir-100: #00000020;
 
     --espacement: 1rem;
     --espacement-petit: calc(var(--espacement) * 0.5);
+    --espacement-mini: calc(var(--espacement) * 0.25);
     --headerHauteur: 60px;
     --footerHauteur: 60px;
 }
@@ -70,6 +109,7 @@ body {
 }
 
 body {
+    color: var(--couleur-gris-900);
     background-color: var(--couleur-gris-200);
 }
 
@@ -95,9 +135,21 @@ main .main-content {
 
 }
 
+.mat-drawer-container {
+    min-height: 100%;
+}
+
+.mat-drawer-container .mat-drawer-content {
+    overflow: unset;
+}
+
 .mat-drawer {
     bottom: unset !important;
     left: 0 !important;
+}
+
+mat-drawer.drawer-default {
+    background-color: var(--couleur-gris-200);
 }
 
 .mat-sidenav {
@@ -208,10 +260,17 @@ mat-label {
     width: 100%;
 }
 
-/* Indice visuel pour les boutons de retour et de fermeture */
+/* Indice visuel pour les éléments interactifs */
 .retour,
-.fermer-modal {
+.fermer-modal,
+summary {
     cursor: pointer;
+}
+
+/* Changer la couleur du outline pour les boutons en focus */
+button:focus-visible {
+    outline-color: var(--couleur-secondaire);
+    outline-style: double;
 }
 
 /* Déstyliser les boutons pour les rendre à plat */
@@ -231,9 +290,9 @@ mat-label {
     width: 100%;
 }
 
-button.ajouter-bouton {
+.bouton-fab {
     display: block;
-    padding: var(--espacement-petit) var(--espacement);
+    padding: var(--espacement-mini) var(--espacement);
 
     color: var(--texte-pale);
     background-color: var(--couleur-secondaire);
@@ -250,4 +309,15 @@ button.ajouter-bouton {
 
 .mat-mini-fab.mat-accent {
     background-color: var(--couleur-secondaire);
+}
+
+/* Checkboxes pleine largeur */
+/* Aligner les boites à cocher à droite */
+.checkbox-pleine-largeur .mat-checkbox-layout {
+    display: flex;
+}
+
+.checkbox-pleine-largeur .mat-checkbox-layout .mat-checkbox-inner-container {
+    margin-right: 0;
+    margin-left: auto;
 }
