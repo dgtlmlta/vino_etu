@@ -15,7 +15,7 @@
                             class="checkbox-pleine-largeur"
                             [formControlName]="i"
                             labelPosition="before"
-                            (change)="effectuerRechercheFiltree()"
+                            (change)="initierRechercheFiltree()"
                             *ngFor="let categorie of listeCategoriesEnFormArray.controls; let i = index">
                             {{ categories[i].nom }}
                         </mat-checkbox>
@@ -43,7 +43,7 @@
                         <mat-icon>search</mat-icon>Trouvez une bouteille
                     </mat-label>
                     <ng-container [formGroup]="filtres">
-                        <input matInput (keyup)="effectuerRechercheFiltree()" formControlName="texteRecherche">
+                        <input matInput (keyup)="initierRechercheFiltree()" formControlName="texteRecherche">
                     </ng-container>
                 </mat-form-field>
             </div>

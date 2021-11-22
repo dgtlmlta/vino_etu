@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { BouteilleDeVinService } from '@services/bouteille-de-vin.service';
 import { FormControl } from '@angular/forms';
-import { Subject } from 'rxjs';
+import { Subject, Subscription } from 'rxjs';
 import { debounceTime, distinctUntilChanged } from 'rxjs/operators';
 import { MatDrawerMode } from '@angular/material/sidenav';
 import { ActivatedRoute, Router } from '@angular/router';
@@ -30,6 +30,7 @@ export class CellierComponent implements OnInit {
 
     // Sujet (observable) permettant de "debouncer" l'envoi de la recherche à la base de données
     rechercheSujet: Subject<string> = new Subject<string>();
+    subRechercheSujet!: Subscription;
 
     // Permet de savoir si l'utilisateur a effectué une recherche et ainsi présenté le bon template
     estFiltre: boolean = false;
@@ -70,18 +71,16 @@ export class CellierComponent implements OnInit {
     // Récupérer les 3 caractères inséré dans l'espace pour faire la recherche
     recherche($event: any): void {
         console.log(this.texteRecherche.value);
-        if (this.texteRecherche.value.length < 3 && this.bouteillesCellier != this.bouteillesCellierInitiales) {
+        if (this.texteRecherche.value === "" && this.bouteillesCellier != this.bouteillesCellierInitiales) {
             this.bouteillesCellier = this.bouteillesCellierInitiales;
             return;
         }
 
         if (this.rechercheSujet.observers.length === 0) {
-            this.rechercheSujet
+            this.subRechercheSujet = this.rechercheSujet
                 .pipe(debounceTime(400), distinctUntilChanged())
                 .subscribe(recherche => {
-                    if (this.texteRecherche.value.length >= 3) {
-                        this.effectuerRechercheFiltree();
-                    }
+                    this.effectuerRechercheFiltree();
                 });
         }
 

@@ -109,7 +109,7 @@ import {MatMenuModule} from '@angular/material/menu';
         {
             provide: MAT_SNACK_BAR_DEFAULT_OPTIONS,
             useValue: {
-                duration: 100000,
+                duration: 3000,
                 panelClass: "notif",
             }
         },

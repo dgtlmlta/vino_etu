@@ -4,6 +4,7 @@ import { MatSnackBar } from '@angular/material/snack-bar';
 import { Categorie } from '@interfaces/categorie';
 import { AuthService } from '@services/auth.service';
 import { BouteilleDeVinService } from '@services/bouteille-de-vin.service';
+import { FiltresRecherche } from 'app/filtres-recherche';
 import { Subject } from 'rxjs';
 import { debounceTime, distinctUntilChanged } from 'rxjs/operators';
 
@@ -20,7 +21,7 @@ export class ListeBouteilleComponent implements OnInit {
 
 
     // Sujet (observable) permettant de "debouncer" l'envoi de la recherche à la base de données
-    rechercheSujet: Subject<string> = new Subject<string>();
+    rechercheSujet: Subject<FiltresRecherche> = new Subject<FiltresRecherche>();
 
     // Tableau contenant les catégories et leur id
     categories: Categorie[] = [];
@@ -64,51 +65,69 @@ export class ListeBouteilleComponent implements OnInit {
 
     // Récupérer les 3 caractères inséré dans l'espace pour faire la recherche
     batirRechercheTextuelle(): null | string {
-        if (this.texteRecherche?.value.length < 3 && this.bouteille != this.bouteillesInitiales) {
-            this.bouteille = this.bouteillesInitiales;
+        if (this.texteRecherche?.value.length < 3) {
             return null;
         }
 
         return this.texteRecherche?.value.replace("-", " ");
     }
 
-    // Fonction de recherche d'un bouteille dans le catalogue
-    batirRechercheFiltree(): void {
+
+    initierRechercheFiltree(): void {
+        // Bâtir les variables qui agiront en tant que filtres
         const categories = this.batirTableauFiltreCategories();
         const rechercheTextuelle = this.batirRechercheTextuelle();
 
+        // Si la recherche est "vide", réinitialiser aux catalogue de départ
+        if(categories.length === 0 && !rechercheTextuelle) {
+            console.log(`Pas de rechercher ${categories} ${rechercheTextuelle}`);
+            this.bouteille = this.bouteillesInitiales;
+            return;
+        }
 
-        // this.servBouteilleDeVin
-        //     .getListeBouteille({
-        //         texteRecherche:
-        //     })
-        //     .subscribe(bouteille => {
-        //         this.bouteille = bouteille.data;
-        //     });
+        let filtres: FiltresRecherche = {};
+
+        // Ajouter les filtres existants à l'objet de recherche
+        if(rechercheTextuelle) {
+            filtres.texteRecherche = rechercheTextuelle;
+        }
+
+        if(categories.length > 0) {
+            filtres.categories = categories;
+        }
+
         if (this.rechercheSujet.observers.length === 0) {
             this.rechercheSujet
                 .pipe(
-                    debounceTime(700),
-                    distinctUntilChanged()
+                    debounceTime(500),
+                    distinctUntilChanged((previous, next) => {
+                        return previous === next;
+                    })
                 )
-                .subscribe(recherche => {
-                    this.effectuerRechercheFiltree();
+                .subscribe(filtres => {
+                    console.log(filtres);
+                    this.effectuerRechercheFiltree(filtres);
                 });
         }
 
-        this.rechercheSujet.next(this.texteRecherche?.value);
+        this.rechercheSujet.next(filtres);
     }
 
-    effectuerRechercheFiltree(filtres: ) {
-        let filtres = {};
-
-
+    effectuerRechercheFiltree(filtres: FiltresRecherche) {
         this.servBouteilleDeVin
             .getListeBouteille(filtres)
-            .subscribe(bouteille => {
-                this.bouteille = bouteille.data;
+            .subscribe(bouteilles => {
+                this.bouteille = bouteilles.data;
             });
     }
+
+
+    //     this.servBouteilleDeVin
+    //         .getListeBouteille(filtres)
+    //         .subscribe(bouteilles => {
+    //             this.bouteille = bouteilles.data;
+    //         });
+    // }
 
     // Fonction pour ajouter la bouteille à la liste d'achat
     ajouterListeAchats(bouteilleId: any) {
