@@ -64,11 +64,7 @@ export class ListeBouteilleComponent implements OnInit {
     }
 
     // Récupérer les 3 caractères inséré dans l'espace pour faire la recherche
-    batirRechercheTextuelle(): null | string {
-        if (this.texteRecherche?.value.length < 3) {
-            return null;
-        }
-
+    batirRechercheTextuelle(): string {
         return this.texteRecherche?.value.replace("-", " ");
     }
 
@@ -80,7 +76,6 @@ export class ListeBouteilleComponent implements OnInit {
 
         // Si la recherche est "vide", réinitialiser aux catalogue de départ
         if(categories.length === 0 && !rechercheTextuelle) {
-            console.log(`Pas de rechercher ${categories} ${rechercheTextuelle}`);
             this.bouteille = this.bouteillesInitiales;
             return;
         }
@@ -99,7 +94,7 @@ export class ListeBouteilleComponent implements OnInit {
         if (this.rechercheSujet.observers.length === 0) {
             this.rechercheSujet
                 .pipe(
-                    debounceTime(500),
+                    debounceTime(400),
                     distinctUntilChanged((previous, next) => {
                         return previous === next;
                     })

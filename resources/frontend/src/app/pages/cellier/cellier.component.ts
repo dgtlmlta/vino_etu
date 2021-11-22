@@ -70,7 +70,6 @@ export class CellierComponent implements OnInit {
 
     // Récupérer les 3 caractères inséré dans l'espace pour faire la recherche
     recherche($event: any): void {
-        console.log(this.texteRecherche.value);
         if (this.texteRecherche.value === "" && this.bouteillesCellier != this.bouteillesCellierInitiales) {
             this.bouteillesCellier = this.bouteillesCellierInitiales;
             return;
