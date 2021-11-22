@@ -5,6 +5,7 @@ import { AuthService } from './auth.service';
 import { MatDialog } from '@angular/material/dialog';
 import { MatConfirmDialogComponent } from '@components/mat-confirm-dialog/mat-confirm-dialog.component';
 import { Categorie } from "@interfaces/categorie";
+import { map } from 'rxjs/operators';
 
 
 @Injectable({
@@ -179,8 +180,17 @@ export class BouteilleDeVinService {
         return this.http.post<any>(this.url + '/listesAchats', body)
     }
 
+    /**
+     *
+     * Charger la liste complète des catégories disponibles
+     *
+     * @returns {Observable}
+     */
     getToutesCategories(): any {
-        return this.http.get<Categorie[]>(`${this.url}categories`);
+        return this.http.get<any>(`${this.url}/categories`)
+            .pipe(
+                map(data => data.data)
+            );
     }
 
 }

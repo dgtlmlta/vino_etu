@@ -30,7 +30,9 @@
                     <mat-label>
                         <mat-icon>search</mat-icon>Trouvez une bouteille
                     </mat-label>
-                    <input matInput (keyup)="recherche($event)" [formControl]="texteRecherche">
+                    <ng-container [formGroup]="filtres">
+                        <input matInput (keyup)="recherche($event)" formControlName="texteRecherche">
+                    </ng-container>
                 </mat-form-field>
             </div>
         </header>
