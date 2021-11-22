@@ -256,3 +256,14 @@ summary {
 .mat-mini-fab.mat-accent {
     background-color: var(--couleur-secondaire);
 }
+
+/* Checkboxes pleine largeur */
+/* Aligner les boites à cocher à droite */
+.checkbox-pleine-largeur .mat-checkbox-layout {
+    display: flex;
+}
+
+.checkbox-pleine-largeur .mat-checkbox-layout .mat-checkbox-inner-container {
+    margin-right: 0;
+    margin-left: auto;
+}

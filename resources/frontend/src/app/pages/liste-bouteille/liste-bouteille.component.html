@@ -12,6 +12,7 @@
                 <fieldset>
                     <ng-container [formGroup]="filtres">
                         <mat-checkbox
+                            class="checkbox-pleine-largeur"
                             formArrayName="categories"
                             labelPosition="before"
                             [value]="categorie.value.checked"

@@ -1,6 +1,13 @@
 fieldset {
     appearance: none;
     border: none;
+
+    display: flex;
+    flex-direction: column;
+}
+
+mat-checkbox {
+    padding-block: var(--espacement-petit);
 }
 
 .content {
