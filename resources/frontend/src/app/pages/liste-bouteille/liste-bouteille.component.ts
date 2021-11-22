@@ -22,6 +22,9 @@ export class ListeBouteilleComponent implements OnInit {
     // Sujet (observable) permettant de "debouncer" l'envoi de la recherche à la base de données
     rechercheSujet: Subject<string> = new Subject<string>();
 
+    // Tableau contenant les catégories et leur id
+    categories: Categorie[] = [];
+
     // Sauvegarder la liste initiale de bouteilles afin de s'éviter une requête http/sql pour un "reset"
     bouteillesInitiales: any;
 
@@ -47,7 +50,8 @@ export class ListeBouteilleComponent implements OnInit {
 
         this.servBouteilleDeVin.getToutesCategories()
                 .subscribe((categories: any) => {
-                    this.initCheckboxes(categories);
+                    this.categories = categories;
+                    this.initCheckboxes();
                 })
     }
 
@@ -81,13 +85,14 @@ export class ListeBouteilleComponent implements OnInit {
 
     // Fonction de recherche d'un bouteille dans le cellier
     effectuerRechercheFiltree(): void {
-        this.servBouteilleDeVin
-            .getListeBouteille({
-                texteRecherche: this.texteRecherche?.value.replace("-", " ")
-            })
-            .subscribe(bouteille => {
-                this.bouteille = bouteille.data;
-            });
+        console.log(this.batirTableauFiltreCategories());
+        // this.servBouteilleDeVin
+        //     .getListeBouteille({
+        //         texteRecherche: this.texteRecherche?.value.replace("-", " ")
+        //     })
+        //     .subscribe(bouteille => {
+        //         this.bouteille = bouteille.data;
+        //     });
     }
 
     // Fonction pour ajouter la bouteille à la liste d'achat
@@ -102,6 +107,18 @@ export class ListeBouteilleComponent implements OnInit {
 
             //this.router.navigate(['/bouteilles']);
         });
+    }
+
+    batirTableauFiltreCategories(): number[] {
+        // Récupérer un tableau des ids sélectionnés en utilisant la valeur (true / false) du tableau de checkboxes parallèlement au tableau des catégories
+        const tableauIds = this.categories.reduce((tableauCategoriesId, categorie, index) => {
+            if(this.listeCategoriesEnFormArray.controls[index].value) {
+                tableauCategoriesId.push(categorie.id);
+            }
+            return tableauCategoriesId;
+        }, [] as number[])
+
+        return tableauIds;
     }
 
     /**
@@ -121,14 +138,11 @@ export class ListeBouteilleComponent implements OnInit {
      *
      * @param {Categorie[]} categories Tableau comportant toutes les options de catégories
      */
-    initCheckboxes(categories: Categorie[]): void {
-        categories.forEach(categorie => {
-            // Pour chaque instance de catégorie, créer un formControl dans le formArray en lui ajoutant une propriété permettant de connaitre son statut (checked / unchecked)
+    initCheckboxes(): void {
+        this.categories.forEach(categorie => {
+            // Pour chaque instance de catégorie, créer un formControl dans le formArray
             this.listeCategoriesEnFormArray.push(
-                new FormControl({
-                    ...categorie,
-                    checked: false
-                })
+                new FormControl(false)
             );
         })
     }

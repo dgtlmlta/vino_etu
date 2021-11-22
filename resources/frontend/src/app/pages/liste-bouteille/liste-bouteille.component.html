@@ -9,15 +9,15 @@
             </div>
             <details>
                 <summary>Catégories</summary>
-                <fieldset>
-                    <ng-container [formGroup]="filtres">
+                <fieldset [formGroup]="filtres">
+                    <ng-container formArrayName="categories">
                         <mat-checkbox
                             class="checkbox-pleine-largeur"
-                            formArrayName="categories"
+                            [formControlName]="i"
                             labelPosition="before"
-                            [value]="categorie.value.checked"
+                            (change)="effectuerRechercheFiltree()"
                             *ngFor="let categorie of listeCategoriesEnFormArray.controls; let i = index">
-                            {{ categorie.value.nom }}
+                            {{ categories[i].nom }}
                         </mat-checkbox>
                         <label >
 
