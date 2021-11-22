@@ -36,7 +36,7 @@ export class ListeBouteilleComponent implements OnInit {
         private servBouteilleDeVin: BouteilleDeVinService,
         private servAuth: AuthService,
         private snackBar: MatSnackBar,
-        private formBuilder: FormBuilder,
+        //private formBuilder: FormBuilder,
     ) { }
 
     ngOnInit(): void {
@@ -47,7 +47,6 @@ export class ListeBouteilleComponent implements OnInit {
 
         this.servBouteilleDeVin.getToutesCategories()
                 .subscribe((categories: any) => {
-                    console.log(categories);
                     this.initCheckboxes(categories);
                 })
     }
@@ -110,7 +109,7 @@ export class ListeBouteilleComponent implements OnInit {
      * Getter et typage du formArray pour les catégories     *
      *
      */
-    get listeCategories() {
+    get listeCategoriesEnFormArray() {
         return this.filtres.get("categories") as FormArray;
     }
 
@@ -125,14 +124,12 @@ export class ListeBouteilleComponent implements OnInit {
     initCheckboxes(categories: Categorie[]): void {
         categories.forEach(categorie => {
             // Pour chaque instance de catégorie, créer un formControl dans le formArray en lui ajoutant une propriété permettant de connaitre son statut (checked / unchecked)
-            this.listeCategories.push(
+            this.listeCategoriesEnFormArray.push(
                 new FormControl({
                     ...categorie,
                     checked: false
                 })
             );
-
-            console.log(this.listeCategories);
         })
     }
 }

@@ -9,9 +9,20 @@
             </div>
             <details>
                 <summary>Catégories</summary>
-                <div>
-                    <p>Lorem ipsum dolor, sit amet consectetur adipisicing elit. Temporibus natus animi officia asperiores adipisci quasi ducimus esse sit a. Mollitia dolorum blanditiis libero similique incidunt unde aliquam voluptatem voluptates officiis.</p>
-                </div>
+                <fieldset>
+                    <ng-container [formGroup]="filtres">
+                        <mat-checkbox
+                            formArrayName="categories"
+                            labelPosition="before"
+                            [value]="categorie.value.checked"
+                            *ngFor="let categorie of listeCategoriesEnFormArray.controls; let i = index">
+                            {{ categorie.value.nom }}
+                        </mat-checkbox>
+                        <label >
+
+                        </label>
+                    </ng-container>
+                </fieldset>
             </details>
         </div>
     </mat-drawer>
