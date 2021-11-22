@@ -1,3 +1,4 @@
+import { HttpParams } from '@angular/common/http';
 import { Component, OnInit } from '@angular/core';
 import { FormArray, FormBuilder, FormControl, FormGroup } from '@angular/forms';
 import { MatSnackBar } from '@angular/material/snack-bar';
@@ -21,7 +22,7 @@ export class ListeBouteilleComponent implements OnInit {
 
 
     // Sujet (observable) permettant de "debouncer" l'envoi de la recherche à la base de données
-    rechercheSujet: Subject<FiltresRecherche> = new Subject<FiltresRecherche>();
+    rechercheSujet: Subject<HttpParams> = new Subject<HttpParams>();
 
     // Tableau contenant les catégories et leur id
     categories: Categorie[] = [];
@@ -80,16 +81,29 @@ export class ListeBouteilleComponent implements OnInit {
             return;
         }
 
-        let filtres: FiltresRecherche = {};
+        let filtres = new HttpParams();
 
         // Ajouter les filtres existants à l'objet de recherche
         if(rechercheTextuelle) {
-            filtres.texteRecherche = rechercheTextuelle;
+            filtres = filtres.set("texteRecherche", rechercheTextuelle);
         }
 
         if(categories.length > 0) {
-            filtres.categories = categories;
+            const compteCategories = categories.length;
+            for(let i = 0; i < compteCategories; i++) {
+                // On doit d'abord "setter" le paramètre...
+                if(i === 0) {
+
+                    filtres = filtres.set("categories[]", categories[i]);
+                    continue;
+                }
+
+                //  ...et ensuite on annexe les valeurs supplémentaires à ce même paramètre
+                filtres = filtres.append("categories[]", categories[i]);
+            }
         }
+
+        console.log(filtres);
 
         if (this.rechercheSujet.observers.length === 0) {
             this.rechercheSujet
@@ -100,7 +114,6 @@ export class ListeBouteilleComponent implements OnInit {
                     })
                 )
                 .subscribe(filtres => {
-                    console.log(filtres);
                     this.effectuerRechercheFiltree(filtres);
                 });
         }
@@ -108,7 +121,7 @@ export class ListeBouteilleComponent implements OnInit {
         this.rechercheSujet.next(filtres);
     }
 
-    effectuerRechercheFiltree(filtres: FiltresRecherche) {
+    effectuerRechercheFiltree(filtres: HttpParams) {
         this.servBouteilleDeVin
             .getListeBouteille(filtres)
             .subscribe(bouteilles => {

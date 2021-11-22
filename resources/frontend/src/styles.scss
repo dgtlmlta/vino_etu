@@ -135,6 +135,14 @@ main .main-content {
 
 }
 
+.mat-drawer-container {
+    min-height: 100%;
+}
+
+.mat-drawer-container .mat-drawer-content {
+    overflow: unset;
+}
+
 .mat-drawer {
     bottom: unset !important;
     left: 0 !important;
