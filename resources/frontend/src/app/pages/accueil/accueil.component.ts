@@ -1,6 +1,4 @@
 import { Component, OnInit } from '@angular/core';
-import { MatDialog } from '@angular/material/dialog';
-import { ChoisirAjoutComponent } from '@pages/choisir-ajout/choisir-ajout.component';
 
 @Component({
   selector: 'app-accueil',
@@ -9,18 +7,11 @@ import { ChoisirAjoutComponent } from '@pages/choisir-ajout/choisir-ajout.compon
 })
 export class AccueilComponent implements OnInit {
 
-  constructor(
-    public formChoix: MatDialog,
-  ) {}
+  constructor() {}
 
   ngOnInit(): void {
 
   }
 
-   // Appel du formulaire pour le choix du type d'ajout, du catalogue ou personnalisée
-
-   formulaireChoix(): void {
-    let refModal = this.formChoix.open(ChoisirAjoutComponent);
-  }
 
 }

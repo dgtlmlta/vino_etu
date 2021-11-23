@@ -26,6 +26,8 @@ export class CreationBouteilleComponent implements OnInit {
     pays_id: new FormControl('', Validators.required),
     categories_id: new FormControl('', Validators.required),
     prix: new FormControl(''),
+    format: new FormControl(''),
+    url_image: new FormControl(''),
   });
 
   @ViewChild('fileInput') fileInput!: ElementRef;

@@ -22,17 +22,6 @@ class Cellier extends Model {
     }
 
     static public function obtenirCelliersParUtilisateur($userId) {
-        // $query = Cellier::withSum([
-        //     "bouteilles_achetees as total_bouteilles_vin_rouge" => function ($query) {
-        //         $query->whereRaw("bouteilles_achetees.categories_id = 1");
-        //     }
-        // ], "cellier_bouteilles_achetees.inventaire")
-        //     ->whereRaw("users_id = 1");
-
-        // return Cellier::getEloquentSqlWithBindings($query);
-
-
-
         $query =
             Cellier::withSum([
                 "bouteilles_achetees as total_bouteilles_vin_blanc" => function ($query) {
@@ -46,12 +35,6 @@ class Cellier extends Model {
             ->get();
 
         return $query;
-    }
-
-    public static function getEloquentSqlWithBindings($query) {
-        return response()->json(["message" => str_replace('?', '%s', $query->toSql()), collect($query->getBindings())->map(function ($binding) {
-            return is_numeric($binding) ? $binding : "'{$binding}'";
-        })->toArray()]);
     }
 
     /**
@@ -121,8 +104,8 @@ class Cellier extends Model {
      */
     static private function annexerRechercheTextuelle(&$requete, $recherche) {
         $requete->where(function ($query) use ($recherche) {
-            $query->whereRaw("MATCH(ba.nom, ba.description, ba.format, ba.origine, ba.conservation, ba.notes_personnelles) against (? in boolean mode)", ["*$recherche*"])
-                ->orWhereRaw("MATCH(cat.nom) against (? in boolean mode)", ["*$recherche*"]);
+            $query->whereRaw("MATCH(ba.nom, ba.description, ba.format, ba.origine, ba.conservation, ba.notes_personnelles) against (? in boolean mode)", ["$recherche*"])
+                ->orWhereRaw("MATCH(cat.nom) against (? in boolean mode)", ["$recherche*"]);
         });
     }
 }

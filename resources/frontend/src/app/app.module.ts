@@ -30,7 +30,8 @@ import { MatSidenavModule } from '@angular/material/sidenav';
 import { MatDialogModule, MAT_DIALOG_DEFAULT_OPTIONS } from '@angular/material/dialog';
 import { MatExpansionModule } from '@angular/material/expansion';
 import { MatConfirmDialogComponent } from './components/mat-confirm-dialog/mat-confirm-dialog.component';
-import { MatSelectModule } from '@angular/material/select'
+import { MatSelectModule } from '@angular/material/select';
+import { MatCheckboxModule } from '@angular/material/checkbox'
 import { ListeCelliersComponent } from './pages/liste-celliers/liste-celliers.component';
 import { AjoutCellierComponent } from './pages/ajout-cellier/ajout-cellier.component'
 import { TokenInterceptor } from './token.interceptor';
@@ -44,7 +45,6 @@ import { ModifierCellierComponent } from './pages/modifier-cellier/modifier-cell
 import { ListeAchatsComponent } from './pages/liste-achats/liste-achats.component';
 import { CreationBouteilleComponent } from './pages/creation-bouteille/creation-bouteille.component';
 import {MatMenuModule} from '@angular/material/menu';
-import { ChoisirAjoutComponent } from './pages/choisir-ajout/choisir-ajout.component';
 
 @NgModule({
     declarations: [
@@ -68,7 +68,6 @@ import { ChoisirAjoutComponent } from './pages/choisir-ajout/choisir-ajout.compo
         ModifierCellierComponent,
         ListeAchatsComponent,
         CreationBouteilleComponent,
-        ChoisirAjoutComponent,
 
     ],
     imports: [
@@ -88,6 +87,7 @@ import { ChoisirAjoutComponent } from './pages/choisir-ajout/choisir-ajout.compo
         MatDialogModule,
         MatExpansionModule,
         MatSelectModule,
+        MatCheckboxModule,
         FormsModule,
         MatMenuModule,
     ],
@@ -104,12 +104,13 @@ import { ChoisirAjoutComponent } from './pages/choisir-ajout/choisir-ajout.compo
             provide: MAT_DIALOG_DEFAULT_OPTIONS,
             useValue: {
                 panelClass: "modal-base",
+                hasBackdrop: true,
             }
         },
         {
             provide: MAT_SNACK_BAR_DEFAULT_OPTIONS,
             useValue: {
-                duration: 100000,
+                duration: 3000,
                 panelClass: "notif",
             }
         },
