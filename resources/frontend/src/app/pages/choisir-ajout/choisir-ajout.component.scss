@@ -15,24 +15,16 @@
 .background-icon{
     background-color: var(--couleur-secondaire);
     width: 200px;
-    height: 125px;
     display: flex;
     align-items: center;
     color: #fff;
-    flex-direction: column;
-    justify-content: space-evenly;
+    justify-content: space-around;
     padding: 1rem;
     margin-top: 1rem;
     border-radius: 5px;
 
     
 }
-
-mat-icon{
-    width: 100%;
-    height: 3rem;
-}
-
 
 .fermer{
     width: 100%;
