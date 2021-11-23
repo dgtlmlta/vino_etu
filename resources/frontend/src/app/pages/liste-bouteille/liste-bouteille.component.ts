@@ -130,14 +130,6 @@ export class ListeBouteilleComponent implements OnInit {
             });
     }
 
-
-    //     this.servBouteilleDeVin
-    //         .getListeBouteille(filtres)
-    //         .subscribe(bouteilles => {
-    //             this.bouteille = bouteilles.data;
-    //         });
-    // }
-
     // Fonction pour ajouter la bouteille à la liste d'achat
     ajouterListeAchats(bouteilleId: any) {
         let userId = this.servAuth.getIdUtilisateurAuthentifie();
