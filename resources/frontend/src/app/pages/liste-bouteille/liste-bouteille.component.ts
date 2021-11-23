@@ -3,6 +3,7 @@ import { Component, OnInit } from '@angular/core';
 import { FormArray, FormBuilder, FormControl, FormGroup } from '@angular/forms';
 import { MatSnackBar } from '@angular/material/snack-bar';
 import { Categorie } from '@interfaces/categorie';
+import { Pays } from '@interfaces/pays';
 import { AuthService } from '@services/auth.service';
 import { BouteilleDeVinService } from '@services/bouteille-de-vin.service';
 import { FiltresRecherche } from 'app/filtres-recherche';
@@ -24,8 +25,9 @@ export class ListeBouteilleComponent implements OnInit {
     // Sujet (observable) permettant de "debouncer" l'envoi de la recherche à la base de données
     rechercheSujet: Subject<HttpParams> = new Subject<HttpParams>();
 
-    // Tableau contenant les catégories et leur id
+    // Tableaux pour les options de filtres
     categories: Categorie[] = [];
+    pays: Pays[] = [];
 
     // Sauvegarder la liste initiale de bouteilles afin de s'éviter une requête http/sql pour un "reset"
     bouteillesInitiales: any;
