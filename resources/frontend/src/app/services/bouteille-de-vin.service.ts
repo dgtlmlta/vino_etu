@@ -13,8 +13,8 @@ import { map } from 'rxjs/operators';
 })
 export class BouteilleDeVinService {
 
-    // private url:string = "http://127.0.0.1:8000/api";
-    private url: string = "http://kalimotxo-vino.akira.dev/api";
+    private url:string = "http://127.0.0.1:8000/api";
+    //private url: string = "http://kalimotxo-vino.akira.dev/api";
     // private url: string = new URL(window.location.href).origin + "/api";
 
 
@@ -50,6 +50,13 @@ export class BouteilleDeVinService {
     ajoutBouteilleCellier(cellierId: any, bouteilleAchetee: any) {
 
         return this.http.post<any>(this.url + '/celliers/' + cellierId + '/bouteilles', bouteilleAchetee);
+
+    }
+
+
+    ajoutBouteilleCatalogue(bouteilleCatalogue: any) {
+
+        return this.http.post<any>(this.url + '/bouteilles', bouteilleCatalogue);
 
     }
 
@@ -117,6 +124,7 @@ export class BouteilleDeVinService {
         )
     }
 
+
     ajouterUtilisateur(data: any) {
         return this.http.post<any>(this.url + '/creerCompte', data)
     }
@@ -182,6 +190,16 @@ export class BouteilleDeVinService {
 
     /**
      *
+     * Charger les données concernant les pays d'origine des bouteilles
+     * 
+     * @returns {Observable}
+     */
+         getListePays(){
+            return this.http.get<any>(this.url + "/pays")
+    }
+
+    /**
+     *
      * Charger la liste complète des catégories disponibles
      *
      * @returns {Observable}
@@ -192,7 +210,6 @@ export class BouteilleDeVinService {
                 map(data => data.data)
             );
     }
-
 }
 
 

@@ -1,44 +1,93 @@
 
-    <form [formGroup]='ajoutBouteille'>
+    <form class="main-content"  [formGroup]='ajoutBouteille' (ngSubmit)=postBouteilleCellier(ajoutBouteille.value)>
         <header class="card-action">
             <a class="retour" (click)='back()'><mat-icon>arrow_back</mat-icon>Retour</a>
         </header>
         <div class="formulaire-contenu">
-
             <mat-form-field appearance="fill" class="input-case">
-                <mat-label for="inventaire" class="required">Quantité</mat-label>
-                <input matInput type="text" id="inventaire" formControlName="inventaire" class="step__input">
-                <mat-error *ngIf="erreur.inventaire.touched && erreur.inventaire.invalid" class="alert alert-danger">
-                    <div *ngIf="erreur.inventaire.errors?.required">Ce champ est obligatoire</div>
+                <mat-label for="nom" class="required">Nom</mat-label>
+                <input matInput type="text" id="nom" formControlName="nom"class="step__input">
+                <mat-error *ngIf="erreur.nom.touched && erreur.nom.invalid" class="alert alert-danger">
+                    <div *ngIf="erreur.nom.errors?.required">Ce champ est obligatoire</div>
                 </mat-error>
             </mat-form-field>
 
             <mat-form-field appearance="fill" class="input-case">
-                <mat-label for="millesime">Millesime</mat-label>
-                <input matInput type="text" id="millesime" formControlName="millesime">
+                <mat-label for="prix">prix</mat-label>
+                <input matInput type="text" id="prix" formControlName="prix"class="step__input">
+                <mat-error *ngIf="erreur.prix.touched && erreur.prix.invalid" class="alert alert-danger">
+                    <div *ngIf="erreur.prix.errors?.required">Ce champ est obligatoire</div>
+                </mat-error>
             </mat-form-field>
 
             <mat-form-field appearance="fill" class="input-case">
-                <mat-label for="date_acquisition">Date d'achat</mat-label>
-                <input matInput type="date" id=date_acquisition formControlName="date_acquisition" class="step__input">
+                <mat-label for="format">format</mat-label>
+                <input matInput type="text" id="format" formControlName="format"class="step__input">
+                <mat-error *ngIf="erreur.format.touched && erreur.format.invalid" class="alert alert-danger">
+                    <div *ngIf="erreur.format.errors?.required">Ce champ est obligatoire</div>
+                </mat-error>
             </mat-form-field>
 
             <mat-form-field appearance="fill" class="input-case">
-                <mat-label for="prix_paye">Prix</mat-label>
-                <input matInput type="text" id="prix_paye" formControlName="prix_paye" class="step__input" >
+                <mat-label for="pays_id" class="required">Choisir l'origine</mat-label>
+                <mat-select formControlName="pays_id">
+                    <mat-option *ngFor="let pays of listePays" [value]="pays.id">
+                        {{ pays.nom }}
+                    </mat-option>
+                </mat-select>
+                <mat-error *ngIf="erreur.pays_id.touched && erreur.pays_id.invalid" class="alert alert-danger">
+                    <div *ngIf="erreur.pays_id.errors?.required">Ce champ est obligatoire</div>
+                </mat-error>
             </mat-form-field>
 
             <mat-form-field appearance="fill" class="input-case">
-                <mat-label for="conservation">Conservation</mat-label>
-                <input matInput type="text" id=conservation formControlName="conservation" class="step__input">
+                <mat-label for="categories_id" class="required">Choisir la catégorie</mat-label>
+                <mat-select formControlName="categories_id">
+                    <mat-option *ngFor="let categorie of listeCategories" [value]="categorie.id">
+                        {{ categorie.nom }}
+                    </mat-option>
+                </mat-select>
+                <mat-error *ngIf="erreur.categories_id.touched && erreur.categories_id.invalid" class="alert alert-danger">
+                    <div *ngIf="erreur.categories_id.errors?.required">Ce champ est obligatoire</div>
+                </mat-error>
             </mat-form-field>
 
             <mat-form-field appearance="fill" class="input-case">
-                <mat-label for="notes_personnelles">Notes</mat-label>
-                <input matInput type="text" id=notes_personnelles formControlName="notes_personnelles"class="step__input">
+                <mat-label for="url_image">Image</mat-label>
+                <input matInput type="text" id="url_image" formControlName="url_image"class="step__input">
+                <mat-error *ngIf="erreur.url_image.touched && erreur.url_image.invalid" class="alert alert-danger">
+                    <div *ngIf="erreur.url_image.errors?.required">Ce champ est obligatoire</div>
+                </mat-error>
             </mat-form-field>
+
+
+
+          <!-- <mat-form-field>
+                <div>
+                  <mat-toolbar>
+                     Affiche le nom du fichier
+                    <input matInput [(ngModel)]="fileAttr" readonly name="nom" />
+              
+                     Browse Button
+                    <button mat-flat-button>
+                      Fichier
+                    </button>
+                  </mat-toolbar>
+              
+                  Fetch selected filed on change
+                  <input type="file" #fileInput id="uploadFile" (change)="uploadFileEvt($event)" name="uploadFile" multiple="multiple"
+                    accept="image/*" />
+                </div>
+              </mat-form-field> -->
+              
+
         </div>
 
-        <small>( * ) Champ obligatoire</small>
+        <p><small>( * ) Champ obligatoire</small></p>
+
+        <mat-dialog-actions>
+            <button type="submit" mat-raised-button>Ajouter la bouteille</button>
+        </mat-dialog-actions>
+        
     </form>
 
