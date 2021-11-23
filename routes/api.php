@@ -48,6 +48,9 @@ Route::apiResource("bouteilles", BouteilleController::class)->only([
 
 Route::get("catalogue-bouteilles", [BouteilleController::class, "index"]);
 
+// Récupérer la liste des pays
+Route::get("liste-pays", [PaysController::class, "index"]);
+
 // Récupérer le data d'une bouteille achetée
 Route::get('bouteilles-achetees/{bouteilleAchetee}', [BouteilleAcheteeController::class, "show"]);
 
@@ -76,6 +79,9 @@ Route::group(['middleware' => ["auth:sanctum"]], function () {
 
     // Ajout d'un nouveau cellier
     Route::post('celliers', [CellierController::class, "store"]);
+
+    // Ajout d'une nouvelle bouteille personnalisé au catalogue
+    Route::post('bouteilles', [BouteilleController::class, "store"]);
 
     // Modifier le data d'un cellier
     Route::put('celliers/{cellierId}', [CellierController::class, "update"]);

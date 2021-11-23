@@ -4,6 +4,8 @@ import { HttpClient } from '@angular/common/http';
 import { AuthService } from './auth.service';
 import { MatDialog } from '@angular/material/dialog';
 import { MatConfirmDialogComponent } from '@components/mat-confirm-dialog/mat-confirm-dialog.component';
+import { Categorie } from "@interfaces/categorie";
+import { map } from 'rxjs/operators';
 
 
 @Injectable({
@@ -12,7 +14,7 @@ import { MatConfirmDialogComponent } from '@components/mat-confirm-dialog/mat-co
 export class BouteilleDeVinService {
 
     private url:string = "http://127.0.0.1:8000/api";
-    // private url: string = "http://kalimotxo-vino.akira.dev/api";
+    //private url: string = "http://kalimotxo-vino.akira.dev/api";
     // private url: string = new URL(window.location.href).origin + "/api";
 
 
@@ -48,6 +50,13 @@ export class BouteilleDeVinService {
     ajoutBouteilleCellier(cellierId: any, bouteilleAchetee: any) {
 
         return this.http.post<any>(this.url + '/celliers/' + cellierId + '/bouteilles', bouteilleAchetee);
+
+    }
+
+
+    ajoutBouteilleCatalogue(bouteilleCatalogue: any) {
+
+        return this.http.post<any>(this.url + '/bouteilles', bouteilleCatalogue);
 
     }
 
@@ -114,6 +123,7 @@ export class BouteilleDeVinService {
             this.url + "/celliers/" + cellierId
         )
     }
+
 
     ajouterUtilisateur(data: any) {
         return this.http.post<any>(this.url + '/creerCompte', data)
@@ -185,7 +195,7 @@ export class BouteilleDeVinService {
      * @param {number} userId Id de l'utilisateur
      * @returns {Observable} Liste d'achat de l'utilisateur
      */
-     getListeAchatParUtilisateur(userId: number|null): any {
+    getListeAchatParUtilisateur(userId: number|null): any {
         if(!userId) {
             return false;
         }
@@ -197,6 +207,15 @@ export class BouteilleDeVinService {
         }
 
         return this.http.get<any>(this.url + "/listes-achats", options)
+    }
+    /**
+     *
+     * Charger les données concernant les pays d'origine des bouteilles
+     * 
+     * @returns {Observable}
+     */
+    getListePays(){
+            return this.http.get<any>(this.url + "/pays")
     }
 
     /**
@@ -212,7 +231,18 @@ export class BouteilleDeVinService {
             this.url + '/supprimerBouteille/' + listeAchatBouteilleId)
     }
 
-
+    /**
+     *
+     * Charger la liste complète des catégories disponibles
+     *
+     * @returns {Observable}
+     */
+    getToutesCategories(): any {
+        return this.http.get<any>(`${this.url}/categories`)
+            .pipe(
+                map(data => data.data)
+            );
+    }
 }
 
 

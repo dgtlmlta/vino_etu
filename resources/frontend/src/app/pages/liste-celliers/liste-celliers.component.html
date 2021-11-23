@@ -4,19 +4,25 @@
     </div>
 
     <div *ngFor="let cellier of listeCelliers" class="resultat-cellier">
-        <div class="nom-cellier">
-
+        <header class="nom-cellier">
+            <div>
                 <h3>
                     <a class="inline-link" routerLink="/celliers/{{cellier.id}}" [state]="cellier">{{ cellier.nom }}</a>
                 </h3>
 
-            <div class="action-cellier">
-                <button class="button-edit" mat-button (click)="formulaireModification(cellier)"><mat-icon>edit</mat-icon></button>
-                <button class="button-delete" mat-button (click)="supprimerCellier(cellier.id)"><mat-icon>delete</mat-icon></button>
+                <small>{{cellier.description}}</small>
             </div>
-        </div>
 
-        <p style="margin: 0;">{{cellier.description}}</p>
+            <div class="action-cellier">
+                <button class="button-edit" mat-button (click)="formulaireModification(cellier)">
+                    <mat-icon>edit</mat-icon>
+                </button>
+
+                <button class="button-delete" mat-button (click)="supprimerCellier(cellier.id)">
+                    <mat-icon>delete</mat-icon>
+                </button>
+            </div>
+        </header>
 
         <dl>
             <div *ngIf='cellier.total_bouteilles_vin_blanc'>
@@ -31,6 +37,7 @@
     </div>
 
     <div class="action-ajouter">
-        <button class="ajouter-bouton" mat-raised-button (click)="formulaireAjout(listeCelliers)">+ Ajouter un cellier</button>
+        <button class="bouton-fab" mat-raised-button (click)="formulaireAjout(listeCelliers)">+ Ajouter un
+            cellier</button>
     </div>
 </div>

@@ -1,3 +1,16 @@
+fieldset {
+    appearance: none;
+    border: none;
+
+    display: flex;
+    flex-direction: column;
+}
+
+mat-checkbox {
+    padding-block: var(--espacement);
+    border-block-end: 1px solid var(--voile-noir-100);
+}
+
 .content {
     display: flex;
     flex-direction: column;
@@ -14,6 +27,17 @@
     min-height: 50px;
     padding: 10px 10px;
 
+}
+
+.filtrer {
+    display: flex;
+    align-items: center;
+    gap: var(--espacement)
+}
+
+.filtrer .recherche {
+    flex-basis: 60%;
+    flex-grow: 1;
 }
 
 .liste-de-bouteilles article {
@@ -41,6 +65,11 @@ img {
     align-self: flex-start;
 
     width: 70px;
+}
+
+.mat-drawer {
+    width: 75%;
+    padding: var(--espacement);
 }
 
 .vin-data-droit {

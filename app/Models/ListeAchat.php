@@ -13,7 +13,7 @@ class ListeAchat extends Model
 
     protected $table = "listes_achats";
 
-    protected $guarded = [];
+    protected $guarded = [];  
 
     public function bouteilles() {
         return $this->belongsToMany(Bouteille::class, 'listes_achats_bouteilles');
