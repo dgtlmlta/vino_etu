@@ -11,18 +11,29 @@
                 <summary>Catégories</summary>
                 <fieldset [formGroup]="filtres">
                     <ng-container formArrayName="categories">
-                        <mat-checkbox
-                            class="checkbox-pleine-largeur"
-                            [formControlName]="i"
-                            labelPosition="before"
+                        <mat-checkbox class="checkbox-pleine-largeur" [formControlName]="i" labelPosition="before"
                             (change)="initierRechercheFiltree()"
                             *ngFor="let categorie of listeCategoriesEnFormArray.controls; let i = index">
                             {{ categories[i].nom }}
                         </mat-checkbox>
-                        <label >
 
-                        </label>
                     </ng-container>
+                </fieldset>
+
+            </details>
+
+            <details open>
+                <summary>Pays</summary>
+                <fieldset [formGroup]="filtres">
+                    <mat-form-field appearance="fill" class="input-case">
+                        <mat-label for="pays_id">Choisir un pays</mat-label>
+                        <mat-select formControlName="paysId" (selectionChange)="initierRechercheFiltree()">
+                            <mat-option value="" selected aria-selected>Tous les pays</mat-option>
+                            <mat-option *ngFor="let pays of pays" [value]="pays.id">
+                                {{ pays.nom }}
+                            </mat-option>
+                        </mat-select>
+                    </mat-form-field>
                 </fieldset>
             </details>
         </div>

@@ -35,7 +35,7 @@ export class ListeBouteilleComponent implements OnInit {
     // Initialiser le formGroup pour gérer les filtres
     filtres: FormGroup = new FormGroup({
         texteRecherche: new FormControl(""),
-        pays          : new FormControl(""),
+        paysId        : new FormControl(""),
         categories    : new FormArray([]),
     });
 
@@ -58,6 +58,11 @@ export class ListeBouteilleComponent implements OnInit {
                 this.categories = categories;
                 this.initCheckboxes();
             })
+
+        this.servBouteilleDeVin.getListePays()
+            .subscribe((pays: Pays[]) => {
+                this.pays = pays;
+            })
     }
 
     openSnackBar(message: any, action: any) {
@@ -69,7 +74,7 @@ export class ListeBouteilleComponent implements OnInit {
 
     // Récupérer les 3 caractères inséré dans l'espace pour faire la recherche
     batirRechercheTextuelle(): string {
-        return this.texteRecherche?.value.replace("-", " ");
+        return this.filtreTexteRecherche?.value.replace("-", " ");
     }
 
 
@@ -77,9 +82,10 @@ export class ListeBouteilleComponent implements OnInit {
         // Bâtir les variables qui agiront en tant que filtres
         const categories = this.batirTableauFiltreCategories();
         const rechercheTextuelle = this.batirRechercheTextuelle();
+        const paysId = this.filtrePaysId?.value;
 
         // Si la recherche est "vide", réinitialiser aux catalogue de départ
-        if(categories.length === 0 && !rechercheTextuelle) {
+        if(categories.length === 0 && !rechercheTextuelle && !paysId) {
             this.bouteille = this.bouteillesInitiales;
             return;
         }
@@ -104,6 +110,10 @@ export class ListeBouteilleComponent implements OnInit {
                 //  ...et ensuite on annexe les valeurs supplémentaires à ce même paramètre
                 filtres = filtres.append("categories[]", categories[i]);
             }
+        }
+
+        if(paysId) {
+            filtres = filtres.set("paysId", paysId);
         }
 
         console.log(filtres);
@@ -169,8 +179,17 @@ export class ListeBouteilleComponent implements OnInit {
         return this.filtres.get("categories") as FormArray;
     }
 
-    get texteRecherche() {
+    /**
+     *
+     * Getters des formControl du formulaire de filtres
+     *
+     */
+    get filtreTexteRecherche() {
         return this.filtres.get("texteRecherche");
+    }
+
+    get filtrePaysId() {
+        return this.filtres.get("paysId");
     }
 
     /**
