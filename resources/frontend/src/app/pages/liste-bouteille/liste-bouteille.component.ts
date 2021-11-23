@@ -141,8 +141,6 @@ export class ListeBouteilleComponent implements OnInit {
     ajouterListeAchats(bouteilleId: any) {
         let userId = this.servAuth.getIdUtilisateurAuthentifie();
 
-        
-
         this.itemListeAchat = { userId, bouteilleId }
         console.log(this.itemListeAchat)
 

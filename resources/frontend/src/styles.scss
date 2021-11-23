@@ -326,3 +326,8 @@ button:focus-visible {
     margin-right: 0;
     margin-left: auto;
 }
+
+.mat-list-base .mat-list-item .mat-list-text, .mat-list-base .mat-list-option .mat-list-text {
+    min-height: 110px;
+    justify-content: center;
+}

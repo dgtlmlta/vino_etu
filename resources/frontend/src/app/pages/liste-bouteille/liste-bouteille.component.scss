@@ -102,3 +102,16 @@ img {
     justify-content: flex-end;
     margin-top: -40px;
 }
+
+.ajouterListe>* {
+    color: var(--couleur-secondaire);
+    text-decoration: underline;
+}
+
+.ajouterListe button {
+    font-size: 12px;
+}
+
+.ajouterListe .mat-icon {
+    font-size: 18px;
+}

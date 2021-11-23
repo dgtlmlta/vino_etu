@@ -50,9 +50,8 @@
         </header>
 
         <div class="liste-de-bouteilles">
-            <article *ngFor="let uneBouteille of bouteille" class="resultat"
-                routerLink="/ficheBouteille/{{uneBouteille.id}}">
-                <div class="resultat-vin">
+            <article *ngFor="let uneBouteille of bouteille" class="resultat">
+                <div class="resultat-vin" routerLink="/ficheBouteille/{{uneBouteille.id}}">
                     <img src="{{uneBouteille.url_image}}" alt="une bouteille">
 
                     <div class="bouteille-infos flow-content">
@@ -68,7 +67,12 @@
                         </div>
                     </div>
                 </div>
-
+                <div class="ajouterListe">
+                    <button mat-button (click)="ajouterListeAchats(uneBouteille.id)">
+                        <mat-icon>post_add</mat-icon>
+                        liste d'achat
+                    </button>
+                </div>
                 <div>
                     <div class="subtexte"></div>
                 </div>
