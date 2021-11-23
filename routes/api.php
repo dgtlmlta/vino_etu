@@ -98,6 +98,9 @@ Route::group(['middleware' => ["auth:sanctum"]], function () {
     // Ajout d'une bouteille à la liste d'achat
     Route::post('listes-achats/{id}/ajout-bouteille', [ListeAchatBouteilleController::class, "store"]);
 
+    // Supprimer une bouteille de la liste d'achat
+    Route::delete('supprimerBouteille/{bouteilleId}', [ListeAchatBouteilleController::class, "destroy"]);
+
      // Récupérer la liste d'achat par utilisateur
      Route::get('listes-achats', [ListeAchatController::class, "listeAchatParUtilisateur"]);
 

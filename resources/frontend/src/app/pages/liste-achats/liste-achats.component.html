@@ -3,14 +3,17 @@
         <h2 class="titre">Ma liste d'achat</h2>
     </div>
 
- <mat-selection-list #listeBouteilles (selectionChange)='bouteilleSelected(listeBouteilles.selectedOptions.selected)'>
+ <mat-selection-list #listeBouteilles [(ngModel)]='bouteilleSelected' (ngModelChange)='supprimerDeLaListe($event)'>
     <mat-list-option *ngFor='let bouteille of listeAchat' [value]="bouteille">
-      {{bouteille.nom}}
+      <mat-list-item class="item">
+          <img alt="bouteille de la liste" src="{{bouteille.url_image}}">
+          <span class="itemNom">{{bouteille.nom}}</span>
+      </mat-list-item>
+      <mat-divider></mat-divider>
     </mat-list-option>
   </mat-selection-list>
 
-  <p class="note">
-      Bouteilles sélectionnées : {{listeBouteilles.selectedOptions.selected.length}}
-  </p>
-
 </div>
+
+
+

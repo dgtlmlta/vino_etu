@@ -11,8 +11,7 @@
 .resultat-vin {
     display: flex;
     gap: var(--espacement);
-
-    min-height: 45px;
+    min-height: 50px;
     padding: 10px 10px;
 
 }
@@ -30,7 +29,7 @@
     display: flex;
     justify-content: center;
     font-family: "Dancing Script", cursive;
-    font-size: 2rem;
+    font-size: 1.75rem;
     margin: 20px 0;
     color: #4c1920;
 }
@@ -67,4 +66,10 @@ img {
 
 .bouteille-infos {
     clear: both;
+}
+
+.ajouterListe {
+    display: flex;
+    justify-content: flex-end;
+    margin-top: -40px;
 }

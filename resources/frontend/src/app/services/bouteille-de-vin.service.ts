@@ -199,6 +199,20 @@ export class BouteilleDeVinService {
         return this.http.get<any>(this.url + "/listes-achats", options)
     }
 
+    /**
+     *
+     * Supprimer une bouteille de la liste d'achat de l'utilisateur
+     *
+     * @param {number} listeAchatBouteilleId Id de la liste d'achat
+     * @returns {Observable}
+     */
+    supprimerUneBouteilleListeAchat(listeAchatBouteilleId: any){
+
+        return this.http.delete<any>(
+            this.url + '/supprimerBouteille/' + listeAchatBouteilleId)
+    }
+
+
 }
 
 

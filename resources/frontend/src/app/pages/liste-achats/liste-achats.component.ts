@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { MatListOption } from '@angular/material/list';
+import { MatSnackBar } from '@angular/material/snack-bar';
 import { AuthService } from '@services/auth.service';
 import { BouteilleDeVinService } from '@services/bouteille-de-vin.service';
 
@@ -12,10 +13,13 @@ import { BouteilleDeVinService } from '@services/bouteille-de-vin.service';
 export class ListeAchatsComponent implements OnInit {
 
   listeAchat!: any[];
+  bouteilleSelected!: any[];
+  idListeAchatBouteille: any;
 
   constructor(
     private servBouteilleDeVin: BouteilleDeVinService,
     private authService: AuthService,
+    private snackbar: MatSnackBar
   ) { }
 
   ngOnInit(): void {
@@ -29,9 +33,30 @@ export class ListeAchatsComponent implements OnInit {
 
   }
 
-  bouteilleSelected(options: MatListOption[]){
+  // Affichage de la liste d'achat
+  chargerListeAchat() {
+    this.servBouteilleDeVin.getListeAchatParUtilisateur(this.authService.getIdUtilisateurAuthentifie())
+     .subscribe((data: any) => {
+         this.listeAchat = data;
+         console.log(data);
+     })
+}
 
-    console.log(options.map(o => o.value))
-
+  supprimerDeLaListe(bouteilleSelected: any[]){
+    console.log(bouteilleSelected);
+    if(bouteilleSelected.length == 0) {
+      return
+    }
+    this.idListeAchatBouteille = bouteilleSelected[0].id;
+    console.log(this.idListeAchatBouteille)
+    this.servBouteilleDeVin.confirmDialog(`Voulez vous supprimer cette bouteille de la liste d'achat ?`)
+            .afterClosed().subscribe(res => {
+                if (res) {
+                    this.servBouteilleDeVin.supprimerUneBouteilleListeAchat(this.idListeAchatBouteille).subscribe(() => {
+                        this.chargerListeAchat();
+                        this.snackbar.open('Vous avez supprimer la bouteille de la liste', 'Fermer');
+                    });
+                }
+            })
   }
 }
