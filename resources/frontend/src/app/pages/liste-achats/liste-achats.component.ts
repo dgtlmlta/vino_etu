@@ -49,7 +49,7 @@ export class ListeAchatsComponent implements OnInit {
     }
     this.idListeAchatBouteille = bouteilleSelected[0].id;
     console.log(this.idListeAchatBouteille)
-    this.servBouteilleDeVin.confirmDialog(`Voulez vous supprimer cette bouteille de la liste d'achat ?`)
+    this.servBouteilleDeVin.confirmDialog(`Voulez vous ajouter cette bouteille au cellier ?`)
             .afterClosed().subscribe(res => {
                 if (res) {
                     this.servBouteilleDeVin.supprimerUneBouteilleListeAchat(this.idListeAchatBouteille).subscribe(() => {
