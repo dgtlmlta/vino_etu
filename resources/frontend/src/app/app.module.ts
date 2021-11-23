@@ -104,6 +104,7 @@ import {MatMenuModule} from '@angular/material/menu';
             provide: MAT_DIALOG_DEFAULT_OPTIONS,
             useValue: {
                 panelClass: "modal-base",
+                hasBackdrop: true,
             }
         },
         {
