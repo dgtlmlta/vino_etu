@@ -15,7 +15,7 @@ class CreateListesAchats extends Migration
     {
         Schema::create('listes_achats', function (Blueprint $table) {
             $table->id();
-            $table->foreignId("users_id")->constrained()->cascadeOnUpdate()->nullOnDelete();
+            $table->foreignId("users_id")->nullable()->constrained()->cascadeOnUpdate()->nullOnDelete();
             $table->timestamps();
         });
     }
