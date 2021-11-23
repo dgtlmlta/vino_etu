@@ -33,7 +33,8 @@ export class ListeBouteilleComponent implements OnInit {
     // Initialiser le formGroup pour gérer les filtres
     filtres: FormGroup = new FormGroup({
         texteRecherche: new FormControl(""),
-        categories: new FormArray([]),
+        pays          : new FormControl(""),
+        categories    : new FormArray([]),
     });
 
 
@@ -141,7 +142,7 @@ export class ListeBouteilleComponent implements OnInit {
     ajouterListeAchats(bouteilleId: any) {
         let userId = this.servAuth.getIdUtilisateurAuthentifie();
 
-        
+
 
         this.itemListeAchat = { userId, bouteilleId }
         console.log(this.itemListeAchat)
@@ -192,6 +193,6 @@ export class ListeBouteilleComponent implements OnInit {
     }
 
     formulaireAjoutPersonnalise(){
-        
+
     }
 }

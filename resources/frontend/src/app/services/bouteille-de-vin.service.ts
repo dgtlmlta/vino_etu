@@ -13,8 +13,8 @@ import { map } from 'rxjs/operators';
 })
 export class BouteilleDeVinService {
 
-    private url:string = "http://127.0.0.1:8000/api";
-    //private url: string = "http://kalimotxo-vino.akira.dev/api";
+    // private url:string = "http://127.0.0.1:8000/api";
+    private url: string = "http://kalimotxo-vino.akira.dev/api";
     // private url: string = new URL(window.location.href).origin + "/api";
 
 
@@ -191,7 +191,7 @@ export class BouteilleDeVinService {
     /**
      *
      * Charger les données concernant les pays d'origine des bouteilles
-     * 
+     *
      * @returns {Observable}
      */
          getListePays(){
