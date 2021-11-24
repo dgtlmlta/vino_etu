@@ -143,7 +143,14 @@ main .main-content {
     overflow: unset;
 }
 
+.drawer-content {
+
+}
+
 .mat-drawer {
+    max-height: 75vh;
+    overflow-y: scroll;
+
     bottom: unset !important;
     left: 0 !important;
 }
@@ -275,6 +282,7 @@ button:focus-visible {
 
 /* Déstyliser les boutons pour les rendre à plat */
 .fermer-modal {
+    padding-inline: none;
     border: none;
     background-color: transparent;
 }
@@ -320,4 +328,42 @@ button:focus-visible {
 .checkbox-pleine-largeur .mat-checkbox-layout .mat-checkbox-inner-container {
     margin-right: 0;
     margin-left: auto;
+}
+
+.mat-drawer .mat-drawer-inner-container {
+    overflow: initial;
+}
+
+.barre-filtres details {
+    padding-block: var(--espacement);
+}
+
+/* Transformer et déplacer l'icône des summary */
+summary {
+    display: flex;
+    justify-content: space-between;
+
+    padding-block: var(--espacement-petit);
+
+    list-style-type: none;
+}
+
+summary::after {
+    content: "+";
+
+    transition-property: transform;
+    transition-duration: 300ms;
+    transition-timing-function: cubic-bezier(0.23, 1, 0.320, 1);
+}
+
+details[open] > summary::after {
+    transform: rotate(405deg);
+}
+
+.barre-filtres > details + details {
+    border-block-start: 1px solid var(--voile-noir-100);
+}
+
+.barre-filtres > details:first-of-type {
+    border-block-start: none;
 }

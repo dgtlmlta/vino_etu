@@ -1,6 +1,6 @@
 import { HttpParams } from '@angular/common/http';
 import { Component, OnInit } from '@angular/core';
-import { FormArray, FormBuilder, FormControl, FormGroup } from '@angular/forms';
+import { FormArray, FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
 import { MatSnackBar } from '@angular/material/snack-bar';
 import { Categorie } from '@interfaces/categorie';
 import { Pays } from '@interfaces/pays';
@@ -36,6 +36,7 @@ export class ListeBouteilleComponent implements OnInit {
     filtres: FormGroup = new FormGroup({
         texteRecherche: new FormControl(""),
         paysId        : new FormControl(""),
+        prixMin       : new FormControl(""),
         categories    : new FormArray([]),
     });
 

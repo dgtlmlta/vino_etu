@@ -1,13 +1,14 @@
 <mat-drawer-container class="main-content">
 
     <mat-drawer class="drawer-default" #sidenav>
-        <div class="drawer-content flow-content">
+        <div class="drawer-content barre-filtres">
             <div>
                 <button class="fermer-modal" (click)='sidenav.toggle()'>
                     <mat-icon>close</mat-icon>
                 </button>
             </div>
-            <details open>
+
+            <details>
                 <summary>Catégories</summary>
                 <fieldset [formGroup]="filtres">
                     <ng-container formArrayName="categories">
@@ -19,20 +20,34 @@
 
                     </ng-container>
                 </fieldset>
-
             </details>
 
-            <details open>
+            <details>
                 <summary>Pays</summary>
                 <fieldset [formGroup]="filtres">
                     <mat-form-field appearance="fill" class="input-case">
-                        <mat-label for="pays_id">Choisir un pays</mat-label>
-                        <mat-select formControlName="paysId" (selectionChange)="initierRechercheFiltree()">
+                        <mat-label for="paysId">Choisir un pays</mat-label>
+                        <mat-select id="paysId" formControlName="paysId" (selectionChange)="initierRechercheFiltree()">
                             <mat-option value="" selected aria-selected>Tous les pays</mat-option>
                             <mat-option *ngFor="let pays of pays" [value]="pays.id">
                                 {{ pays.nom }}
                             </mat-option>
                         </mat-select>
+                    </mat-form-field>
+                </fieldset>
+            </details>
+
+            <details>
+                <summary>Prix</summary>
+                <fieldset [formGroup]="filtres">
+                    <mat-form-field appearance="fill" class="input-case">
+                        <mat-label for="prixMin">Minimum</mat-label>
+                        <input matInput id="prixMin" formControlName="prixMin" (blur)="initierRechercheFiltree()">
+                    </mat-form-field>
+
+                    <mat-form-field appearance="fill" class="input-case">
+                        <mat-label for="prixMax">Maximum</mat-label>
+                        <input matInput id="prixMax" formControlName="prixMax" (blur)="initierRechercheFiltree()">
                     </mat-form-field>
                 </fieldset>
             </details>
