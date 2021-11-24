@@ -124,6 +124,10 @@ main {
     overflow-y: scroll;
 }
 
+h1, h2, h3 {
+    color: var(--couleur-primaire);
+}
+
 /* Retirer les marges du haut des en-têtes */
 h3 {
     margin-block-start: 0;
@@ -141,10 +145,6 @@ main .main-content {
 
 .mat-drawer-container .mat-drawer-content {
     overflow: unset;
-}
-
-.drawer-content {
-
 }
 
 .mat-drawer {

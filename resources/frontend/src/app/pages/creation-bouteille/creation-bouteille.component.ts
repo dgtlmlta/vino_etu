@@ -25,7 +25,7 @@ export class CreationBouteilleComponent implements OnInit {
     nom: new FormControl('', Validators.required),
     pays_id: new FormControl('', Validators.required),
     categories_id: new FormControl('', Validators.required),
-    prix: new FormControl(''),
+    prix: new FormControl('', Validators.pattern("^[0-9\.,]*$")),
     format: new FormControl(''),
     url_image: new FormControl(''),
   });
@@ -88,6 +88,10 @@ export class CreationBouteilleComponent implements OnInit {
 
     // Function pour ajouter une bouteille au catalogue
     postBouteilleCellier(bouteille: any) {
+
+
+      bouteille.prix = bouteille.prix.replace(',', '.')
+      console.log(bouteille);
 
       if (this.ajoutBouteille.invalid) {
           this.ajoutBouteille.markAllAsTouched();

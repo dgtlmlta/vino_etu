@@ -1,5 +1,5 @@
 import { Component, Inject, OnInit } from '@angular/core';
-import { FormControl, FormGroup } from '@angular/forms';
+import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { MatSnackBar } from '@angular/material/snack-bar';
 import { ActivatedRoute, Router } from '@angular/router';
 import { BouteilleDeVinService } from '@services/bouteille-de-vin.service';
@@ -31,7 +31,7 @@ export class ModifierCellierBouteilleComponent implements OnInit {
         millesime: new FormControl(''),
         inventaire: new FormControl(''),
         date_acquisition: new FormControl(''),
-        prix_paye: new FormControl(''),
+        prix_paye: new FormControl('', Validators.pattern("^[0-9\.,]*$")),
         conservation: new FormControl(''),
         notes_personnelles: new FormControl(''),
     });
@@ -60,6 +60,12 @@ export class ModifierCellierBouteilleComponent implements OnInit {
         this.cellierId = state.cellierId;
     }
 
+    
+    // Affichage des erreurs quand le champs n'est pas rempli
+    get erreur() {
+        return this.modifierBouteilleCellier.controls;
+    }
+
     // Pour l'affichage des données actuelles de la bouteille à modifier
     initChampsModification() {
         this.modifierBouteilleCellier.patchValue({
@@ -85,6 +91,14 @@ export class ModifierCellierBouteilleComponent implements OnInit {
 
     // Fonction pour modifier les information de la bouteille dans le cellier
     putBouteille(nouvellesDonnes: any) {
+
+        // Si le formulaire est invalide empêcher la requêtte
+        if(this.modifierBouteilleCellier.invalid) {
+            return
+        }
+
+       nouvellesDonnes.prix_paye = nouvellesDonnes.prix_paye.replace(',', '.')
+       console.log(nouvellesDonnes);
 
         this.servBouteilleDeVin.modifierBouteilleCellier(this.bouteilleId, nouvellesDonnes).subscribe(() => {
             this.openSnackBar('Vous avez modifié la bouteille avec succès', 'Fermer');
