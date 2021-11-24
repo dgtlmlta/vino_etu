@@ -30,7 +30,8 @@ mat-checkbox:last-of-type {
     gap: var(--espacement);
     min-height: 50px;
     padding: 10px 10px;
-
+    text-decoration: none;
+    color: var(--couleur-gris-900)
 }
 
 .filtrer {

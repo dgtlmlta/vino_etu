@@ -66,7 +66,7 @@ export class CreationBouteilleComponent implements OnInit {
         // Charger la liste des pays de la BD.
         this.servBouteilleDeVin.getListePays()
         .subscribe((data: any) => {
-            this.listePays = data.data;  // tableau dans un tableau
+            this.listePays = data; 
         })
 
         // Charger la liste des catégories de la BD.
