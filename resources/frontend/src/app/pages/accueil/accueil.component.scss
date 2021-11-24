@@ -29,7 +29,7 @@
 }
 
 .background-icon{
-    background-color: var(--couleur-primaire);
+    background-color: var(--couleur-secondaire);
     border-radius: 50%;
     width: 100px;
     height: 100px;
@@ -46,7 +46,7 @@ mat-icon{
 }
 
 .card p{
-    color: var(--couleur-primaire);
+    color: var(--couleur-gris-900);
     padding: 0.25rem 0.5rem;
     text-align: center;
 }

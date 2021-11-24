@@ -1,15 +1,23 @@
 <article>
     <div class="wrapper">
         <div class="resultat-img">
-            <a class="btn-vin"><img src="{{bouteille.url_image}}" alt="une bouteille"></a>
+            <!-- <a class="btn-vin"><img src="{{bouteille.url_image}}" alt="une bouteille"></a> -->
+            <div *ngIf="bouteille.url_image; then image else imageDefault"></div>
+                <ng-template #image>
+                    <img mat-card-image src="{{bouteille.url_image}}" alt="Bouteille du vin" />
+                </ng-template>
+                <ng-template #imageDefault>
+                    <img mat-card-image  src="https://www.saq.com/media/wysiwyg/placeholder/category/06.png" alt="Bouteille du vin" />
+                </ng-template>
+
         </div>
         <div class="resultat-vin">
             <div class="resultat-vin-data">
-                <a class="target-link">{{bouteille.nom}}</a>
+                <h3>{{bouteille.nom}}</h3>
                 <div>
                     <span class="subtexte">{{bouteille.categorie}}</span>
                     <span class="subtexte">{{bouteille.format}}</span>
-                    <span class="subtexte">{{bouteille.pays}}</span>
+                    <span class="subtexte">{{bouteille.origine}}</span>
                 </div>
             </div>
             <div class="boutons-inventaire">

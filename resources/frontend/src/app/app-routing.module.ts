@@ -16,6 +16,7 @@ import { ProfilUtilisateurComponent } from '@pages/profil-utilisateur/profil-uti
 import { ModifierUtilisateurComponent } from '@pages/modifier-utilisateur/modifier-utilisateur.component';
 import { CreationBouteilleComponent } from '@pages/creation-bouteille/creation-bouteille.component';
 import { ListeAchatsComponent } from '@pages/liste-achats/liste-achats.component';
+import { ListeAchatsResolver } from '@services/liste-achats.resolver';
 
 const routes: Routes = [
     {
@@ -78,6 +79,9 @@ const routes: Routes = [
         path: "listeAchats",
         component: ListeAchatsComponent,
         canActivate: [AuthGuard],
+        resolve: {
+            listeAchat: ListeAchatsResolver
+        }
     },
 ];
 

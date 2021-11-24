@@ -29,6 +29,15 @@ class Cellier extends Model {
                 },
                 "bouteilles_achetees as total_bouteilles_vin_rouge" => function ($query) {
                     $query->where("bouteilles_achetees.categories_id", 2);
+                },
+                "bouteilles_achetees as total_bouteilles_spiritueux" => function ($query) {
+                    $query->where("bouteilles_achetees.categories_id", 3);
+                },
+                "bouteilles_achetees as total_bouteilles_porto_et_vin_fortifie" => function ($query) {
+                    $query->where("bouteilles_achetees.categories_id", 4);
+                },
+                "bouteilles_achetees as total_bouteilles_sake" => function ($query) {
+                    $query->where("bouteilles_achetees.categories_id", 5);
                 }
             ], "celliers_bouteilles_achetees.inventaire")
             ->where("users_id", $userId)

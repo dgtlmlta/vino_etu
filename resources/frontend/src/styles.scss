@@ -124,6 +124,10 @@ main {
     overflow-y: scroll;
 }
 
+h1, h2, h3 {
+    color: var(--couleur-primaire);
+}
+
 /* Retirer les marges du haut des en-têtes */
 h3 {
     margin-block-start: 0;
@@ -141,10 +145,6 @@ main .main-content {
 
 .mat-drawer-container .mat-drawer-content {
     overflow: unset;
-}
-
-.drawer-content {
-
 }
 
 .mat-drawer {
@@ -378,4 +378,8 @@ details[open] > summary::after {
 .mat-list-base .mat-list-item .mat-list-text, .mat-list-base .mat-list-option .mat-list-text {
     min-height: 110px;
     justify-content: center;
+}
+
+.mat-menu-item .mat-icon-no-color {
+    color: var(--couleur-gris-900);
 }

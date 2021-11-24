@@ -22,7 +22,7 @@ export class AjoutBouteilleComponent implements OnInit {
 
     ajoutBouteille = new FormGroup({
         millesime: new FormControl(''),
-        inventaire: new FormControl('', Validators.required),
+        inventaire: new FormControl('1', [Validators.required, Validators.min(1)]),
         date_acquisition: new FormControl(''),
         prix_paye: new FormControl(''),
         conservation: new FormControl(''),
