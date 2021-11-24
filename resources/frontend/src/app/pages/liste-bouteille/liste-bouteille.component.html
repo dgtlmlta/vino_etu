@@ -26,7 +26,6 @@
                 <summary>Pays</summary>
                 <fieldset [formGroup]="filtres">
                     <mat-form-field appearance="fill" class="input-case">
-                        <mat-label for="paysId">Choisir un pays</mat-label>
                         <mat-select id="paysId" formControlName="paysId" (selectionChange)="initierRechercheFiltree()">
                             <mat-option value="" selected aria-selected>Tous les pays</mat-option>
                             <mat-option *ngFor="let pays of pays" [value]="pays.id">
@@ -51,6 +50,20 @@
                     </mat-form-field>
                 </fieldset>
             </details>
+
+            <!-- <details>
+                <summary>Format</summary>
+                <fieldset [formGroup]="filtres">
+                    <mat-form-field appearance="fill" class="input-case">
+                        <mat-select id="format" formControlName="format" (selectionChange)="initierRechercheFiltree()">
+                            <mat-option value="" selected aria-selected>Tous les formats</mat-option>
+                            <mat-option *ngFor="let pays of pays" [value]="pays.id">
+                                {{ pays.nom }}
+                            </mat-option>
+                        </mat-select>
+                    </mat-form-field>
+                </fieldset>
+            </details> -->
         </div>
     </mat-drawer>
 

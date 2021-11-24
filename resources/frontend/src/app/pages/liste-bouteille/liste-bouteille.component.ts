@@ -35,9 +35,10 @@ export class ListeBouteilleComponent implements OnInit {
     // Initialiser le formGroup pour gérer les filtres
     filtres: FormGroup = new FormGroup({
         texteRecherche: new FormControl(""),
-        paysId        : new FormControl(""),
-        prixMin       : new FormControl(""),
-        categories    : new FormArray([]),
+        paysId: new FormControl(""),
+        prixMin: new FormControl(""),
+        prixMax: new FormControl(""),
+        categories: new FormArray([]),
     });
 
 
@@ -78,15 +79,17 @@ export class ListeBouteilleComponent implements OnInit {
         return this.filtreTexteRecherche?.value.replace("-", " ");
     }
 
-
-    initierRechercheFiltree(): void {
+    batirFiltres(): HttpParams|undefined {
         // Bâtir les variables qui agiront en tant que filtres
-        const categories = this.batirTableauFiltreCategories();
-        const rechercheTextuelle = this.batirRechercheTextuelle();
-        const paysId = this.filtrePaysId?.value;
+        const
+            categories = this.batirTableauFiltreCategories(),
+            rechercheTextuelle = this.batirRechercheTextuelle(),
+            paysId = this.filtrePaysId?.value,
+            prixMin = this.filtres.get("prixMin")?.value,
+            prixMax = this.filtres.get("prixMax")?.value;
 
         // Si la recherche est "vide", réinitialiser aux catalogue de départ
-        if(categories.length === 0 && !rechercheTextuelle && !paysId) {
+        if (categories.length === 0 && !rechercheTextuelle && !paysId) {
             this.bouteille = this.bouteillesInitiales;
             return;
         }
@@ -94,15 +97,15 @@ export class ListeBouteilleComponent implements OnInit {
         let filtres = new HttpParams();
 
         // Ajouter les filtres existants à l'objet de recherche
-        if(rechercheTextuelle) {
+        if (rechercheTextuelle) {
             filtres = filtres.set("texteRecherche", rechercheTextuelle);
         }
 
-        if(categories.length > 0) {
+        if (categories.length > 0) {
             const compteCategories = categories.length;
-            for(let i = 0; i < compteCategories; i++) {
+            for (let i = 0; i < compteCategories; i++) {
                 // On doit d'abord "setter" le paramètre...
-                if(i === 0) {
+                if (i === 0) {
 
                     filtres = filtres.set("categories[]", categories[i]);
                     continue;
@@ -113,9 +116,47 @@ export class ListeBouteilleComponent implements OnInit {
             }
         }
 
-        if(paysId) {
+        if (paysId) {
             filtres = filtres.set("paysId", paysId);
         }
+
+        return filtres;
+    }
+
+
+    initierRechercheFiltree(): void {
+        // // Bâtir les variables qui agiront en tant que filtres
+        // const categories = this.batirTableauFiltreCategories();
+        // const rechercheTextuelle = this.batirRechercheTextuelle();
+        // const paysId = this.filtrePaysId?.value;
+
+
+
+        let filtres = this.batirFiltres();
+
+        // // Ajouter les filtres existants à l'objet de recherche
+        // if (rechercheTextuelle) {
+        //     filtres = filtres.set("texteRecherche", rechercheTextuelle);
+        // }
+
+        // if (categories.length > 0) {
+        //     const compteCategories = categories.length;
+        //     for (let i = 0; i < compteCategories; i++) {
+        //         // On doit d'abord "setter" le paramètre...
+        //         if (i === 0) {
+
+        //             filtres = filtres.set("categories[]", categories[i]);
+        //             continue;
+        //         }
+
+        //         //  ...et ensuite on annexe les valeurs supplémentaires à ce même paramètre
+        //         filtres = filtres.append("categories[]", categories[i]);
+        //     }
+        // }
+
+        // if (paysId) {
+        //     filtres = filtres.set("paysId", paysId);
+        // }
 
         console.log(filtres);
 
@@ -206,7 +247,7 @@ export class ListeBouteilleComponent implements OnInit {
         })
     }
 
-    formulaireAjoutPersonnalise(){
+    formulaireAjoutPersonnalise() {
 
     }
 }
