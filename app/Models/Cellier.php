@@ -29,7 +29,7 @@ class Cellier extends Model {
                 },
                 "bouteilles_achetees as total_bouteilles_vin_rouge" => function ($query) {
                     $query->where("bouteilles_achetees.categories_id", 2);
-                }
+                },
             ], "celliers_bouteilles_achetees.inventaire")
             ->where("users_id", $userId)
             ->get();
