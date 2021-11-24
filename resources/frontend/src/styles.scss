@@ -87,7 +87,7 @@ body {
     --couleur-primaire: #4c1920;
     --couleur-primaire-800: #29060a;
     --couleur-secondaire: #184c44;
-    // --couleur-secondaire: #96694f;
+    --couleur-logo: #96694f;
     --couleur-gris-200: #{$lightGrey};
     --couleur-gris-900: #{$darkGrey};
 
@@ -215,6 +215,9 @@ a.inline-link {
 [class*="notif"] {
     margin-bottom: calc(var(--headerHauteur) + 10px) !important;
     margin-block-end: var(--headerHauteur);
+    .mat-simple-snackbar-action {
+        color: #e99d71;
+    }
 }
 
 .notif-danger {
