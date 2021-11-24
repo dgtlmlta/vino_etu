@@ -146,7 +146,12 @@ export class ListeBouteilleComponent implements OnInit {
      * Amorcer la recherche en batissant les filtres nécessaires et initiant un debounce au besoin
      *
      */
-    initierRechercheFiltree(): void {
+    initierRechercheFiltree($event: KeyboardEvent|null = null): void {
+        // Ne pas initier la recherche sur tab de changement de champ
+        if($event && $event.key == "Tab") {
+            return;
+        }
+
         const filtres = this.batirFiltres() ?? undefined;
 
         if (this.rechercheSujet.observers.length === 0) {
