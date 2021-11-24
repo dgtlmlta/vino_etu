@@ -11,6 +11,10 @@ mat-checkbox {
     border-block-end: 1px solid var(--voile-noir-100);
 }
 
+mat-checkbox:last-of-type {
+    border-block-end: none;
+}
+
 .content {
     display: flex;
     flex-direction: column;

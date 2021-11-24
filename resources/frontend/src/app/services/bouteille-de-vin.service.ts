@@ -13,8 +13,8 @@ import { map } from 'rxjs/operators';
 })
 export class BouteilleDeVinService {
 
-    private url:string = "http://127.0.0.1:8000/api";
-    //private url: string = "http://kalimotxo-vino.akira.dev/api";
+    // private url:string = "http://127.0.0.1:8000/api";
+    private url: string = "http://kalimotxo-vino.akira.dev/api";
     // private url: string = new URL(window.location.href).origin + "/api";
 
 
@@ -22,7 +22,7 @@ export class BouteilleDeVinService {
         console.log(this.url);
     }
 
-    getBouteillesParCellier(cellierId:any, filtres = {}) {
+    getBouteillesParCellier(cellierId: any, filtres = {}) {
         return this.http.get<any>(
             this.url + '/celliers/' + cellierId + '/bouteilles',
             {
@@ -84,7 +84,7 @@ export class BouteilleDeVinService {
             this.url + '/supprimer/' + bouteilleAchetee_id)
     }
 
-    supprimerUnCellier(cellier_id: any){
+    supprimerUnCellier(cellier_id: any) {
 
         return this.http.delete<any>(
             this.url + '/supprimerCellier/' + cellier_id)
@@ -97,8 +97,8 @@ export class BouteilleDeVinService {
      * @param {number} userId Id de l'utilisateur
      * @returns {Observable} Liste des celliers de l'utilisateur
      */
-    getListeCelliersParUtilisateur(userId: number|null): any {
-        if(!userId) {
+    getListeCelliersParUtilisateur(userId: number | null): any {
+        if (!userId) {
             return false;
         }
 
@@ -118,7 +118,7 @@ export class BouteilleDeVinService {
      * @param {number|string} cellierId Id du cellier à charger
      * @returns {Observable}
      */
-    getCellier(cellierId: number|string) {
+    getCellier(cellierId: number | string) {
         return this.http.get<any>(
             this.url + "/celliers/" + cellierId
         )
@@ -167,7 +167,7 @@ export class BouteilleDeVinService {
      *
      * @returns
      */
-    modifierCellier(data: any, idCellier : any) {
+    modifierCellier(data: any, idCellier: any) {
 
         let body = {
             'nom': data.nom,
@@ -175,7 +175,7 @@ export class BouteilleDeVinService {
             'image': data.image,
         }
 
-        return this.http.put<any>(this.url + '/celliers/'+ idCellier, body);
+        return this.http.put<any>(this.url + '/celliers/' + idCellier, body);
     }
 
 
@@ -211,11 +211,19 @@ export class BouteilleDeVinService {
     /**
      *
      * Charger les données concernant les pays d'origine des bouteilles
-     * 
+     *
      * @returns {Observable}
      */
+<<<<<<< HEAD
+    getListePays() {
+        return this.http.get<any>(this.url + "/pays")
+            .pipe(
+                map(data => data.data)
+            );
+=======
     getListePays(){
             return this.http.get<any>(this.url + "/pays")
+>>>>>>> 4c6caefcf45b5d9a6a0417eea6bd78b7b2dcf7a4
     }
 
     /**
