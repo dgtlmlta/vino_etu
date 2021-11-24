@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { MatDialog } from '@angular/material/dialog';
+import { ActivatedRoute } from '@angular/router';
 import { ActionListeAchatComponent } from '@pages/action-liste-achat/action-liste-achat.component';
 import { AuthService } from '@services/auth.service';
 import { BouteilleDeVinService } from '@services/bouteille-de-vin.service';
@@ -21,15 +22,15 @@ export class ListeAchatsComponent implements OnInit {
     private servBouteilleDeVin: BouteilleDeVinService,
     private authService: AuthService,
     public modalAction: MatDialog,
+    private actRoute: ActivatedRoute,
   ) { }
 
   ngOnInit(): void {
      // Charger la liste d'achat de l'utilisateur.
-     this.servBouteilleDeVin.getListeAchatParUtilisateur(this.authService.getIdUtilisateurAuthentifie())
-     .subscribe((data: any) => {
-         this.listeAchat = data;
-         console.log(data);
-     })
+     this.actRoute.data.subscribe(data => {
+      this.listeAchat = data.listeAchat;
+      console.log(data);
+  });
 
   }
 
@@ -64,6 +65,9 @@ export class ListeAchatsComponent implements OnInit {
 
   // Vérifier si la liste d'achat contient des bouteilles retourn true ou false
    listeAchatContientBouteille() {
+    if(!this.listeAchat) {
+      return false;
+    }
     return this.listeAchat.length > 0;
   }
 
