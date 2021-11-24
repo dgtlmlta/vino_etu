@@ -13,7 +13,7 @@ class PaysController extends Controller {
      * @return \Illuminate\Http\Response
      */
     public function index() {
-        return PaysResource::collection(Pays::all());
+        return PaysResource::collection(Pays::orderBy("nom")->get());
     }
 
     /**

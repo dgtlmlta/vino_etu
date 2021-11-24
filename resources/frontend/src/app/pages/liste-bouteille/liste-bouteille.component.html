@@ -1,30 +1,72 @@
 <mat-drawer-container class="main-content">
 
     <mat-drawer class="drawer-default" #sidenav>
-        <div class="drawer-content flow-content">
+        <div class="drawer-content barre-filtres">
             <div>
                 <button class="fermer-modal" (click)='sidenav.toggle()'>
                     <mat-icon>close</mat-icon>
                 </button>
             </div>
-            <details open>
+
+            <details>
                 <summary>Catégories</summary>
                 <fieldset [formGroup]="filtres">
                     <ng-container formArrayName="categories">
-                        <mat-checkbox
-                            class="checkbox-pleine-largeur"
-                            [formControlName]="i"
-                            labelPosition="before"
+                        <mat-checkbox class="checkbox-pleine-largeur" [formControlName]="i" labelPosition="before"
                             (change)="initierRechercheFiltree()"
                             *ngFor="let categorie of listeCategoriesEnFormArray.controls; let i = index">
                             {{ categories[i].nom }}
                         </mat-checkbox>
-                        <label >
 
-                        </label>
                     </ng-container>
                 </fieldset>
             </details>
+
+            <details>
+                <summary>Pays</summary>
+                <fieldset [formGroup]="filtres">
+                    <mat-form-field appearance="fill" class="input-case">
+                        <mat-select id="paysId" formControlName="paysId" (selectionChange)="initierRechercheFiltree()">
+                            <mat-option value="" selected aria-selected>Tous les pays</mat-option>
+                            <mat-option *ngFor="let pays of pays" [value]="pays.id">
+                                {{ pays.nom }}
+                            </mat-option>
+                        </mat-select>
+                    </mat-form-field>
+                </fieldset>
+            </details>
+
+            <details>
+                <summary>Prix</summary>
+                <fieldset [formGroup]="filtres">
+                    <mat-form-field appearance="fill" class="input-case">
+                        <mat-label for="prixMin">Minimum</mat-label>
+                        <input placeholder="1,00" matInput id="prixMin" formControlName="prixMin" (keyup)="initierRechercheFiltree($event)" pattern="^[\d\.,]*$">
+                        <mat-error *ngIf="filtrePrixMin?.touched && filtrePrixMin?.invalid">
+                            <div *ngIf="filtrePrixMin?.errors?.pattern">Veuillez entrer un montant valide</div>
+                        </mat-error>
+                    </mat-form-field>
+
+                    <mat-form-field appearance="fill" class="input-case">
+                        <mat-label for="prixMax">Maximum</mat-label>
+                        <input placeholder="1,00" matInput id="prixMax" formControlName="prixMax" (keyup)="initierRechercheFiltree($event)" pattern="^[\d\.,]*$">
+                    </mat-form-field>
+                </fieldset>
+            </details>
+
+            <!-- <details>
+                <summary>Format</summary>
+                <fieldset [formGroup]="filtres">
+                    <mat-form-field appearance="fill" class="input-case">
+                        <mat-select id="format" formControlName="format" (selectionChange)="initierRechercheFiltree()">
+                            <mat-option value="" selected aria-selected>Tous les formats</mat-option>
+                            <mat-option *ngFor="let pays of pays" [value]="pays.id">
+                                {{ pays.nom }}
+                            </mat-option>
+                        </mat-select>
+                    </mat-form-field>
+                </fieldset>
+            </details> -->
         </div>
     </mat-drawer>
 
