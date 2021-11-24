@@ -1,0 +1,15 @@
+<div >
+    <header class="card-action">
+        <button class="fermer-modal" (click)='close()'><mat-icon>close</mat-icon></button>
+    </header>
+
+    <mat-dialog-content>
+        <h4>Voulez vous ajouter cette bouteille à un cellier ?</h4>
+        <p>{{data.nom}}</p>
+    </mat-dialog-content>
+
+    <mat-dialog-actions>
+        <button class="boutonSupprimer" mat-button (click)="supprimerDeLaListe(data.id)">Non</button>
+        <button class="boutonAjout" mat-button (click)="ajouterCellier(data.bouteilles_id, data.id)">Oui</button>
+    </mat-dialog-actions>
+</div>

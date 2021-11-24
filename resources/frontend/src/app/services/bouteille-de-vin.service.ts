@@ -180,25 +180,58 @@ export class BouteilleDeVinService {
 
 
     ajouterBouteilleListeAchats(data: any) {
-        console.log(data)
+        console.log(data.bouteilleId)
         let body = {
-            'user_id': data.userId,
-            'bouteille_id': data.bouteilleId,
+            'bouteilles_id': data.bouteilleId,
         }
-        return this.http.post<any>(this.url + '/listesAchats', body)
+        return this.http.post<any>(this.url + '/listes-achats/' + this.servAuth.getIdListeAchat() + '/ajout-bouteille', body)
     }
 
+
+    /**
+     *
+     * Charger la liste d'achat de l'utilisateur donné
+     *
+     * @param {number} userId Id de l'utilisateur
+     * @returns {Observable} Liste d'achat de l'utilisateur
+     */
+    getListeAchatParUtilisateur(userId: number|null): any {
+        if(!userId) {
+            return false;
+        }
+
+        const options = {
+            params: {
+                userId: userId
+            }
+        }
+
+        return this.http.get<any>(this.url + "/listes-achats", options)
+    }
     /**
      *
      * Charger les données concernant les pays d'origine des bouteilles
      * 
      * @returns {Observable}
      */
-         getListePays(){
+    getListePays(){
             return this.http.get<any>(this.url + "/pays")
     }
 
     /**
+     *
+     * Supprimer une bouteille de la liste d'achat de l'utilisateur
+     *
+     * @param {number} listeAchatBouteilleId Id de la liste d'achat
+     * @returns {Observable}
+     */
+    supprimerUneBouteilleListeAchat(listeAchatBouteilleId: any){
+
+        return this.http.delete<any>(
+            this.url + '/supprimerBouteille/' + listeAchatBouteilleId)
+    }
+
+/**
      *
      * Charger la liste complète des catégories disponibles
      *

@@ -141,15 +141,12 @@ export class ListeBouteilleComponent implements OnInit {
     ajouterListeAchats(bouteilleId: any) {
         let userId = this.servAuth.getIdUtilisateurAuthentifie();
 
-        
-
         this.itemListeAchat = { userId, bouteilleId }
         console.log(this.itemListeAchat)
 
         this.servBouteilleDeVin.ajouterBouteilleListeAchats(this.itemListeAchat).subscribe(() => {
             this.openSnackBar(`Vous avez ajouté une bouteille à votre liste d'achat`, 'Fermer')
 
-            //this.router.navigate(['/bouteilles']);
         });
     }
 
