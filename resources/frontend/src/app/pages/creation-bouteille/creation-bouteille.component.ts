@@ -66,7 +66,7 @@ export class CreationBouteilleComponent implements OnInit {
         // Charger la liste des pays de la BD.
         this.servBouteilleDeVin.getListePays()
         .subscribe((data: any) => {
-            this.listePays = data.data;  // tableau dans un tableau
+            this.listePays = data;
         })
 
         // Charger la liste des catégories de la BD.
@@ -99,12 +99,15 @@ export class CreationBouteilleComponent implements OnInit {
       this.bouteilleCatalogue = bouteille;
       this.bouteilleCatalogue.users_id = this.authService.getIdUtilisateurAuthentifie();
 
-      this.servBouteilleDeVin.ajoutBouteilleCatalogue(this.bouteilleCatalogue)
-          .subscribe(() => {
-              this.snackbar.open('Vous avez ajouté une bouteille personnalisé au catalogue', 'Fermer')
 
-              this.router.navigate(['/bouteilles']);
-          });
+      this.servBouteilleDeVin.ajoutBouteilleCatalogue(this.bouteilleCatalogue)
+          .subscribe((data) => {
+              this.snackbar.open('Vous avez ajouté une bouteille personnalisée', 'Fermer', {
+                panelClass: 'notif-success'
+              })
+
+              this.router.navigate([`/ficheBouteille/${data.id_bouteille}`]);
+          }); 
   }
 
   /**
@@ -118,8 +121,4 @@ export class CreationBouteilleComponent implements OnInit {
       comparerCellierId(id1: number, id2: string|number): boolean {
       return id1 == id2;
   }
-
-
-
-
 }

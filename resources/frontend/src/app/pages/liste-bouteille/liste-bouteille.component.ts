@@ -250,7 +250,4 @@ export class ListeBouteilleComponent implements OnInit {
         })
     }
 
-    formulaireAjoutPersonnalise() {
-
-    }
 }

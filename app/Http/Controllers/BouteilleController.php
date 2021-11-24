@@ -117,7 +117,8 @@ class BouteilleController extends Controller {
         $nouvelleBouteille->save();
 
         return response()->json([
-            "message" => "ajout réussi ! id : $nouvelleBouteille->id"
+            "message" => "ajout réussi !",
+            "id_bouteille" => $nouvelleBouteille->id
         ], 200);
     }
 

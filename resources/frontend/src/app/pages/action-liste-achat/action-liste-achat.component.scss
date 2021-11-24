@@ -1,13 +1,10 @@
-.mat-dialog-actions {
-    justify-content: space-around;
+
+.mat-confirm-bouton{
+    display: flex;
+    justify-content: space-evenly;
 }
 
-.boutonAjout {
-    background-color: #4c1920;
-    color: white;
-}
-
-.boutonSupprimer {
-    background-color: #8a1a25;
+.mat-confirm-bouton button{
+    background-color: var(--couleur-primaire);
     color: #fff;
 }

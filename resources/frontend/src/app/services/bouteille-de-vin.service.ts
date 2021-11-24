@@ -214,8 +214,11 @@ export class BouteilleDeVinService {
      *
      * @returns {Observable}
      */
-    getListePays(){
-            return this.http.get<any>(this.url + "/pays")
+    getListePays() {
+        return this.http.get<any>(this.url + "/pays")
+            .pipe(
+                map(data => data.data)
+            );
     }
 
     /**
