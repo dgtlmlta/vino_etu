@@ -13,8 +13,6 @@ class ListeAchatSeeder extends Seeder {
      */
     public function run() {
         $listeAchat = [
-            "nom"         => "Mon premier cellier",
-            "description" => "Mon premier cellier avec Vino",
             "users_id"    => 1,
         ];
 
