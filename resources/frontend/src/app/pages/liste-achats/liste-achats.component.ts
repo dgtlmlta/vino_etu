@@ -1,8 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { MatDialog } from '@angular/material/dialog';
-import { MatSnackBar } from '@angular/material/snack-bar';
 import { ActionListeAchatComponent } from '@pages/action-liste-achat/action-liste-achat.component';
-import { AjoutBouteilleComponent } from '@pages/ajout-bouteille/ajout-bouteille.component';
 import { AuthService } from '@services/auth.service';
 import { BouteilleDeVinService } from '@services/bouteille-de-vin.service';
 
@@ -14,7 +12,7 @@ import { BouteilleDeVinService } from '@services/bouteille-de-vin.service';
 })
 export class ListeAchatsComponent implements OnInit {
 
-  listeAchat!: any[];
+  listeAchat: any = [];
   bouteilleSelected!: any[];
   bouteilleId: any;
   idListeAchatBouteille: any;
@@ -23,11 +21,9 @@ export class ListeAchatsComponent implements OnInit {
     private servBouteilleDeVin: BouteilleDeVinService,
     private authService: AuthService,
     public modalAction: MatDialog,
-    private snackBar: MatSnackBar,
   ) { }
 
   ngOnInit(): void {
-
      // Charger la liste d'achat de l'utilisateur.
      this.servBouteilleDeVin.getListeAchatParUtilisateur(this.authService.getIdUtilisateurAuthentifie())
      .subscribe((data: any) => {
@@ -39,7 +35,7 @@ export class ListeAchatsComponent implements OnInit {
 
   // Fonction permettant ouvrir le modal afin d'action de la liste (supprimer de la liste ou ajouter au cellier)
   actionDansLaListe(bouteilleSelected: any[]){
-    console.log(bouteilleSelected);
+    // console.log(bouteilleSelected);
     if(bouteilleSelected.length == 0) {
       return
     }
@@ -64,4 +60,18 @@ export class ListeAchatsComponent implements OnInit {
          console.log(data);
      })
   }
+
+
+  /**
+     *
+     * Vérifier si la liste d'achat contient des bouteilles retourn true ou false
+     *
+     * @returns {boolean}
+     *
+     */
+
+   listeAchatContientBouteille() {
+    return this.listeAchat.length > 0;
+  }
+
 }

@@ -35,7 +35,7 @@ class ListeAchat extends Model
                 'bouteilles.url_image')
             ->join('listes_achats_bouteilles', 'listes_achats_bouteilles.listes_achats_id',  '=', 'listes_achats.id')
             ->join('bouteilles', 'bouteilles.id', '=', 'listes_achats_bouteilles.bouteilles_id')
-            ->where("users_id", $userId)
+            ->where("listes_achats.users_id", $userId)
             ->get();
 
         return $query;

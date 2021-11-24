@@ -147,7 +147,6 @@ export class ListeBouteilleComponent implements OnInit {
         this.servBouteilleDeVin.ajouterBouteilleListeAchats(this.itemListeAchat).subscribe(() => {
             this.openSnackBar(`Vous avez ajouté une bouteille à votre liste d'achat`, 'Fermer')
 
-            //this.router.navigate(['/bouteilles']);
         });
     }
 

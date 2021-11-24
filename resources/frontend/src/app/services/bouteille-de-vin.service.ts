@@ -231,7 +231,7 @@ export class BouteilleDeVinService {
             this.url + '/supprimerBouteille/' + listeAchatBouteilleId)
     }
 
-    /**
+/**
      *
      * Charger la liste complète des catégories disponibles
      *
