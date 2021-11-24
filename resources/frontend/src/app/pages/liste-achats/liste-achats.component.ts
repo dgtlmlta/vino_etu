@@ -36,20 +36,20 @@ export class ListeAchatsComponent implements OnInit {
   // Fonction permettant ouvrir le modal afin d'action de la liste (supprimer de la liste ou ajouter au cellier)
   actionDansLaListe(bouteilleSelected: any[]){
     // console.log(bouteilleSelected);
-    if(bouteilleSelected.length == 0) {
-      return
+    if(bouteilleSelected.length > 0) {
+
+      this.idListeAchatBouteille = bouteilleSelected[0].id;
+      this.bouteilleId = bouteilleSelected[0].bouteilles_id;
+      console.log(this.bouteilleId)
+      
+      let refModal = this.modalAction.open(ActionListeAchatComponent, {
+        data: bouteilleSelected[0]
+      })
+      
+      const response = refModal.componentInstance.chargerListeAchat.subscribe(() => {
+        this.chargerListeAchat()
+      });
     }
-    this.idListeAchatBouteille = bouteilleSelected[0].id;
-    this.bouteilleId = bouteilleSelected[0].bouteilles_id;
-    console.log(this.bouteilleId)
-
-    let refModal = this.modalAction.open(ActionListeAchatComponent, {
-      data: bouteilleSelected[0]
-    })
-
-    const response = refModal.componentInstance.chargerListeAchat.subscribe(() => {
-      this.chargerListeAchat()
-    });
   }
 
   // Affichage de la liste d'achat
