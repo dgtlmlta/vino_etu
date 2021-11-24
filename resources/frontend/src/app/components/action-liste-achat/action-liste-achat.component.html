@@ -1,4 +1,4 @@
-<div >
+<section>
     <header class="card-action">
         <button class="fermer-modal" (click)='close()'><mat-icon>close</mat-icon></button>
     </header>
@@ -8,8 +8,8 @@
         <p>{{data.nom}}</p>
     </mat-dialog-content>
 
-    <mat-dialog-actions>
-        <button class="boutonSupprimer" mat-button (click)="supprimerDeLaListe(data.id)">Non</button>
-        <button class="boutonAjout" mat-button (click)="ajouterCellier(data.bouteilles_id, data.id)">Oui</button>
-    </mat-dialog-actions>
-</div>
+    <div class="mat-confirm-bouton">
+        <button mat-button (click)="supprimerDeLaListe(data.id)">Non</button>
+        <button  mat-button (click)="ajouterCellier(data.bouteilles_id, data.id)">Oui</button>
+    </div>
+</section>

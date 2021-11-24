@@ -5,7 +5,15 @@
 
     <div *ngIf="bouteille" class="content">
         <mat-card class="example-card">
-            <img mat-card-image src="{{bouteille.url_image}}" alt="Photo of a Shiba Inu">
+            <div *ngIf="bouteille.url_image; then image else imageDefault"></div>
+            <ng-template #image>
+                <img mat-card-image src="{{bouteille.url_image}}" alt="Bouteille du vin" />
+            </ng-template>
+            <ng-template #imageDefault>
+                <img mat-card-image  src="https://www.saq.com/media/wysiwyg/placeholder/category/06.png" alt="Bouteille du vin" />
+            </ng-template>
+
+            <!-- <img mat-card-image src="{{bouteille.url_image}}" appImgFallback alt="Bouteille du vin" /> -->
             <mat-card-header class="card-header">
                 <h2>{{bouteille.nom}}</h2>
                 <mat-card-subtitle></mat-card-subtitle>

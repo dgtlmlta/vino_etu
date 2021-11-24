@@ -38,6 +38,9 @@ img {
 
 .mat-card-content {
     margin: 3rem 1rem;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
 }
 
 .mat-form-prefix {
@@ -64,7 +67,6 @@ img {
 .text-secondary{
     display: flex;
     flex-direction: column;
-    
 }
 
 .utilisateur-info{

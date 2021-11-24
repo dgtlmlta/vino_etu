@@ -23,7 +23,6 @@ export class ModifierUtilisateurComponent implements OnInit {
     first_name: new FormControl('', [Validators.required]),
     last_name: new FormControl('', [Validators.required]),
     city: new FormControl(''),
-    dob: new FormControl(''),
   })
 
   // Émetteur d'événnement afin d'afficher la liste des celliers sans refresh après la modification
@@ -57,7 +56,6 @@ export class ModifierUtilisateurComponent implements OnInit {
       first_name: this.data.first_name,
       last_name: this.data.last_name,
       city: this.data.city,
-      dob: this.data.dob,
     })
   }
 
