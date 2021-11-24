@@ -109,7 +109,7 @@ class BouteilleController extends Controller {
 
         $nouvelleBouteille->nom = $request->nom;
         $nouvelleBouteille->pays_id = $request->pays_id;
-        $nouvelleBouteille->prix = $request->prix;
+        $nouvelleBouteille->prix = str_replace(",", ".", filter_var($request->prix, FILTER_SANITIZE_NUMBER_FLOAT, FILTER_FLAG_ALLOW_FRACTION));
         $nouvelleBouteille->format = $request->format;
         $nouvelleBouteille->url_image = $request->url_image;
         $nouvelleBouteille->categories_id = $request->categories_id;
@@ -117,7 +117,8 @@ class BouteilleController extends Controller {
         $nouvelleBouteille->save();
 
         return response()->json([
-            "message" => "ajout réussi ! id : $nouvelleBouteille->id"
+            "message" => "ajout réussi !",
+            "id_bouteille" => $nouvelleBouteille->id
         ], 200);
     }
 

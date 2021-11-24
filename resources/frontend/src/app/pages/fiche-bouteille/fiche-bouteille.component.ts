@@ -12,6 +12,7 @@ import { AuthService } from '@services/auth.service';
     templateUrl: './fiche-bouteille.component.html',
     styleUrls: ['./fiche-bouteille.component.scss']
 })
+
 export class FicheBouteilleComponent implements OnInit {
     bouteille: any;
     bouteilleId: any;

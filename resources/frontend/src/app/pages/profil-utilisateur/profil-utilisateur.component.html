@@ -2,7 +2,7 @@
     <div *ngIf='utilisateur'>
         <mat-card class="card">
             <mat-card-header>
-                <a mat-button><img class="header-image" src="./assets/img/avatar.png" alt="avatar"></a>
+                <img class="header-image" src="./assets/img/avatar.png" alt="avatar">
                 <h2>{{utilisateur.first_name}} {{utilisateur.last_name}}</h2>
                 <div class="text-secondary">
                     <div class="utilisateur-info">
@@ -19,7 +19,7 @@
             <mat-card-content>
                 <a mat-button (click)="formulaireModifierUtilisateur(utilisateur)">
                     <div class="mat-form-prefix">
-                        <mat-icon>person</mat-icon>
+                        <mat-icon>edit</mat-icon>
                         <span>Modifier mes informations</span>
                     </div>
                 </a>

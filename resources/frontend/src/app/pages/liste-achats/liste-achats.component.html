@@ -10,7 +10,14 @@
     <mat-selection-list #listeBouteilles [(ngModel)]='bouteilleSelected' (ngModelChange)='actionDansLaListe($event)'>
       <mat-list-option *ngFor='let bouteille of listeAchat' [value]="bouteille">
         <mat-list-item class="item">
-            <img alt="bouteille de la liste" src="{{bouteille.url_image}}">
+            <!-- <img alt="bouteille de la liste" src="{{bouteille.url_image}}"> -->
+            <div *ngIf="bouteille.url_image; then image else imageDefault"></div>
+              <ng-template #image>
+                  <img mat-card-image src="{{bouteille.url_image}}" alt="Bouteille du vin" />
+              </ng-template>
+              <ng-template #imageDefault>
+                  <img mat-card-image  src="https://www.saq.com/media/wysiwyg/placeholder/category/06.png" alt="Bouteille du vin" />
+              </ng-template>
             <span class="itemNom">{{bouteille.nom}}</span>
         </mat-list-item>
         <mat-divider></mat-divider>

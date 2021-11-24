@@ -25,7 +25,7 @@ export class CreationBouteilleComponent implements OnInit {
     nom: new FormControl('', Validators.required),
     pays_id: new FormControl('', Validators.required),
     categories_id: new FormControl('', Validators.required),
-    prix: new FormControl(''),
+    prix: new FormControl('', Validators.pattern("^[0-9\.,]*$")),
     format: new FormControl(''),
     url_image: new FormControl(''),
   });
@@ -66,7 +66,7 @@ export class CreationBouteilleComponent implements OnInit {
         // Charger la liste des pays de la BD.
         this.servBouteilleDeVin.getListePays()
         .subscribe((data: any) => {
-            this.listePays = data.data;  // tableau dans un tableau
+            this.listePays = data;
         })
 
         // Charger la liste des catégories de la BD.
@@ -89,6 +89,10 @@ export class CreationBouteilleComponent implements OnInit {
     // Function pour ajouter une bouteille au catalogue
     postBouteilleCellier(bouteille: any) {
 
+
+      bouteille.prix = bouteille.prix.replace(',', '.')
+      console.log(bouteille);
+
       if (this.ajoutBouteille.invalid) {
           this.ajoutBouteille.markAllAsTouched();
           return;
@@ -99,12 +103,15 @@ export class CreationBouteilleComponent implements OnInit {
       this.bouteilleCatalogue = bouteille;
       this.bouteilleCatalogue.users_id = this.authService.getIdUtilisateurAuthentifie();
 
-      this.servBouteilleDeVin.ajoutBouteilleCatalogue(this.bouteilleCatalogue)
-          .subscribe(() => {
-              this.snackbar.open('Vous avez ajouté une bouteille personnalisé au catalogue', 'Fermer')
 
-              this.router.navigate(['/bouteilles']);
-          });
+      this.servBouteilleDeVin.ajoutBouteilleCatalogue(this.bouteilleCatalogue)
+          .subscribe((data) => {
+              this.snackbar.open('Vous avez ajouté une bouteille personnalisée', 'Fermer', {
+                panelClass: 'notif-success'
+              })
+
+              this.router.navigate([`/ficheBouteille/${data.id_bouteille}`]);
+          }); 
   }
 
   /**
