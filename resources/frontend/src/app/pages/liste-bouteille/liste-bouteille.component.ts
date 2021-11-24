@@ -79,19 +79,29 @@ export class ListeBouteilleComponent implements OnInit {
         return this.filtreTexteRecherche?.value.replace("-", " ");
     }
 
-    batirFiltres(): HttpParams|undefined {
+    batirFiltres(): HttpParams | null {
         // Bâtir les variables qui agiront en tant que filtres
         const
             categories = this.batirTableauFiltreCategories(),
             rechercheTextuelle = this.batirRechercheTextuelle(),
             paysId = this.filtrePaysId?.value,
-            prixMin = this.filtres.get("prixMin")?.value,
-            prixMax = this.filtres.get("prixMax")?.value;
+            prixMin = (!isNaN(this.filtres.get("prixMin")?.value)) ?
+                this.filtres.get("prixMin")?.value :
+                null,
+            prixMax = (!isNaN(this.filtres.get("prixMax")?.value)) ?
+                this.filtres.get("prixMax")?.value :
+                null;
 
         // Si la recherche est "vide", réinitialiser aux catalogue de départ
-        if (categories.length === 0 && !rechercheTextuelle && !paysId) {
+        if (
+            categories.length === 0 &&
+            !rechercheTextuelle &&
+            !paysId &&
+            !prixMin &&
+            !prixMax
+        ) {
             this.bouteille = this.bouteillesInitiales;
-            return;
+            return null;
         }
 
         let filtres = new HttpParams();
@@ -120,45 +130,24 @@ export class ListeBouteilleComponent implements OnInit {
             filtres = filtres.set("paysId", paysId);
         }
 
+        if (prixMin) {
+            filtres = filtres.set("prixMin", prixMin);
+        }
+
+        if (prixMax) {
+            filtres = filtres.set("prixMax", prixMax);
+        }
+
         return filtres;
     }
 
-
+    /**
+     *
+     * Amorcer la recherche en batissant les filtres nécessaires et initiant un debounce au besoin
+     *
+     */
     initierRechercheFiltree(): void {
-        // // Bâtir les variables qui agiront en tant que filtres
-        // const categories = this.batirTableauFiltreCategories();
-        // const rechercheTextuelle = this.batirRechercheTextuelle();
-        // const paysId = this.filtrePaysId?.value;
-
-
-
-        let filtres = this.batirFiltres();
-
-        // // Ajouter les filtres existants à l'objet de recherche
-        // if (rechercheTextuelle) {
-        //     filtres = filtres.set("texteRecherche", rechercheTextuelle);
-        // }
-
-        // if (categories.length > 0) {
-        //     const compteCategories = categories.length;
-        //     for (let i = 0; i < compteCategories; i++) {
-        //         // On doit d'abord "setter" le paramètre...
-        //         if (i === 0) {
-
-        //             filtres = filtres.set("categories[]", categories[i]);
-        //             continue;
-        //         }
-
-        //         //  ...et ensuite on annexe les valeurs supplémentaires à ce même paramètre
-        //         filtres = filtres.append("categories[]", categories[i]);
-        //     }
-        // }
-
-        // if (paysId) {
-        //     filtres = filtres.set("paysId", paysId);
-        // }
-
-        console.log(filtres);
+        const filtres = this.batirFiltres() ?? undefined;
 
         if (this.rechercheSujet.observers.length === 0) {
             this.rechercheSujet
@@ -176,7 +165,11 @@ export class ListeBouteilleComponent implements OnInit {
         this.rechercheSujet.next(filtres);
     }
 
-    effectuerRechercheFiltree(filtres: HttpParams) {
+    effectuerRechercheFiltree(filtres: HttpParams | null): void {
+        if (!filtres) {
+            return;
+        }
+
         this.servBouteilleDeVin
             .getListeBouteille(filtres)
             .subscribe(bouteilles => {
@@ -187,8 +180,6 @@ export class ListeBouteilleComponent implements OnInit {
     // Fonction pour ajouter la bouteille à la liste d'achat
     ajouterListeAchats(bouteilleId: any) {
         let userId = this.servAuth.getIdUtilisateurAuthentifie();
-
-
 
         this.itemListeAchat = { userId, bouteilleId }
         console.log(this.itemListeAchat)
@@ -232,6 +223,14 @@ export class ListeBouteilleComponent implements OnInit {
 
     get filtrePaysId() {
         return this.filtres.get("paysId");
+    }
+
+    get filtrePrixMin() {
+        return this.filtres.get("prixMin");
+    }
+
+    get filtrePrixMax() {
+        return this.filtres.get("prixMax");
     }
 
     /**

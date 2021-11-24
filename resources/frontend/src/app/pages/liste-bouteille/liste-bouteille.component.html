@@ -41,12 +41,15 @@
                 <fieldset [formGroup]="filtres">
                     <mat-form-field appearance="fill" class="input-case">
                         <mat-label for="prixMin">Minimum</mat-label>
-                        <input matInput id="prixMin" formControlName="prixMin" (blur)="initierRechercheFiltree()">
+                        <input placeholder="1,00" matInput id="prixMin" formControlName="prixMin" (blur)="initierRechercheFiltree()" pattern="^[\d\.,]*$">
+                        <mat-error *ngIf="filtrePrixMin?.touched && filtrePrixMin?.invalid">
+                            <div *ngIf="filtrePrixMin?.errors?.pattern">Veuillez entrer un montant valide</div>
+                        </mat-error>
                     </mat-form-field>
 
                     <mat-form-field appearance="fill" class="input-case">
                         <mat-label for="prixMax">Maximum</mat-label>
-                        <input matInput id="prixMax" formControlName="prixMax" (blur)="initierRechercheFiltree()">
+                        <input placeholder="1,00" matInput id="prixMax" formControlName="prixMax" (blur)="initierRechercheFiltree()" pattern="^[\d\.,]*$">
                     </mat-form-field>
                 </fieldset>
             </details>
