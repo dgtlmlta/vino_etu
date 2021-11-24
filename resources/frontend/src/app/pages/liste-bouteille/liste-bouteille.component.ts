@@ -156,6 +156,12 @@ export class ListeBouteilleComponent implements OnInit {
             return;
         }
 
+        // Ne pas initier la recherche si le formulaire est invalide
+        if(this.filtres.invalid) {
+            console.log(this.filtres.errors);
+            return;
+        }
+
         const filtres = this.batirFiltres() ?? undefined;
 
         if (this.rechercheSujet.observers.length === 0) {
