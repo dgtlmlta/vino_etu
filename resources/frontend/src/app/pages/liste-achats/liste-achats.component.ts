@@ -62,14 +62,7 @@ export class ListeAchatsComponent implements OnInit {
   }
 
 
-  /**
-     *
-     * Vérifier si la liste d'achat contient des bouteilles retourn true ou false
-     *
-     * @returns {boolean}
-     *
-     */
-
+  // Vérifier si la liste d'achat contient des bouteilles retourn true ou false
    listeAchatContientBouteille() {
     return this.listeAchat.length > 0;
   }
