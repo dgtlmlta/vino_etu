@@ -259,8 +259,4 @@ export class ListeBouteilleComponent implements OnInit {
             );
         })
     }
-<<<<<<< HEAD
-=======
-
->>>>>>> 6fede602d8f43039ceceb7aa1178ebad38472439
 }
