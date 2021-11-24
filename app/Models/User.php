@@ -46,6 +46,6 @@ class User extends Authenticatable
     ];
 
     public function liste_achat() {
-        return $this->hasOne(ListeAchat::class);
+        return $this->hasOne(ListeAchat::class, 'users_id');
     }
 }

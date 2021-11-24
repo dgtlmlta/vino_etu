@@ -24,16 +24,8 @@ class BouteilleController extends Controller {
             ->join("categories as c", "c.id", "=", "b.categories_id")
             ->select("*", "p.nom as pays", "c.nom as categorie", "b.nom as nom", "b.id as id");
 
-        // Bâtir le tableau de filtres
-        $filtres = $this->batirTableauFiltres($request);
-
-        if (isset($filtres["texteRecherche"])) {
-            $this->annexerRechercheTextuelle($requete, $filtres["texteRecherche"]);
-        }
-
-        if (isset($filtres["categories"])) {
-            $this->annexerRechercheCategories($requete, $filtres["categories"]);
-        }
+        // Annexer les divers filtres à la requête SQL
+        $this->annexerFiltres($requete, $request);
 
         return $requete
             ->orderBy($orderBy, $orderDirection)
@@ -42,24 +34,29 @@ class BouteilleController extends Controller {
 
     /**
      *
-     * Bâtir le tableau de filtres à partir des paramètres reçus en requête
+     * Annexer, ou non, les filtres à partir des paramètres reçus en requête
      *
+     * @param Builder $requete requête passée en référence afin de la métamorphoser
      * @param Request $request objet request avec les filtres
      * @return array
      *
      */
-    private function batirTableauFiltres(Request $request) {
+    private function annexerFiltres(&$requete, Request $request) {
         $filtres = [];
 
         if ($request->texteRecherche && $request->texteRecherche !== "") {
-            $filtres["texteRecherche"] = $request->texteRecherche;
+            $this->annexerRechercheTextuelle($requete, $request->texteRecherche);
         }
 
         if($request->categories && count($request->categories) > 0) {
-            $filtres["categories"] = $request->categories;
+            $this->annexerRechercheCategories($requete, $request->categories);
         }
 
-        return $filtres;
+        if($request->paysId && $request->paysId !== "") {
+            $this->annexerRecherchePays($requete, $request->paysId);
+        }
+
+        return $requete;
     }
 
     /**
@@ -87,6 +84,17 @@ class BouteilleController extends Controller {
      */
     private function annexerRechercheCategories(&$requete, $categories) {
         $requete->whereIn("c.id", $categories);
+    }
+
+    /**
+     *
+     * Annexe la recherche par pays à la requête SQL de la liste de bouteilles du catalogue.
+     *
+     * @param Builder $requete requête passée en référence afin de la métamorphoser
+     *
+     */
+    private function annexerRecherchePays(&$requete, $paysId) {
+        $requete->where("p.id", $paysId);
     }
 
 

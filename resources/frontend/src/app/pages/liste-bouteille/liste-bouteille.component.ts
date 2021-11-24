@@ -1,8 +1,9 @@
 import { HttpParams } from '@angular/common/http';
 import { Component, OnInit } from '@angular/core';
-import { FormArray, FormBuilder, FormControl, FormGroup } from '@angular/forms';
+import { FormArray, FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
 import { MatSnackBar } from '@angular/material/snack-bar';
 import { Categorie } from '@interfaces/categorie';
+import { Pays } from '@interfaces/pays';
 import { AuthService } from '@services/auth.service';
 import { BouteilleDeVinService } from '@services/bouteille-de-vin.service';
 import { FiltresRecherche } from 'app/filtres-recherche';
@@ -24,8 +25,9 @@ export class ListeBouteilleComponent implements OnInit {
     // Sujet (observable) permettant de "debouncer" l'envoi de la recherche à la base de données
     rechercheSujet: Subject<HttpParams> = new Subject<HttpParams>();
 
-    // Tableau contenant les catégories et leur id
+    // Tableaux pour les options de filtres
     categories: Categorie[] = [];
+    pays: Pays[] = [];
 
     // Sauvegarder la liste initiale de bouteilles afin de s'éviter une requête http/sql pour un "reset"
     bouteillesInitiales: any;
@@ -33,6 +35,9 @@ export class ListeBouteilleComponent implements OnInit {
     // Initialiser le formGroup pour gérer les filtres
     filtres: FormGroup = new FormGroup({
         texteRecherche: new FormControl(""),
+        paysId: new FormControl(""),
+        prixMin: new FormControl(""),
+        prixMax: new FormControl(""),
         categories: new FormArray([]),
     });
 
@@ -55,6 +60,11 @@ export class ListeBouteilleComponent implements OnInit {
                 this.categories = categories;
                 this.initCheckboxes();
             })
+
+        this.servBouteilleDeVin.getListePays()
+            .subscribe((pays: Pays[]) => {
+                this.pays = pays;
+            })
     }
 
     openSnackBar(message: any, action: any) {
@@ -66,33 +76,46 @@ export class ListeBouteilleComponent implements OnInit {
 
     // Récupérer les 3 caractères inséré dans l'espace pour faire la recherche
     batirRechercheTextuelle(): string {
-        return this.texteRecherche?.value.replace("-", " ");
+        return this.filtreTexteRecherche?.value.replace("-", " ");
     }
 
-
-    initierRechercheFiltree(): void {
+    batirFiltres(): HttpParams | null {
         // Bâtir les variables qui agiront en tant que filtres
-        const categories = this.batirTableauFiltreCategories();
-        const rechercheTextuelle = this.batirRechercheTextuelle();
+        const
+            categories = this.batirTableauFiltreCategories(),
+            rechercheTextuelle = this.batirRechercheTextuelle(),
+            paysId = this.filtrePaysId?.value,
+            prixMin = (!isNaN(this.filtres.get("prixMin")?.value)) ?
+                this.filtres.get("prixMin")?.value :
+                null,
+            prixMax = (!isNaN(this.filtres.get("prixMax")?.value)) ?
+                this.filtres.get("prixMax")?.value :
+                null;
 
         // Si la recherche est "vide", réinitialiser aux catalogue de départ
-        if(categories.length === 0 && !rechercheTextuelle) {
+        if (
+            categories.length === 0 &&
+            !rechercheTextuelle &&
+            !paysId &&
+            !prixMin &&
+            !prixMax
+        ) {
             this.bouteille = this.bouteillesInitiales;
-            return;
+            return null;
         }
 
         let filtres = new HttpParams();
 
         // Ajouter les filtres existants à l'objet de recherche
-        if(rechercheTextuelle) {
+        if (rechercheTextuelle) {
             filtres = filtres.set("texteRecherche", rechercheTextuelle);
         }
 
-        if(categories.length > 0) {
+        if (categories.length > 0) {
             const compteCategories = categories.length;
-            for(let i = 0; i < compteCategories; i++) {
+            for (let i = 0; i < compteCategories; i++) {
                 // On doit d'abord "setter" le paramètre...
-                if(i === 0) {
+                if (i === 0) {
 
                     filtres = filtres.set("categories[]", categories[i]);
                     continue;
@@ -103,7 +126,33 @@ export class ListeBouteilleComponent implements OnInit {
             }
         }
 
-        console.log(filtres);
+        if (paysId) {
+            filtres = filtres.set("paysId", paysId);
+        }
+
+        if (prixMin) {
+            filtres = filtres.set("prixMin", prixMin);
+        }
+
+        if (prixMax) {
+            filtres = filtres.set("prixMax", prixMax);
+        }
+
+        return filtres;
+    }
+
+    /**
+     *
+     * Amorcer la recherche en batissant les filtres nécessaires et initiant un debounce au besoin
+     *
+     */
+    initierRechercheFiltree($event: KeyboardEvent|null = null): void {
+        // Ne pas initier la recherche sur tab de changement de champ
+        if($event && $event.key == "Tab") {
+            return;
+        }
+
+        const filtres = this.batirFiltres() ?? undefined;
 
         if (this.rechercheSujet.observers.length === 0) {
             this.rechercheSujet
@@ -121,7 +170,11 @@ export class ListeBouteilleComponent implements OnInit {
         this.rechercheSujet.next(filtres);
     }
 
-    effectuerRechercheFiltree(filtres: HttpParams) {
+    effectuerRechercheFiltree(filtres: HttpParams | null): void {
+        if (!filtres) {
+            return;
+        }
+
         this.servBouteilleDeVin
             .getListeBouteille(filtres)
             .subscribe(bouteilles => {
@@ -129,19 +182,9 @@ export class ListeBouteilleComponent implements OnInit {
             });
     }
 
-
-    //     this.servBouteilleDeVin
-    //         .getListeBouteille(filtres)
-    //         .subscribe(bouteilles => {
-    //             this.bouteille = bouteilles.data;
-    //         });
-    // }
-
     // Fonction pour ajouter la bouteille à la liste d'achat
     ajouterListeAchats(bouteilleId: any) {
         let userId = this.servAuth.getIdUtilisateurAuthentifie();
-
-        
 
         this.itemListeAchat = { userId, bouteilleId }
         console.log(this.itemListeAchat)
@@ -149,7 +192,6 @@ export class ListeBouteilleComponent implements OnInit {
         this.servBouteilleDeVin.ajouterBouteilleListeAchats(this.itemListeAchat).subscribe(() => {
             this.openSnackBar(`Vous avez ajouté une bouteille à votre liste d'achat`, 'Fermer')
 
-            //this.router.navigate(['/bouteilles']);
         });
     }
 
@@ -174,8 +216,25 @@ export class ListeBouteilleComponent implements OnInit {
         return this.filtres.get("categories") as FormArray;
     }
 
-    get texteRecherche() {
+    /**
+     *
+     * Getters des formControl du formulaire de filtres
+     *
+     */
+    get filtreTexteRecherche() {
         return this.filtres.get("texteRecherche");
+    }
+
+    get filtrePaysId() {
+        return this.filtres.get("paysId");
+    }
+
+    get filtrePrixMin() {
+        return this.filtres.get("prixMin");
+    }
+
+    get filtrePrixMax() {
+        return this.filtres.get("prixMax");
     }
 
     /**
@@ -191,7 +250,7 @@ export class ListeBouteilleComponent implements OnInit {
         })
     }
 
-    formulaireAjoutPersonnalise(){
-        
+    formulaireAjoutPersonnalise() {
+
     }
 }
