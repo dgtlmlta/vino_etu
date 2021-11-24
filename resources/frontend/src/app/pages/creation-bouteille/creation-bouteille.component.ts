@@ -118,4 +118,11 @@ export class CreationBouteilleComponent implements OnInit {
       comparerCellierId(id1: number, id2: string|number): boolean {
       return id1 == id2;
   }
+<<<<<<< HEAD
+=======
+
+
+
+
+>>>>>>> 4c6caefcf45b5d9a6a0417eea6bd78b7b2dcf7a4
 }

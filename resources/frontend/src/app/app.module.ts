@@ -45,6 +45,8 @@ import { ModifierCellierComponent } from './pages/modifier-cellier/modifier-cell
 import { ListeAchatsComponent } from './pages/liste-achats/liste-achats.component';
 import { CreationBouteilleComponent } from './pages/creation-bouteille/creation-bouteille.component';
 import {MatMenuModule} from '@angular/material/menu';
+import {MatListModule} from '@angular/material/list';
+import { ActionListeAchatComponent } from './pages/action-liste-achat/action-liste-achat.component';
 
 @NgModule({
     declarations: [
@@ -68,6 +70,7 @@ import {MatMenuModule} from '@angular/material/menu';
         ModifierCellierComponent,
         ListeAchatsComponent,
         CreationBouteilleComponent,
+        ActionListeAchatComponent,
 
     ],
     imports: [
@@ -90,6 +93,7 @@ import {MatMenuModule} from '@angular/material/menu';
         MatCheckboxModule,
         FormsModule,
         MatMenuModule,
+        MatListModule,
     ],
     providers: [
         BouteilleDeVinService,

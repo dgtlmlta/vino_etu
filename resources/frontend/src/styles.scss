@@ -319,6 +319,11 @@ button:focus-visible {
     background-color: var(--couleur-secondaire);
 }
 
+.mat-pseudo-checkbox-checked.mat-pseudo-checkbox-checked {
+    background: var(--couleur-secondaire);
+}
+
+
 /* Checkboxes pleine largeur */
 /* Aligner les boites à cocher à droite */
 .checkbox-pleine-largeur .mat-checkbox-layout {
@@ -366,4 +371,8 @@ details[open] > summary::after {
 
 .barre-filtres > details:first-of-type {
     border-block-start: none;
+}
+.mat-list-base .mat-list-item .mat-list-text, .mat-list-base .mat-list-option .mat-list-text {
+    min-height: 110px;
+    justify-content: center;
 }

@@ -2,12 +2,10 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\Bouteille;
-use App\Models\ListeAchat;
 use App\Models\ListeAchatBouteille;
 use Illuminate\Http\Request;
 
-class ListeAchatController extends Controller
+class ListeAchatBouteilleController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -16,13 +14,9 @@ class ListeAchatController extends Controller
      */
     public function index()
     {
-
-    }   
-
-
-    public function listeAchatParUtilisateur(Request $request) {
-        return ListeAchat::obtenirListeAchatParUtilisateur($request->userId);
+        //
     }
+
 
 
     /**
@@ -36,32 +30,31 @@ class ListeAchatController extends Controller
     }
 
     /**
-     * Ajouter une bouteille à la liste d'achat
+     * Store a newly created resource in storage.
      *
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(Request $request, $id)
     {
 
-        $nouvelItem = new ListeAchat();
-        $nouvelItem->users_id = $request->userId;
-        $nouvelItem->save();
-
+        $nouvelleBouteilleListe = new ListeAchatBouteille();
+        $nouvelleBouteilleListe->listes_achats_id = $id;
+        $nouvelleBouteilleListe->bouteilles_id = $request->bouteilles_id;
+        $nouvelleBouteilleListe->save();
 
         return response()->json([
             "message" => "ajout réussi"
         ], 200);
-
     }
 
     /**
      * Display the specified resource.
      *
-     * @param  \App\Models\ListeAchat  $listeAchat
+     * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function show(ListeAchat $listeAchat)
+    public function show($id)
     {
         //
     }
@@ -69,10 +62,10 @@ class ListeAchatController extends Controller
     /**
      * Show the form for editing the specified resource.
      *
-     * @param  \App\Models\ListeAchat  $listeAchat
+     * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function edit(ListeAchat $listeAchat)
+    public function edit($id)
     {
         //
     }
@@ -81,10 +74,10 @@ class ListeAchatController extends Controller
      * Update the specified resource in storage.
      *
      * @param  \Illuminate\Http\Request  $request
-     * @param  \App\Models\ListeAchat  $listeAchat
+     * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, ListeAchat $listeAchat)
+    public function update(Request $request, $id)
     {
         //
     }
@@ -92,11 +85,17 @@ class ListeAchatController extends Controller
     /**
      * Remove the specified resource from storage.
      *
-     * @param  \App\Models\ListeAchat  $listeAchat
+     * @param  \App\Models\Cellier  $cellier
      * @return \Illuminate\Http\Response
      */
-    public function destroy(ListeAchat $listeAchat)
-    {
-        //
+    public function destroy(int $listeAchatBouteilleId) {
+
+        $bouteilleDeLaListe = ListeAchatBouteille::find($listeAchatBouteilleId);
+
+        $bouteilleDeLaListe->delete();
+
+        return response() -> json([
+            "message" => "bouteille supprimer de la liste correctement"
+        ], 200);
     }
 }

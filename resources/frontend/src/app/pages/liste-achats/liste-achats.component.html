@@ -1,12 +1,35 @@
-<section >
-    <header>
-        <h2>Liste d'achats</h2>
-    </header>
+<div class="main-content">
+    <div class="content-header">
+        <h2 class="titre">Ma liste d'achat</h2>
+    </div>
 
-    <!-- <mat-selection-list #shoes>
-        <mat-list-option *ngFor="let shoe of typesOfShoes">
-          {{shoe}}
-        </mat-list-option>
-      </mat-selection-list> -->
+  <ng-container *ngIf="listeAchatContientBouteille(); then listePleine; else listeVide">
+  </ng-container>
 
-</section>
+  <ng-template #listePleine>
+    <mat-selection-list #listeBouteilles [(ngModel)]='bouteilleSelected' (ngModelChange)='actionDansLaListe($event)'>
+      <mat-list-option *ngFor='let bouteille of listeAchat' [value]="bouteille">
+        <mat-list-item class="item">
+            <img alt="bouteille de la liste" src="{{bouteille.url_image}}">
+            <span class="itemNom">{{bouteille.nom}}</span>
+        </mat-list-item>
+        <mat-divider></mat-divider>
+      </mat-list-option>
+    </mat-selection-list>
+  </ng-template>
+
+  <ng-template #listeVide>
+    <section class="listeVide">
+      <h2>Oops!</h2>
+      <p>Vous n'avez pas de bouteille dans la liste.</p>
+      <a routerLink="/bouteilles">Ajoutez en une !</a>
+    </section>
+  </ng-template>
+
+
+</div>
+
+
+
+
+
