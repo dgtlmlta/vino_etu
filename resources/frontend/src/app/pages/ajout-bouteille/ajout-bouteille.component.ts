@@ -81,9 +81,16 @@ export class AjoutBouteilleComponent implements OnInit {
     }
 
     openSnackBar(message: any, action: any) {
+
         this.snackBar.open(message, action, {
             panelClass: 'notif-success'
-        });
+        })
+        .onAction()
+        .subscribe( 
+            () => this.router.navigate(['/celliers/'+ this.ajoutBouteille.get('cellierId')?.value])
+        );
+
+        
     }
 
     // Function pour ajouter une bouteille au cellier
@@ -101,7 +108,8 @@ export class AjoutBouteilleComponent implements OnInit {
 
         this.servBouteilleDeVin.ajoutBouteilleCellier(bouteille.cellierId, this.bouteilleAchetee)
             .subscribe(() => {
-                this.openSnackBar('Vous avez ajouté une bouteille à votre cellier', 'Fermer')
+                this.openSnackBar('Vous avez ajouté une bouteille à votre cellier', 'Afficher')
+
                 this.formulaireRef.close();
 
                 this.router.navigate(['/bouteilles']);
