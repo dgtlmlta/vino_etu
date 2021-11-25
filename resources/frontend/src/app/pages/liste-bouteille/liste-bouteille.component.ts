@@ -2,6 +2,7 @@ import { HttpParams } from '@angular/common/http';
 import { Component, OnInit } from '@angular/core';
 import { FormArray, FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
 import { MatSnackBar } from '@angular/material/snack-bar';
+import { Router } from '@angular/router';
 import { Categorie } from '@interfaces/categorie';
 import { Pays } from '@interfaces/pays';
 import { AuthService } from '@services/auth.service';
@@ -50,6 +51,7 @@ export class ListeBouteilleComponent implements OnInit {
         private servBouteilleDeVin: BouteilleDeVinService,
         private servAuth: AuthService,
         private snackBar: MatSnackBar,
+        private router: Router,
     ) { }
 
     ngOnInit(): void {
@@ -74,7 +76,11 @@ export class ListeBouteilleComponent implements OnInit {
         this.snackBar.open(message, action, {
             duration: 3000,
             panelClass: 'notif-success'
-        });
+        })
+        .onAction()
+        .subscribe( 
+            () => this.router.navigate(['/listeAchats'])
+        );;
     }
 
     // Récupérer les 3 caractères inséré dans l'espace pour faire la recherche
@@ -198,7 +204,7 @@ export class ListeBouteilleComponent implements OnInit {
         this.itemListeAchat = { userId, bouteilleId }
 
         this.servBouteilleDeVin.ajouterBouteilleListeAchats(this.itemListeAchat).subscribe(() => {
-            this.openSnackBar(`Vous avez ajouté une bouteille à votre liste d'achat`, 'Fermer')
+            this.openSnackBar(`Vous avez ajouté une bouteille à votre liste d'achat`, 'Afficher')
 
         });
     }

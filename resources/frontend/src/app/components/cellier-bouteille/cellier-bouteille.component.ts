@@ -101,7 +101,7 @@ export class CellierBouteilleComponent implements OnInit {
 
     // Fonction pour supprimer une bouteille dans le cellier et envoyer une notification de confirmation
     supprimerBouteille(){
-        this.servBouteilleDeVin.confirmDialog('Voulez vous supprimer la bouteille ?')
+        this.servBouteilleDeVin.confirmDialog('Voulez-vous supprimer la bouteille ?')
          .afterClosed().subscribe(res => {
              if(res){
                 this.servBouteilleDeVin.supprimerBouteilleCellier(this.bouteille.inventaireId).subscribe(()=>{
