@@ -7,7 +7,6 @@ fieldset {
 }
 
 mat-checkbox {
-    padding-block: var(--espacement);
     border-block-end: 1px solid var(--voile-noir-100);
 }
 
@@ -106,7 +105,7 @@ img {
     display: flex;
     justify-content: flex-end;
     margin-top: -40px;
-    
+
 }
 
 .ajouterListe>* {

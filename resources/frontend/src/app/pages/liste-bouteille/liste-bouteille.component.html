@@ -9,7 +9,8 @@
             </div>
 
             <details>
-                <summary>Catégories</summary>
+                <summary><span>Catégories</span></summary>
+
                 <fieldset [formGroup]="filtres">
                     <ng-container formArrayName="categories">
                         <mat-checkbox class="checkbox-pleine-largeur" [formControlName]="i" labelPosition="before"
@@ -23,7 +24,7 @@
             </details>
 
             <details>
-                <summary>Pays</summary>
+                <summary><span>Pays</span></summary>
                 <fieldset [formGroup]="filtres">
                     <mat-form-field appearance="fill" class="input-case">
                         <mat-select id="paysId" formControlName="paysId" (selectionChange)="initierRechercheFiltree()">
@@ -37,8 +38,12 @@
             </details>
 
             <details>
-                <summary>Prix</summary>
+                <summary><span>Prix</span></summary>
                 <fieldset [formGroup]="filtres">
+                    <!-- Afficher les erreurs d'écarts de prix -->
+                    <small class="mat-error" *ngIf="filtres?.errors?.prixMinTropEleve">Le prix minimum doit être inférieur au prix maximum</small>
+                    <small class="mat-error" *ngIf="filtres?.errors?.prixMaxTropBas">Le prix maximum doit être supérieur au prix minimum</small>
+
                     <mat-form-field appearance="fill" class="input-case">
                         <mat-label for="prixMin">Minimum</mat-label>
                         <input placeholder="1,00" matInput id="prixMin" formControlName="prixMin" (keyup)="initierRechercheFiltree($event)" pattern="^[\d\.,]*$">
@@ -50,6 +55,9 @@
                     <mat-form-field appearance="fill" class="input-case">
                         <mat-label for="prixMax">Maximum</mat-label>
                         <input placeholder="1,00" matInput id="prixMax" formControlName="prixMax" (keyup)="initierRechercheFiltree($event)" pattern="^[\d\.,]*$">
+                        <mat-error *ngIf="filtrePrixMax?.touched && filtrePrixMax?.invalid">
+                            <div *ngIf="filtrePrixMax?.errors?.pattern">Veuillez entrer un montant valide</div>
+                        </mat-error>
                     </mat-form-field>
                 </fieldset>
             </details>
@@ -97,10 +105,10 @@
                     <!-- <img src="{{uneBouteille.url_image}}" alt="une bouteille"> -->
                     <div *ngIf="uneBouteille.url_image; then image else imageDefault"></div>
                         <ng-template #image>
-                            <img mat-card-image src="{{uneBouteille.url_image}}" alt="Bouteille du vin" />
+                            <img src="{{uneBouteille.url_image}}" alt="Bouteille du vin" />
                         </ng-template>
                         <ng-template #imageDefault>
-                            <img mat-card-image  src="https://www.saq.com/media/wysiwyg/placeholder/category/06.png" alt="Bouteille du vin" />
+                            <img src="https://www.saq.com/media/wysiwyg/placeholder/category/06.png" alt="Bouteille du vin" />
                         </ng-template>
 
                     <div class="bouteille-infos flow-content">

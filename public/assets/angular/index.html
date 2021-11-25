@@ -1,8 +1,8 @@
 <!DOCTYPE html><html lang="en"><head>
   <meta charset="utf-8">
-  <title>Kalimotxo</title>
+  <title>Vino - Un gestionnaire de celliers par Kalimotxo Inc.</title>
   <base href="/">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0">
   <meta name="description" content="Vino est une application web de gestion de plusieurs celliers">
   <link rel="icon" type="image/x-icon" href="favicon.ico">
   <link rel="preconnect" href="https://fonts.gstatic.com">
@@ -11,9 +11,9 @@
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin="">
   <style type="text/css">@font-face{font-family:'Dancing Script';font-style:normal;font-weight:700;font-display:swap;src:url(https://fonts.gstatic.com/s/dancingscript/v19/If2cXTr6YS-zF4S-kcSWSVi_sxjsohD9F50Ruu7B1i03Rep6hNX6plRPjLo.woff) format('woff');unicode-range:U+0102-0103, U+0110-0111, U+0128-0129, U+0168-0169, U+01A0-01A1, U+01AF-01B0, U+1EA0-1EF9, U+20AB;}@font-face{font-family:'Dancing Script';font-style:normal;font-weight:700;font-display:swap;src:url(https://fonts.gstatic.com/s/dancingscript/v19/If2cXTr6YS-zF4S-kcSWSVi_sxjsohD9F50Ruu7B1i03ROp6hNX6plRPjLo.woff) format('woff');unicode-range:U+0100-024F, U+0259, U+1E00-1EFF, U+2020, U+20A0-20AB, U+20AD-20CF, U+2113, U+2C60-2C7F, U+A720-A7FF;}@font-face{font-family:'Dancing Script';font-style:normal;font-weight:700;font-display:swap;src:url(https://fonts.gstatic.com/s/dancingscript/v19/If2cXTr6YS-zF4S-kcSWSVi_sxjsohD9F50Ruu7B1i03Sup6hNX6plRP.woff) format('woff');unicode-range:U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+2000-206F, U+2074, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD;}</style>
-<style>body,html{height:100%;}body{margin:0;font-family:Roboto,Helvetica Neue,sans-serif;}:root{--couleur-primaire:#4c1920;--espacement-petit:.4rem;}*{box-sizing:border-box;}</style><link rel="stylesheet" href="/assets/angular/styles.c8d3a7f1dd192a0f703c.css" media="print" onload="this.media='all'"><noscript><link rel="stylesheet" href="/assets/angular/styles.c8d3a7f1dd192a0f703c.css"></noscript></head>
+<style>@charset "UTF-8";body,html{height:100%;}body{margin:0;font-family:Roboto,Helvetica Neue,sans-serif;}:root{--couleur-primaire:#4c1920;--couleur-primaire-800:#29060a;--couleur-secondaire:#184c44;--couleur-logo:#96694f;--couleur-gris-200:#fafafa;--couleur-gris-900:#2a2a2a;--texte-pale:var(--couleur-gris-200);--texte-fonce:var(var(--couleur-gris-900));--elevation-3:#ffffffaa;--voile-noir-100:#00000020;--espacement:1rem;--espacement-petit:calc(var(--espacement) * 0.5);--espacement-mini:calc(var(--espacement) * 0.25);--headerHauteur:60px;--footerHauteur:60px;}*{box-sizing:border-box;}body{color:var(--couleur-gris-900);background-color:var(--couleur-gris-200);}</style><link rel="stylesheet" href="/assets/angular/styles.23e22afaa5807ebb6ed4.css" media="print" onload="this.media='all'"><noscript><link rel="stylesheet" href="/assets/angular/styles.23e22afaa5807ebb6ed4.css"></noscript></head>
 <body>
   <app-root></app-root>
-<script src="/assets/angular/runtime.503ca7b8ac6b7046c1d9.js" defer></script><script src="/assets/angular/polyfills.7c693009360691fe7127.js" defer></script><script src="/assets/angular/main.20dbb466c06c5f84845b.js" defer></script>
+<script src="/assets/angular/runtime.503ca7b8ac6b7046c1d9.js" defer></script><script src="/assets/angular/polyfills.fee973bc1f60dfe9b029.js" defer></script><script src="/assets/angular/main.7bf66ae92d7fe9f4a20f.js" defer></script>
 
 </body></html>
