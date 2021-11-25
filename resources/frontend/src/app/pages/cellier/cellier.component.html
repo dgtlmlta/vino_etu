@@ -68,7 +68,9 @@
 
     <mat-drawer-content class="content">
         <header class="content-header">
-            <h2 class="titre titre-page">{{ cellier.nom }}</h2>
+            <h2 class="titre titre-page">
+                {{ cellier.nom }}
+            </h2>
 
             <div class="filtrer">
                 <button class="bouton-fab" mat-flat-button color="accent" (click)="sidenav.toggle()">
@@ -113,7 +115,6 @@
                     <ng-template #msgInitial>
                         <h2>Oops!</h2>
                         <p>Vous n'avez pas de bouteille.</p>
-                        <a routerLink="/bouteilles">Ajoutez en une !</a>
                     </ng-template>
                 </section>
             </ng-template>
