@@ -256,7 +256,7 @@ mat-dialog-container.mat-dialog-container {
 
 /* Agrandir la surface de hit des boutons de modals */
 .mat-dialog-actions button {
-    padding-block: var(--espacement-petit);
+   padding-block: var(--espacement-petit);
 }
 
 /* Aligner la loupe dans les champs de recherche */
@@ -285,7 +285,7 @@ button:focus-visible {
 
 /* Déstyliser les boutons pour les rendre à plat */
 .fermer-modal {
-    padding-inline: none;
+    padding: 0;
     border: none;
     background-color: transparent;
 }

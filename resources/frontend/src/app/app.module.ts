@@ -46,7 +46,7 @@ import { ListeAchatsComponent } from './pages/liste-achats/liste-achats.componen
 import { CreationBouteilleComponent } from './pages/creation-bouteille/creation-bouteille.component';
 import {MatMenuModule} from '@angular/material/menu';
 import {MatListModule} from '@angular/material/list';
-import { ActionListeAchatComponent } from './pages/action-liste-achat/action-liste-achat.component';
+import { ActionListeAchatComponent } from './components/action-liste-achat/action-liste-achat.component';
 
 @NgModule({
     declarations: [

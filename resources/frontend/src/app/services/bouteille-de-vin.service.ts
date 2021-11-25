@@ -19,8 +19,15 @@ export class BouteilleDeVinService {
 
 
     constructor(private servAuth: AuthService, private http: HttpClient, private dialog: MatDialog) {
-        console.log(this.url);
     }
+
+    /**
+     * Récuperer tous les bouteilles d'un cellier
+     * 
+     * @param {array} filtres Contient des filtres
+     * @param {int} cellierId Contient l'id du cellier
+     * @returns {Observable} Liste des bouteilles d'un cellier
+     */
 
     getBouteillesParCellier(cellierId: any, filtres = {}) {
         return this.http.get<any>(
@@ -31,21 +38,51 @@ export class BouteilleDeVinService {
         );
     }
 
+    /**
+     * Récuperer tous les bouteilles du catalogue
+     * 
+     * @param {array} filtres Contient des filtres
+     * @returns {Observable} Liste des bouteilles du catalogue
+     */
+
     getListeBouteille(filtres = {}) {
         return this.http.get<any>(this.url + '/catalogue-bouteilles', {
             params: filtres
         });
     }
 
+    /**
+     * Récuperer une bouteille du catalogue par id
+     * 
+     * @param {int} id_bouteille Contient l'id de la bouteille 
+     * @returns {Observable} Bouteille du catalogue
+     */
+
     getBouteilleParId(id_bouteille: any) {
 
         return this.http.get<any>(this.url + '/bouteilles/' + id_bouteille);
     }
 
+    
+    /**
+     * Récuperer une bouteille achetee par id
+     * 
+     * @param {int} id_bouteille Contient l'id de la bouteille
+     * @returns {Observable} Bouteille achetee
+     */
+
     getBouteilleAcheteeParId(id_bouteille: any) {
 
         return this.http.get<any>(this.url + '/bouteilles-achetees/' + id_bouteille);
     }
+
+    /**
+     * Ajouter une bouteille au cellier
+     * 
+     * @param {array} bouteilleAchetee Contient l'information d'une bouteile
+     * @param {int} cellier_id Contient l'id du cellier
+     * @returns {Observable} Bouteille
+     */
 
     ajoutBouteilleCellier(cellierId: any, bouteilleAchetee: any) {
 
@@ -53,12 +90,29 @@ export class BouteilleDeVinService {
 
     }
 
+    /**
+     * Ajouter une bouteille au catalogue
+     * 
+     * @param {array} bouteilleCatalogue Contient l'information d'une bouteile
+     * @returns {Observable} Bouteille
+     */
 
     ajoutBouteilleCatalogue(bouteilleCatalogue: any) {
 
         return this.http.post<any>(this.url + '/bouteilles', bouteilleCatalogue);
 
     }
+
+
+    /**
+     * Modifie les données de l'inventaire d'une bouteille dans le cellier
+     *
+     * @param {int} nouvelInventaire Contient la quantité de l'inventaire
+     * @param {int} bouteille_id Contient l'id de la bouteille
+     *
+     * @returns {Observable} Inventaire modifié
+     */
+    
 
     modifierInventaireCellierBouteille(bouteille_id: any, nouvelInventaire: any) {
 
@@ -70,19 +124,41 @@ export class BouteilleDeVinService {
     }
 
 
+
+    /**
+     * Modifie les données d'une bouteille dans le cellier
+     *
+     * @param {array} data Contient l'information de la bouteille
+     * @param {int} bouteilleAchetee_id Contient l'id de la bouteille
+     *
+     * @returns {Observable} Bouteille modifié
+     */
+
     modifierBouteilleCellier(bouteilleAchetee_id: any, data: any) {
 
         return this.http.put<any>(this.url + '/bouteilles-achetees/' + bouteilleAchetee_id, data)
 
     }
 
-    supprimerBouteilleCellier(bouteilleAchetee_id: any) {
+    /**
+     * Supprimer une bouteille d'un cellier voulu
+     * 
+     * @param {int} bouteilleAchetee_id contient l'id de la bouteille
+     * @returns {Observable} 
+     */
 
-        console.log(bouteilleAchetee_id);
+    supprimerBouteilleCellier(bouteilleAchetee_id: any) {
 
         return this.http.delete<any>(
             this.url + '/supprimer/' + bouteilleAchetee_id)
     }
+
+    /**
+     * Supprimer un cellier dans la bd
+     * 
+     * @param {int} cellier_id contient l'id d'un cellier
+     * @returns {Observable} 
+     */
 
     supprimerUnCellier(cellier_id: any) {
 
@@ -116,7 +192,7 @@ export class BouteilleDeVinService {
      * Charger les données concernant un cellier donné.
      *
      * @param {number|string} cellierId Id du cellier à charger
-     * @returns {Observable}
+     * @returns {Observable} cellier
      */
     getCellier(cellierId: number | string) {
         return this.http.get<any>(
@@ -124,10 +200,23 @@ export class BouteilleDeVinService {
         )
     }
 
+    /**
+     * Ajouter un utilisateur à la bd
+     * 
+     * @param {array} data Contient l'information d'un utilisateur
+     * @returns {Observable} utilisateur
+     */
 
     ajouterUtilisateur(data: any) {
         return this.http.post<any>(this.url + '/creerCompte', data)
     }
+
+    /**
+     * Fonction pour l'affichage du modal de confirmation 
+     * 
+     * @param {string} msg Contient le message voulu 
+     * @returns {Observable} modal
+     */
 
     confirmDialog(msg: string) {
         return this.dialog.open(MatConfirmDialogComponent, {
@@ -139,21 +228,38 @@ export class BouteilleDeVinService {
     }
 
     /**
-     *
-     * @param data
-     * @param id
-     * @returns
+     * Ajouter un cellier dans la bd
+     * 
+     * @param {array} data Contient l'information d'un cellier
+     * @returns {Observable} cellier
      */
-    ajoutCellier(data: any, id: any) {
+    ajoutCellier(data: any) {
 
         return this.http.post<any>(this.url + '/celliers', data);
 
     }
 
+    /**
+     * Récupere un utilisateur selon un id
+     *
+     * @param {int} userId Contient l'id de l'utilisateur
+     *
+     * @returns {Observable} Utilisateur
+     */
+
     getUtilisateurParId(userId: any) {
 
         return this.http.get<any>(this.url + '/user/' + userId)
     }
+
+    /**
+     * Modifie les données d'un utilisateur
+     *
+     * @param {array} data Contient l'information d"un utilisateur
+     * @param {int} userId Contient l'id de l'utilisateur
+     *
+     * @returns {Observable} utilisateur modifié
+     */
 
     modifierUtilisateur(userId: any, data: any) {
 
@@ -163,9 +269,9 @@ export class BouteilleDeVinService {
     /**
      * Modifie les données d'un cellier
      *
-     * @param {array} data
+     * @param {array} data Contient l'information d"un cellier
      *
-     * @returns
+     * @returns {Observable} Cellier modifié
      */
     modifierCellier(data: any, idCellier: any) {
 
@@ -178,9 +284,18 @@ export class BouteilleDeVinService {
         return this.http.put<any>(this.url + '/celliers/' + idCellier, body);
     }
 
+    /**
+     *
+     *  Ajouter une bouteille à la liste d'achat
+     *
+     * @param {array} data Contient l'id de la bouteille
+     * @returns {Observable} Liste d'achat
+     */
 
     ajouterBouteilleListeAchats(data: any) {
+
         console.log(data.bouteilleId)
+
         let body = {
             'bouteilles_id': data.bouteilleId,
         }
@@ -234,7 +349,7 @@ export class BouteilleDeVinService {
             this.url + '/supprimerBouteille/' + listeAchatBouteilleId)
     }
 
-/**
+    /**
      *
      * Charger la liste complète des catégories disponibles
      *

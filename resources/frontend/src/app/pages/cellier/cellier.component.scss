@@ -2,6 +2,12 @@ main[_ngcontent-vfb-c129] {
     padding: 0;
 }
 
+
+// Style pour rendre invisible un element
+.none{
+    display: none;
+}
+
 .liste-de-bouteilles > * + * {
     border-block-start: solid 1px var(--voile-noir-100);
 }
@@ -54,10 +60,6 @@ main[_ngcontent-vfb-c129] {
 
 .ajouter-bouteille{
     text-align: center;
-}
-
-.none{
-    display: none;
 }
 
 

@@ -1,4 +1,5 @@
 
+// styles général du formulaire de connéction
 
 .formulaire {
     display: flex;
@@ -7,6 +8,8 @@
     align-items: center;
 }
 
+// styles du titre 
+
 .formulaire h2{
     font-size: 3rem;
     font-family: 'Dancing Script', cursive;
@@ -14,11 +17,16 @@
     margin: 2rem 0;
 }
 
+// styles pour les inputs et leur label
 
 .input-case {
     display: flex;
     align-items: center;
     margin: 1rem 0.875rem;
+}
+
+.mat-form-field{
+    width: 100%;
 }
 
 label {
@@ -28,6 +36,8 @@ label {
     font-size: 14px;
     font-weight: 500;
 }
+
+// styles pour le bouton de connection
 
 .formulaire button {
     text-transform: uppercase;
@@ -42,8 +52,4 @@ label {
     margin: 2rem 0;
     border-radius: 1.5rem;
     cursor: pointer;
-}
-
-.mat-form-field{
-    width: 100%;
 }

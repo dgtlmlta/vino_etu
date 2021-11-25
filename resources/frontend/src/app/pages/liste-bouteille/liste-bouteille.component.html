@@ -93,7 +93,7 @@
 
         <div class="liste-de-bouteilles">
             <article *ngFor="let uneBouteille of bouteille" class="resultat">
-                <div class="resultat-vin" routerLink="/ficheBouteille/{{uneBouteille.id}}">
+                <a class="resultat-vin" routerLink="/ficheBouteille/{{uneBouteille.id}}">
                     <!-- <img src="{{uneBouteille.url_image}}" alt="une bouteille"> -->
                     <div *ngIf="uneBouteille.url_image; then image else imageDefault"></div>
                         <ng-template #image>
@@ -115,7 +115,7 @@
                             <small>{{uneBouteille.format}}</small>
                         </div>
                     </div>
-                </div>
+                </a>
                 <div class="ajouterListe">
                     <button mat-button (click)="ajouterListeAchats(uneBouteille.id)">
                         <mat-icon>post_add</mat-icon>

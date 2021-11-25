@@ -1,12 +1,17 @@
-.page-accueil{
+
+// marge du contenu
+
+.main-content{
     margin: 1rem 0;
 }
 
+// reset des liens 
 
 .page-accueil a{
     text-decoration: none;
-
 }
+
+// Styles des cartes d'actions dans l'accueil
 
 .card{
     display: flex;
@@ -28,6 +33,15 @@
     font-size: 2rem;
 }
 
+.card p{
+    color: var(--couleur-gris-900);
+    padding: 0.25rem 0.5rem;
+    text-align: center;
+}
+
+// Styles des icones dans l'accueil
+
+
 .background-icon{
     background-color: var(--couleur-secondaire);
     border-radius: 50%;
@@ -43,10 +57,4 @@ mat-icon{
     width: 100%;
     height: 3.5rem;
     color: #fff;
-}
-
-.card p{
-    color: var(--couleur-gris-900);
-    padding: 0.25rem 0.5rem;
-    text-align: center;
 }
