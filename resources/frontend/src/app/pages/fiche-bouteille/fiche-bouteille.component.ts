@@ -30,13 +30,12 @@ export class FicheBouteilleComponent implements OnInit {
         // Utiliser le resolver pour charger le data de la bouteille
         this.actRoute.data.subscribe(data => {
             this.bouteille = data.bouteille;
-            console.log(this.bouteille);
         });
     }
 
     // Revenir à la page précédente
     back(): void {
-        this.location.back()
+        this.router.navigate(["/bouteilles"])
     }
 
     // Appel du formulaire d'ajout d'un bouteille
