@@ -78,12 +78,12 @@ export class ListeBouteilleComponent implements OnInit {
             panelClass: 'notif-success'
         })
         .onAction()
-        .subscribe( 
+        .subscribe(
             () => this.router.navigate(['/listeAchats'])
         );;
     }
 
-    // Récupérer les 3 caractères inséré dans l'espace pour faire la recherche
+    // Récupérer et formater la chaine de caractères insérée dans l'espace pour faire la recherche
     batirRechercheTextuelle(): string {
         return this.filtreTexteRecherche?.value.replace("-", " ");
     }
@@ -252,6 +252,8 @@ export class ListeBouteilleComponent implements OnInit {
     }
 
     /**
+     *
+     * Initialiser le tableau de checkboxes pour les filtres par catégories
      *
      * @param {Categorie[]} categories Tableau comportant toutes les options de catégories
      */

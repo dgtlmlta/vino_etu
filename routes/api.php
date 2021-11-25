@@ -115,4 +115,7 @@ Route::group(['middleware' => ["auth:sanctum"]], function () {
 
     //Deconnexion
     Route::post('deconnexion', [CustomAuthController::class, "deconnexion"]);
+
+    // Récupérer les différentes origines existantes dans un cellier donné
+    Route::get("origines-par-cellier/:id", [CellierController::class, "obtenirOriginesPourCellier"]);
 });

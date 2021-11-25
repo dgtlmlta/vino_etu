@@ -1,7 +1,8 @@
 <mat-drawer-container class="main-content">
 
     <mat-drawer class="drawer-default" #sidenav>
-        <div class="drawer-content barre-filtres">
+        <!-- Barre de filtres -->
+        <div class="drawer-content tiroir-filtres">
             <div>
                 <button class="fermer-modal" (click)='sidenav.toggle()'>
                     <mat-icon>close</mat-icon>
@@ -80,7 +81,7 @@
 
     <mat-drawer-content class="content">
         <header class="content-header">
-            <h2 class="titre">Catalogue de bouteilles</h2>
+            <h2 class="titre titre-page">Catalogue de bouteilles</h2>
 
             <div class="filtrer">
                 <button class="bouton-fab" mat-button (click)="sidenav.toggle()">

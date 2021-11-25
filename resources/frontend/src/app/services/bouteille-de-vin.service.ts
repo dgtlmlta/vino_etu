@@ -362,6 +362,10 @@ export class BouteilleDeVinService {
                 map(data => data.data)
             );
     }
+
+    getOriginesParCellier(idCellier: number) {
+        return this.http.get<any>(`${this.url}/origines-par-cellier/${idCellier}`)
+    }
 }
 
 
