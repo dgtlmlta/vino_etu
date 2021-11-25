@@ -19,11 +19,11 @@ class CellierController extends Controller {
     public function obtenirOriginesPourCellier($id) {
         return DB::table('bouteilles_achetees as ba')
             ->join("celliers_bouteilles_achetees as cba", "cba.bouteilles_achetees_id", "=", "ba.id")
-            ->join("celliers as cel", "cba.celliers_id", "=", "cel.id")
-            ->select("origine")
+            ->join("celliers as cel", "cel.id", "=", "cba.celliers_id")
             ->where("cel.id", $id)
             ->distinct()
-            ->get();
+            ->get(["ba.origine"])
+            ->pluck("origine");
     }
 
     public function afficherCelliersParUtilisateur(Request $request) {
@@ -85,7 +85,6 @@ class CellierController extends Controller {
         return response()->json([
             "message" => "ajout réussi ! id : $nouveauCellier->id"
         ], 200);
-
     }
 
     /**
@@ -116,7 +115,7 @@ class CellierController extends Controller {
 
         return response()->json([
             "message"  => "Mise à jour réussie"
-         ], 200);
+        ], 200);
     }
 
     /**
@@ -131,7 +130,7 @@ class CellierController extends Controller {
 
         $cellier->delete();
 
-        return response() -> json([
+        return response()->json([
             "message" => "Cellier supprimer correctement"
         ], 200);
     }
