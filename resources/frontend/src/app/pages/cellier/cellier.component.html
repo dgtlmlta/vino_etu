@@ -28,7 +28,7 @@
                 <summary><span>Origine</span></summary>
                 <fieldset [formGroup]="filtres">
                     <mat-form-field appearance="fill" class="input-case">
-                        <mat-select id="paysId" formControlName="paysId" (selectionChange)="initierRechercheFiltree()">
+                        <mat-select id="paysId" formControlName="origine" (selectionChange)="initierRechercheFiltree()">
                             <mat-option value="" selected aria-selected>Toutes les origines</mat-option>
                             <mat-option *ngFor="let origine of origines" [value]="origine">
                                 {{ origine }}
@@ -118,11 +118,11 @@
                 </section>
             </ng-template>
         </div>
-    </mat-drawer-content>
 
-    <div class="action-ajouter">
-        <button class="bouton-fab" mat-raised-button (click)="ajouterBouteilleAuCellier()">
-            + Ajouter une bouteille au cellier
-        </button>
-    </div>
+        <div class="action-ajouter">
+            <button class="bouton-fab" mat-raised-button (click)="ajouterBouteilleAuCellier()">
+                + Ajouter une bouteille au cellier
+            </button>
+        </div>
+    </mat-drawer-content>
 </mat-drawer-container>
