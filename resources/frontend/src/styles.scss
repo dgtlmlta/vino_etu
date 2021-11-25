@@ -231,11 +231,13 @@ a.inline-link {
     box-shadow: none;
 }
 
+.mat-form-field{
+    padding-bottom: var(--espacement);
+}
+
+
 /* Correction sur les mat-form */
 
-.mat-form-field-wrapper {
-    padding-bottom: 1rem;
-}
 
 .mat-form-field-underline {
     width: 0;

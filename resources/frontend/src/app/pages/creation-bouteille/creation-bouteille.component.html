@@ -13,10 +13,11 @@
             </mat-form-field>
 
             <mat-form-field appearance="outline" class="input-case">
-                <mat-label for="prix">prix</mat-label>
+                <mat-label for="prix" class="required">prix</mat-label>
                 <input matInput type="text" id="prix" formControlName="prix"class="step__input">
                 <mat-error *ngIf="erreur.prix.touched && erreur.prix.invalid" class="alert alert-danger">
                     <div *ngIf="erreur.prix.errors?.pattern">Veuillez entrer un prix valide</div>
+                    <div *ngIf="erreur.prix.errors?.required">Ce champ est obligatoire</div>
                 </mat-error>
             </mat-form-field>
 
@@ -55,9 +56,9 @@
             <mat-form-field appearance="outline" class="input-case">
                 <mat-label for="url_image">Image</mat-label>
                 <input matInput type="text" id="url_image" formControlName="url_image"class="step__input">
-                <mat-hint>Entrer un Url valide</mat-hint>
+                <mat-hint>https://www.saq.com/media/wysiwyg/placeholder/category/06.png</mat-hint>
                 <mat-error *ngIf="erreur.url_image.touched && erreur.url_image.invalid" class="alert alert-danger">
-                    <div *ngIf="erreur.url_image.errors?.required">Ce champ est obligatoire</div>
+                    <div *ngIf="erreur.url_image.errors?.pattern">Entrer un Url valide</div>
                 </mat-error>
 
             </mat-form-field>
