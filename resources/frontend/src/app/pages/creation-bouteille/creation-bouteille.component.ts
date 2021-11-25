@@ -25,9 +25,9 @@ export class CreationBouteilleComponent implements OnInit {
     nom: new FormControl('', Validators.required),
     pays_id: new FormControl('', Validators.required),
     categories_id: new FormControl('', Validators.required),
-    prix: new FormControl('', Validators.pattern("^[0-9\.,]*$")),
+    prix: new FormControl('', [Validators.pattern("^[0-9\.,]*$"), Validators.required]),
     format: new FormControl(''),
-    url_image: new FormControl(''),
+    url_image: new FormControl('', Validators.pattern("https?:\/\/.*\.(?:png|jpg)"))
   });
 
   @ViewChild('fileInput') fileInput!: ElementRef;
@@ -91,14 +91,11 @@ export class CreationBouteilleComponent implements OnInit {
 
 
       bouteille.prix = bouteille.prix.replace(',', '.')
-      console.log(bouteille);
 
       if (this.ajoutBouteille.invalid) {
           this.ajoutBouteille.markAllAsTouched();
           return;
       }
-
-      console.log(bouteille);
 
       this.bouteilleCatalogue = bouteille;
       this.bouteilleCatalogue.users_id = this.authService.getIdUtilisateurAuthentifie();
