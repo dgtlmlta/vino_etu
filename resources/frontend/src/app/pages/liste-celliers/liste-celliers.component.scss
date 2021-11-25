@@ -96,3 +96,16 @@ dl div {
 dd {
     margin: 0;
 }
+
+// styles de la liste l'orsque qu'elle est vide 
+
+.listeVide {
+    text-align: center;
+}
+
+.listeVide h2 {
+    font-family: 'Dancing Script', cursive;
+    font-size: 2rem;
+    margin: 15px 0;
+}
+

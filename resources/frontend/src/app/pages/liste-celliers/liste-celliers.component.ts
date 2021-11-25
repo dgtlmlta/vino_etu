@@ -1,6 +1,7 @@
 import { Component, OnInit, Output } from '@angular/core';
 import { MatDialog } from '@angular/material/dialog';
 import { MatSnackBar } from '@angular/material/snack-bar';
+import { ActivatedRoute } from '@angular/router';
 import { AjoutCellierComponent } from '@pages/ajout-cellier/ajout-cellier.component';
 import { ModifierCellierComponent } from '@pages/modifier-cellier/modifier-cellier.component';
 import { AuthService } from '@services/auth.service';
@@ -14,10 +15,10 @@ import { ElementsActifsService } from '@services/elements-actifs.service';
 })
 export class ListeCelliersComponent implements OnInit {
 
+
+    listeCellierInitiales: any;
+
     listeCelliers!: any[];
-
-
-    // cellierInitiales: any;
 
     celliers: any = [];
 
@@ -27,16 +28,18 @@ export class ListeCelliersComponent implements OnInit {
         private elementsActifs: ElementsActifsService,
         public formAjout: MatDialog,
         public formModif: MatDialog,
-        private snackbar: MatSnackBar
+        private snackbar: MatSnackBar,
+        private actRoute: ActivatedRoute
     ) { }
 
     ngOnInit(): void {
 
-        // Charger la liste des celliers de l'utilisateur.
-        this.servBouteilleDeVin.getListeCelliersParUtilisateur(this.authService.getIdUtilisateurAuthentifie())
-            .subscribe((data: any) => {
-                this.listeCelliers = data;
-            })
+        // Charger la liste de celliers de l'utilisateur.
+        this.actRoute.data.subscribe( data => {
+            this.listeCelliers =  data.listeCelliers;
+            console.log(data);
+        }) 
+        
     }
 
     // Appel du formulaire pour l'ajout d'un cellier
@@ -94,5 +97,13 @@ export class ListeCelliersComponent implements OnInit {
             this.elementsActifs.setCellierActif(null);
         }
     }
+
+    // Vérifier si la liste de celiers contient des celliers retourn true ou false
+   listeContientCellier() {
+    if(!this.listeCelliers) {
+      return false;
+    }
+    return this.listeCelliers.length > 0;
+  }
 
 }
