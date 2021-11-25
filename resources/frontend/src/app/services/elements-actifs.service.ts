@@ -4,23 +4,15 @@ import { Injectable } from '@angular/core';
     providedIn: 'root'
 })
 export class ElementsActifsService {
-    private cellierActifId: number|null = null;
+    private cellierActifId: number | null = null;
 
     constructor() { }
 
-    setCellierActif(id: number): void {
-        console.log(id);
-
-        if(!id) {
-            return;
-        }
-
-        this.cellierActifId =  id;
+    setCellierActif(id: number | null): void {
+        this.cellierActifId = id;
     }
 
-    getCellierActif(): number|null {
-
-        console.log(this.cellierActifId);
+    getCellierActif(): number | null {
         return this.cellierActifId;
     }
 }

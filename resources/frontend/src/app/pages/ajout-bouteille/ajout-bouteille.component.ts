@@ -1,10 +1,11 @@
 import { DatePipe, formatCurrency } from '@angular/common';
-import {Component, Inject, OnInit,} from '@angular/core';
-import {FormControl,FormGroup,Validators} from '@angular/forms';
+import { Component, Inject, OnInit, } from '@angular/core';
+import { FormControl, FormGroup, Validators } from '@angular/forms';
 
-import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
+import { MatDialog, MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
 import { MatSnackBar } from '@angular/material/snack-bar';
 import { ActivatedRoute, Router } from '@angular/router';
+import { AjoutCellierComponent } from '@pages/ajout-cellier/ajout-cellier.component';
 import { AuthService } from '@services/auth.service';
 import { BouteilleDeVinService } from '@services/bouteille-de-vin.service';
 import { ElementsActifsService } from '@services/elements-actifs.service';
@@ -45,7 +46,7 @@ export class AjoutBouteilleComponent implements OnInit {
         private datePipe: DatePipe,
         private stringHelp: StringHelpersService,
         private elementsActifs: ElementsActifsService,
-
+        public formAjout: MatDialog,
     ) { }
 
     ngOnInit(): void {
@@ -61,6 +62,10 @@ export class AjoutBouteilleComponent implements OnInit {
         this.ajoutBouteille.get("prix_paye")?.setValue(this.stringHelp.formaterNombreEnDollarsCanadiens(this.bouteilleData.prix));
 
         // Charger la liste des celliers de l'utilisateur.
+        this.chargerListeCelliersParUtilisateur();
+    }
+
+    chargerListeCelliersParUtilisateur() {
         this.servBouteilleDeVin.getListeCelliersParUtilisateur(this.authService.getIdUtilisateurAuthentifie())
             .subscribe((data: any) => {
                 this.listeCelliers = data;
@@ -89,12 +94,12 @@ export class AjoutBouteilleComponent implements OnInit {
         this.snackBar.open(message, action, {
             panelClass: 'notif-success'
         })
-        .onAction()
-        .subscribe( 
-            () => this.router.navigate(['/celliers/'+ this.ajoutBouteille.get('cellierId')?.value])
-        );
+            .onAction()
+            .subscribe(
+                () => this.router.navigate(['/celliers/' + this.ajoutBouteille.get('cellierId')?.value])
+            );
 
-        
+
     }
 
     // Function pour ajouter une bouteille au cellier
@@ -134,7 +139,26 @@ export class AjoutBouteilleComponent implements OnInit {
      * @param {number|string} id2
      * @returns {boolean}
      */
-     comparerCellierId(id1: number, id2: string|number): boolean {
+    comparerCellierId(id1: number | string, id2: string | number): boolean {
         return id1 == id2;
+    }
+
+    aDesCelliers(): boolean | void {
+        if (!this.listeCelliers) {
+            return;
+        }
+
+        return this.listeCelliers.length > 0;
+    }
+
+
+    ajouterCellier(): void {
+        console.log("Yay");
+        let refModal = this.formAjout.open(AjoutCellierComponent);
+
+        const response = refModal.componentInstance.chargerCelliers.subscribe(
+            () => {
+                this.chargerListeCelliersParUtilisateur()
+            });
     }
 }

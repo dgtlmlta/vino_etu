@@ -10,6 +10,10 @@
                     <mat-option *ngFor="let cellier of listeCelliers" [value]="cellier.id">
                         {{ cellier.nom }}
                     </mat-option>
+                    <mat-option *ngIf="!aDesCelliers()" disabled>Vous n'avez pas de cellier...</mat-option>
+                    <footer class="select-actions">
+                        <button mat-flat-button color="accent" class="add-entry-option" type="button" (click)="ajouterCellier()">Créer un cellier</button>
+                    </footer>
                 </mat-select>
                 <mat-error *ngIf="erreur.cellierId.touched && erreur.cellierId.invalid" class="alert alert-danger">
                     <div *ngIf="erreur.cellierId.errors?.required">Ce champ est obligatoire</div>

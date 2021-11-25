@@ -13,9 +13,9 @@ import { map } from 'rxjs/operators';
 })
 export class BouteilleDeVinService {
 
-    private url:string = "http://127.0.0.1:8000/api";
+    // private url:string = "http://127.0.0.1:8000/api";
     // private url: string = "http://kalimotxo-vino.akira.dev/api";
-    // private url: string = "http://192.168.50.238/api"
+    private url: string = "http://192.168.50.238/api"
     // private url: string = new URL(window.location.href).origin + "/api";
 
 
@@ -24,7 +24,7 @@ export class BouteilleDeVinService {
 
     /**
      * Récuperer tous les bouteilles d'un cellier
-     * 
+     *
      * @param {array} filtres Contient des filtres
      * @param {int} cellierId Contient l'id du cellier
      * @returns {Observable} Liste des bouteilles d'un cellier
@@ -41,7 +41,7 @@ export class BouteilleDeVinService {
 
     /**
      * Récuperer tous les bouteilles du catalogue
-     * 
+     *
      * @param {array} filtres Contient des filtres
      * @returns {Observable} Liste des bouteilles du catalogue
      */
@@ -54,8 +54,8 @@ export class BouteilleDeVinService {
 
     /**
      * Récuperer une bouteille du catalogue par id
-     * 
-     * @param {int} id_bouteille Contient l'id de la bouteille 
+     *
+     * @param {int} id_bouteille Contient l'id de la bouteille
      * @returns {Observable} Bouteille du catalogue
      */
 
@@ -64,10 +64,10 @@ export class BouteilleDeVinService {
         return this.http.get<any>(this.url + '/bouteilles/' + id_bouteille);
     }
 
-    
+
     /**
      * Récuperer une bouteille achetee par id
-     * 
+     *
      * @param {int} id_bouteille Contient l'id de la bouteille
      * @returns {Observable} Bouteille achetee
      */
@@ -79,7 +79,7 @@ export class BouteilleDeVinService {
 
     /**
      * Ajouter une bouteille au cellier
-     * 
+     *
      * @param {array} bouteilleAchetee Contient l'information d'une bouteile
      * @param {int} cellier_id Contient l'id du cellier
      * @returns {Observable} Bouteille
@@ -93,7 +93,7 @@ export class BouteilleDeVinService {
 
     /**
      * Ajouter une bouteille au catalogue
-     * 
+     *
      * @param {array} bouteilleCatalogue Contient l'information d'une bouteile
      * @returns {Observable} Bouteille
      */
@@ -113,7 +113,7 @@ export class BouteilleDeVinService {
      *
      * @returns {Observable} Inventaire modifié
      */
-    
+
 
     modifierInventaireCellierBouteille(bouteille_id: any, nouvelInventaire: any) {
 
@@ -143,9 +143,9 @@ export class BouteilleDeVinService {
 
     /**
      * Supprimer une bouteille d'un cellier voulu
-     * 
+     *
      * @param {int} bouteilleAchetee_id contient l'id de la bouteille
-     * @returns {Observable} 
+     * @returns {Observable}
      */
 
     supprimerBouteilleCellier(bouteilleAchetee_id: any) {
@@ -156,9 +156,9 @@ export class BouteilleDeVinService {
 
     /**
      * Supprimer un cellier dans la bd
-     * 
+     *
      * @param {int} cellier_id contient l'id d'un cellier
-     * @returns {Observable} 
+     * @returns {Observable}
      */
 
     supprimerUnCellier(cellier_id: any) {
@@ -203,7 +203,7 @@ export class BouteilleDeVinService {
 
     /**
      * Ajouter un utilisateur à la bd
-     * 
+     *
      * @param {array} data Contient l'information d'un utilisateur
      * @returns {Observable} utilisateur
      */
@@ -213,9 +213,9 @@ export class BouteilleDeVinService {
     }
 
     /**
-     * Fonction pour l'affichage du modal de confirmation 
-     * 
-     * @param {string} msg Contient le message voulu 
+     * Fonction pour l'affichage du modal de confirmation
+     *
+     * @param {string} msg Contient le message voulu
      * @returns {Observable} modal
      */
 
@@ -230,7 +230,7 @@ export class BouteilleDeVinService {
 
     /**
      * Ajouter un cellier dans la bd
-     * 
+     *
      * @param {array} data Contient l'information d'un cellier
      * @returns {Observable} cellier
      */
