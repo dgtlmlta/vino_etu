@@ -55,7 +55,7 @@ export class AjoutCellierComponent implements OnInit {
         this.nouveauCellier = { ...cellier, "users_id": this.idUtilisateur }
 
 
-        this.servBouteilleDeVin.ajoutCellier(this.nouveauCellier, this.idUtilisateur)
+        this.servBouteilleDeVin.ajoutCellier(this.nouveauCellier)
             .subscribe(() => {
                 this.snackBar.open("Vous avez ajouté un cellier avec succès", "Fermer", {
                     panelClass: 'notif-success'
