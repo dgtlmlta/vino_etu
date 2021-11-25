@@ -9,7 +9,8 @@
             </div>
 
             <details>
-                <summary>Catégories</summary>
+                <summary><span>Catégories</span></summary>
+
                 <fieldset [formGroup]="filtres">
                     <ng-container formArrayName="categories">
                         <mat-checkbox class="checkbox-pleine-largeur" [formControlName]="i" labelPosition="before"
@@ -23,7 +24,7 @@
             </details>
 
             <details>
-                <summary>Pays</summary>
+                <summary><span>Pays</span></summary>
                 <fieldset [formGroup]="filtres">
                     <mat-form-field appearance="fill" class="input-case">
                         <mat-select id="paysId" formControlName="paysId" (selectionChange)="initierRechercheFiltree()">
@@ -37,7 +38,7 @@
             </details>
 
             <details>
-                <summary>Prix</summary>
+                <summary><span>Prix</span></summary>
                 <fieldset [formGroup]="filtres">
                     <!-- Afficher les erreurs d'écarts de prix -->
                     <small class="mat-error" *ngIf="filtres?.errors?.prixMinTropEleve">Le prix minimum doit être inférieur au prix maximum</small>
