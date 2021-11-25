@@ -64,7 +64,7 @@ class CellierBouteilleAcheteeController extends Controller {
         $bouteilleAchetee->origine            = $request->origine;
         $bouteilleAchetee->millesime          = $request->millesime;
         $bouteilleAchetee->date_acquisition   = $request->date_acquisition;
-        $bouteilleAchetee->prix_paye          = str_replace(",", ".", filter_var($request->prix_paye, FILTER_SANITIZE_NUMBER_FLOAT, FILTER_FLAG_ALLOW_FRACTION));
+        $bouteilleAchetee->prix_paye          = filter_var(str_replace(",", ".", $request->prix_paye), FILTER_SANITIZE_NUMBER_FLOAT, FILTER_FLAG_ALLOW_FRACTION);
         $bouteilleAchetee->conservation       = $request->conservation;
         $bouteilleAchetee->notes_personnelles = $request->notes_personnelles;
         $bouteilleAchetee->format             = $request->format;

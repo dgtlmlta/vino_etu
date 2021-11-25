@@ -5,6 +5,7 @@ import { AjoutCellierComponent } from '@pages/ajout-cellier/ajout-cellier.compon
 import { ModifierCellierComponent } from '@pages/modifier-cellier/modifier-cellier.component';
 import { AuthService } from '@services/auth.service';
 import { BouteilleDeVinService } from '@services/bouteille-de-vin.service';
+import { ElementsActifsService } from '@services/elements-actifs.service';
 
 @Component({
     selector: 'app-liste-celliers',
@@ -23,6 +24,7 @@ export class ListeCelliersComponent implements OnInit {
     constructor(
         private servBouteilleDeVin: BouteilleDeVinService,
         private authService: AuthService,
+        private elementsActifs: ElementsActifsService,
         public formAjout: MatDialog,
         public formModif: MatDialog,
         private snackbar: MatSnackBar
@@ -78,10 +80,17 @@ export class ListeCelliersComponent implements OnInit {
                 if (res) {
                     this.servBouteilleDeVin.supprimerUnCellier(idCellier).subscribe(() => {
                         this.chargerCelliers();
+                        this.effacerCellierActif();
                         this.snackbar.open('Vous avez supprimer votre cellier', 'Fermer');
                     });
                 }
             })
+    }
+
+    effacerCellierActif() {
+        if(this.elementsActifs.getCellierActif()) {
+            this.elementsActifs.setCellierActif(null);
+        }
     }
 
 }

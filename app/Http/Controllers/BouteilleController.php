@@ -6,6 +6,7 @@ use App\Http\Resources\BouteilleResource;
 use App\Models\Bouteille;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
+use Mockery\Undefined;
 
 class BouteilleController extends Controller {
     /**
@@ -26,6 +27,8 @@ class BouteilleController extends Controller {
 
         // Annexer les divers filtres à la requête SQL
         $this->annexerFiltres($requete, $request);
+
+        // return $requete->toSql();
 
         return $requete
             ->orderBy($orderBy, $orderDirection)
@@ -56,6 +59,15 @@ class BouteilleController extends Controller {
             $this->annexerRecherchePays($requete, $request->paysId);
         }
 
+        if(($request->prixMin && $request->prixMin !== "") || ($request->prixMax && $request->prixMax !== "")) {
+            $limitesPrix = [
+                "prixMin" => $request->prixMin ?? null,
+                "prixMax" => $request->prixMax ?? null,
+            ];
+
+            $this->annexerRecherchePrix($requete, $limitesPrix);
+        }
+
         return $requete;
     }
 
@@ -83,7 +95,13 @@ class BouteilleController extends Controller {
      *
      */
     private function annexerRechercheCategories(&$requete, $categories) {
-        $requete->whereIn("c.id", $categories);
+        // S'assurer que tous les items du arrays sont numériques
+        if(
+            is_array($categories) &&
+            count($categories) === count(array_filter($categories,'is_numeric'))
+        ) {
+            $requete->whereIn("c.id", $categories);
+        }
     }
 
     /**
@@ -95,6 +113,25 @@ class BouteilleController extends Controller {
      */
     private function annexerRecherchePays(&$requete, $paysId) {
         $requete->where("p.id", $paysId);
+    }
+
+    /**
+     *
+     * Annexe la recherche textuelle à la requête SQL de la liste de bouteilles du catalogue.
+     *
+     * @param Builder $requete requête passée en référence afin de la métamorphoser
+     *
+     */
+    private function annexerRecherchePrix(&$requete, array $prix) {
+        $requete->where(function($query) use ($prix) {
+            if($prix["prixMin"]) {
+                $query->where("b.prix", ">=", $prix["prixMin"]);
+            }
+
+            if($prix["prixMax"]) {
+                $query->where("b.prix", "<=", $prix["prixMax"]);
+            }
+        });
     }
 
 
