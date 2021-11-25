@@ -68,7 +68,6 @@ export class AuthService {
 
         const maintenant =  new Date();
 
-        console.log(maintenant > expiration);
         return maintenant > expiration;
     }
 
@@ -182,7 +181,6 @@ export class AuthService {
                 (data) => {
                     this.reinitialiserUtilisateurActif();
                     this.reinitialiserUtilisateurLocalStorage();
-                    console.log(this.utilisateurAuthentifie);
                     return data;
                 },
                 (error) => {

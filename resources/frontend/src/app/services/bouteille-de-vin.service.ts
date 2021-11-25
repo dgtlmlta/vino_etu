@@ -295,7 +295,6 @@ export class BouteilleDeVinService {
 
     ajouterBouteilleListeAchats(data: any) {
 
-        console.log(data.bouteilleId)
 
         let body = {
             'bouteilles_id': data.bouteilleId,

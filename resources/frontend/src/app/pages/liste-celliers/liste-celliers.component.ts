@@ -37,7 +37,6 @@ export class ListeCelliersComponent implements OnInit {
         // Charger la liste de celliers de l'utilisateur.
         this.actRoute.data.subscribe( data => {
             this.listeCelliers =  data.listeCelliers;
-            console.log(data);
         }) 
         
     }
@@ -66,7 +65,6 @@ export class ListeCelliersComponent implements OnInit {
     chargerCelliers() {
         this.servBouteilleDeVin.getListeCelliersParUtilisateur(this.authService.getIdUtilisateurAuthentifie()).subscribe((cellier: any) => {
             this.celliers = this.listeCelliers = cellier
-            console.log(cellier);
         });
     }
 
@@ -93,7 +91,6 @@ export class ListeCelliersComponent implements OnInit {
      */
     effacerCellierActifSiDetruit(id: number) {
         if(this.elementsActifs.getCellierActif() == id) {
-            console.log("Cellier actif supprimé");
             this.elementsActifs.setCellierActif(null);
         }
     }

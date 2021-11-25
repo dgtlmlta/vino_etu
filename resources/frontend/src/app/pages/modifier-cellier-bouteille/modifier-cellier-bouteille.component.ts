@@ -98,7 +98,6 @@ export class ModifierCellierBouteilleComponent implements OnInit {
         }
 
        nouvellesDonnes.prix_paye = nouvellesDonnes.prix_paye.replace(',', '.')
-       console.log(nouvellesDonnes);
 
         this.servBouteilleDeVin.modifierBouteilleCellier(this.bouteilleId, nouvellesDonnes).subscribe(() => {
             this.openSnackBar('Vous avez modifié la bouteille avec succès', 'Fermer');
@@ -116,7 +115,6 @@ export class ModifierCellierBouteilleComponent implements OnInit {
     supprimerBouteille(){
 
         this.servBouteilleDeVin.supprimerBouteilleCellier(this.bouteilleId).subscribe(()=>{
-            console.log("supprimer")
         })
 
     }

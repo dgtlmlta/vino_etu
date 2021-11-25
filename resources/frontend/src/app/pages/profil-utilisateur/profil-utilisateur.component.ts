@@ -29,7 +29,6 @@ export class ProfilUtilisateurComponent implements OnInit {
 
     // Recuperer l'utilisateur authentifie
     this.servBouteilleDeVin.getUtilisateurParId(this.authService.getIdUtilisateurAuthentifie()).subscribe((data: any) => {
-      console.log(data);
       this.utilisateur = data;
     });
   }
@@ -65,7 +64,6 @@ export class ProfilUtilisateurComponent implements OnInit {
 
   profilUtilisateur() {
     this.servBouteilleDeVin.getUtilisateurParId(this.authService.getIdUtilisateurAuthentifie()).subscribe((data: any) => {
-      console.log(data);
       this.utilisateurModifier = this.utilisateur = data;
     });
   }
