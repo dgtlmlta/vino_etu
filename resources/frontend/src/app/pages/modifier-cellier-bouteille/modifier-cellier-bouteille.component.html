@@ -14,46 +14,47 @@
     </div>
 
     <div class="formulaire-contenu">
-        <mat-form-field appearance="fill">
+        <mat-form-field appearance="outline">
             <mat-label for="url_image">Nom</mat-label>
             <input matInput type="text" id="nom" name="nom" formControlName="nom">
         </mat-form-field>
-        <mat-form-field appearance="fill">
+        <mat-form-field appearance="outline">
             <mat-label for="url_image">Image</mat-label>
             <input matInput type="text" id="url_image" name="url_image" formControlName="url_image">
         </mat-form-field>
-        <mat-form-field appearance="fill">
+
+        <mat-form-field appearance="outline">
             <mat-label for="description">Description</mat-label>
             <input matInput type="text" id="description" name="description" formControlName="description">
         </mat-form-field>
-        <mat-form-field appearance="fill">
+        <mat-form-field appearance="outline">
             <mat-label for="format">Format</mat-label>
             <input matInput type="text" id="format" name="format" formControlName="format">
         </mat-form-field>
-        <mat-form-field appearance="fill">
+        <mat-form-field appearance="outline">
             <mat-label for="origine">Origine</mat-label>
             <input matInput type="text" id="origine" name="origine" formControlName="origine">
         </mat-form-field>
-        <mat-form-field appearance="fill">
+        <mat-form-field appearance="outline">
             <mat-label for="millesime">Millesime</mat-label>
             <input matInput type="text" id="millesime" name="millesime" formControlName="millesime">
         </mat-form-field>
-        <mat-form-field appearance="fill">
+        <mat-form-field appearance="outline">
             <mat-label for="date_acquisition">Date d'achat</mat-label>
             <input matInput type="date" id=date_acquisition name="date_acquisition" formControlName="date_acquisition">
         </mat-form-field>
-        <mat-form-field appearance="fill">
+        <mat-form-field appearance="outline">
             <mat-label for="prix_paye">Prix</mat-label>
             <input matInput type="text" id="prix_paye" name="prix_paye" formControlName="prix_paye" placeholder="1,00">
             <mat-error *ngIf="erreur.prix_paye.touched && erreur.prix_paye.invalid" class="alert alert-danger">
                 <div *ngIf="erreur.prix_paye.errors?.pattern">Veuillez entrer un prix valide</div>
             </mat-error>
         </mat-form-field>
-        <mat-form-field appearance="fill">
+        <mat-form-field appearance="outline">
             <mat-label for="conservation">Conservation</mat-label>
             <input matInput type="text" id=conservation name="conservation" formControlName="conservation">
         </mat-form-field>
-        <mat-form-field appearance="fill">
+        <mat-form-field appearance="outline">
             <mat-label for="notes_personnelles">Notes personnelles</mat-label>
             <input matInput type="text" id="notes_personnelles" name="notes_personnelles" formControlName="notes_personnelles">
         </mat-form-field>

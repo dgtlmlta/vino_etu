@@ -22,9 +22,9 @@ export class AuthService {
     private expirationEnSecondes: number = 3600; // 1 heure
 
 
-    // private url: string = "http://127.0.0.1:8000/api";
+    private url: string = "http://127.0.0.1:8000/api";
     // private url: string = "http://kalimotxo-vino.akira.dev/api";
-    private url: string = "http://192.168.50.238/api"
+    // private url: string = "http://192.168.50.238/api"
     // private url: string = new URL(window.location.href).origin + "/api";
 
     constructor(
@@ -68,7 +68,6 @@ export class AuthService {
 
         const maintenant =  new Date();
 
-        console.log(maintenant > expiration);
         return maintenant > expiration;
     }
 
@@ -182,7 +181,6 @@ export class AuthService {
                 (data) => {
                     this.reinitialiserUtilisateurActif();
                     this.reinitialiserUtilisateurLocalStorage();
-                    console.log(this.utilisateurAuthentifie);
                     return data;
                 },
                 (error) => {

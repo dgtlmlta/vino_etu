@@ -37,7 +37,6 @@ export class ActionListeAchatComponent implements OnInit {
 
 
     this.servBouteilleDeVin.getBouteilleParId(bouteilles_id).subscribe(data => {
-      console.log(data.data);
 
       // Appel du formulaire d'ajout d'un bouteille
           this.formAjout.open(AjoutBouteilleComponent, {
@@ -53,7 +52,6 @@ export class ActionListeAchatComponent implements OnInit {
 
   // Fonction qui permet supprimer la bouteille de la liste d'achat
   supprimerDeLaListe(idListe:any){
-    console.log(idListe);
 
     this.servBouteilleDeVin.supprimerUneBouteilleListeAchat(idListe).subscribe(() => {
 

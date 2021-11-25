@@ -153,7 +153,6 @@ export class AjoutBouteilleComponent implements OnInit {
 
 
     ajouterCellier(): void {
-        console.log("Yay");
         let refModal = this.formAjout.open(AjoutCellierComponent);
 
         const response = refModal.componentInstance.chargerCelliers.subscribe(
