@@ -57,8 +57,6 @@ class BouteilleController extends Controller {
      *
      */
     private function annexerFiltres(&$requete, Request $request) {
-        $filtres = [];
-
         if ($request->texteRecherche && $request->texteRecherche !== "") {
             $this->annexerRechercheTextuelle($requete, $request->texteRecherche);
         }

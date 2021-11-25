@@ -42,10 +42,10 @@ export class CellierComponent implements OnInit {
     // Initialiser le formGroup pour gérer les filtres
     filtres: FormGroup = new FormGroup({
         texteRecherche: new FormControl(""),
-        paysId: new FormControl(""),
-        prixMin: new FormControl(""),
-        prixMax: new FormControl(""),
-        categories: new FormArray([]),
+        origine       : new FormControl(""),
+        prixMin       : new FormControl(""),
+        prixMax       : new FormControl(""),
+        categories    : new FormArray([]),
     }, {
         validators: validerEcartPrix
     }
@@ -193,7 +193,7 @@ export class CellierComponent implements OnInit {
         const
             categories = this.batirTableauFiltreCategories(),
             rechercheTextuelle = this.batirRechercheTextuelle(),
-            paysId = this.filtrePaysId?.value,
+            origine = this.filtreOrigine?.value,
             prixMin = (!isNaN(this.filtres.get("prixMin")?.value)) ?
                 this.filtres.get("prixMin")?.value :
                 null,
@@ -205,7 +205,7 @@ export class CellierComponent implements OnInit {
         if (
             categories.length === 0 &&
             !rechercheTextuelle &&
-            !paysId &&
+            !origine &&
             !prixMin &&
             !prixMax
         ) {
@@ -235,8 +235,8 @@ export class CellierComponent implements OnInit {
             }
         }
 
-        if (paysId) {
-            filtres = filtres.set("paysId", paysId);
+        if (origine) {
+            filtres = filtres.set("origine", origine);
         }
 
         if (prixMin) {
@@ -317,8 +317,8 @@ export class CellierComponent implements OnInit {
         return this.filtres.get("texteRecherche");
     }
 
-    get filtrePaysId() {
-        return this.filtres.get("paysId");
+    get filtreOrigine() {
+        return this.filtres.get("origine");
     }
 
     get filtrePrixMin() {
