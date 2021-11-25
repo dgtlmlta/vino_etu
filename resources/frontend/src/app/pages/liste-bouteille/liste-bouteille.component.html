@@ -97,10 +97,10 @@
                     <!-- <img src="{{uneBouteille.url_image}}" alt="une bouteille"> -->
                     <div *ngIf="uneBouteille.url_image; then image else imageDefault"></div>
                         <ng-template #image>
-                            <img mat-card-image src="{{uneBouteille.url_image}}" alt="Bouteille du vin" />
+                            <img src="{{uneBouteille.url_image}}" alt="Bouteille du vin" />
                         </ng-template>
                         <ng-template #imageDefault>
-                            <img mat-card-image  src="https://www.saq.com/media/wysiwyg/placeholder/category/06.png" alt="Bouteille du vin" />
+                            <img src="https://www.saq.com/media/wysiwyg/placeholder/category/06.png" alt="Bouteille du vin" />
                         </ng-template>
 
                     <div class="bouteille-infos flow-content">
