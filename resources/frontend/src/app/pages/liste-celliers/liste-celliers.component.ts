@@ -5,6 +5,7 @@ import { AjoutCellierComponent } from '@pages/ajout-cellier/ajout-cellier.compon
 import { ModifierCellierComponent } from '@pages/modifier-cellier/modifier-cellier.component';
 import { AuthService } from '@services/auth.service';
 import { BouteilleDeVinService } from '@services/bouteille-de-vin.service';
+import { ElementsActifsService } from '@services/elements-actifs.service';
 
 @Component({
     selector: 'app-liste-celliers',
@@ -23,6 +24,7 @@ export class ListeCelliersComponent implements OnInit {
     constructor(
         private servBouteilleDeVin: BouteilleDeVinService,
         private authService: AuthService,
+        private elementsActifs: ElementsActifsService,
         public formAjout: MatDialog,
         public formModif: MatDialog,
         private snackbar: MatSnackBar
@@ -70,18 +72,29 @@ export class ListeCelliersComponent implements OnInit {
 
     // Fonction pour supprimer une bouteille dans le cellier et envoyer une notification de confirmation
     supprimerCellier(idCellier: any) {
-
-        console.log(idCellier);
-
         this.servBouteilleDeVin.confirmDialog('Voulez vous supprimer le cellier ?')
             .afterClosed().subscribe(res => {
                 if (res) {
                     this.servBouteilleDeVin.supprimerUnCellier(idCellier).subscribe(() => {
                         this.chargerCelliers();
+                        this.effacerCellierActifSiDetruit(idCellier);
                         this.snackbar.open('Vous avez supprimer votre cellier', 'Fermer');
                     });
                 }
             })
+    }
+
+    /**
+     *
+     * Supprime le cellier actif du service si celui-ci est détruit de la base de données.
+     *
+     * @param id id du cellier récemment supprimé
+     */
+    effacerCellierActifSiDetruit(id: number) {
+        if(this.elementsActifs.getCellierActif() == id) {
+            console.log("Cellier actif supprimé");
+            this.elementsActifs.setCellierActif(null);
+        }
     }
 
 }

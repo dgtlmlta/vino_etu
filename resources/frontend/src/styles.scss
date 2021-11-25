@@ -14,6 +14,39 @@
 $lightGrey: #fafafa;
 $darkGrey: #2a2a2a;
 
+$primary: (
+    50 : #eae3e4,
+    100 : #c9babc,
+    200 : #a68c90,
+    300 : #825e63,
+    400 : #673c41,
+    500 : #4c1920,
+    600 : #45161c,
+    700 : #3c1218,
+    800 : #330e13,
+    900 : #24080b,
+    A100 : #ff6171,
+    A200 : #ff2e43,
+    A400 : #fa0019,
+    A700 : #e00016,
+    contrast: (
+        50 : $darkGrey,
+        100 : $darkGrey,
+        200 : $darkGrey,
+        300 : $lightGrey,
+        400 : $lightGrey,
+        500 : $lightGrey,
+        600 : $lightGrey,
+        700 : $lightGrey,
+        800 : $lightGrey,
+        900 : $lightGrey,
+        A100 : $darkGrey,
+        A200 : $lightGrey,
+        A400 : $lightGrey,
+        A700 : $lightGrey,
+    )
+);
+
 $secondary: (
     50: #e3eae9,
     100: #bac9c7,
@@ -47,7 +80,7 @@ $secondary: (
     ),
 );
 
-$angular-primary: mat.define-palette(mat.$indigo-palette);
+$angular-primary: mat.define-palette($primary, 500, 200, 800);
 $angular-accent: mat.define-palette($secondary, 500, 200, 800);
 
 // The warn palette is optional (defaults to red).
@@ -383,6 +416,7 @@ summary > span::after {
 
 details[open] summary > span::after {
     transform: rotate(405deg);
+    -webkit-transform: rotate(405deg);
 }
 
 /* Hack pour Safari */
@@ -409,4 +443,26 @@ details summary::-webkit-details-marker {
 
 .mat-menu-item .mat-icon-no-color {
     color: var(--couleur-gris-900);
+}
+
+/* Bouton pour ajouter des options à une liste */
+.select-actions {
+    display: flex;
+    justify-content: flex-end;
+
+    padding: var(--espacement);
+    border-block-start: 1px solid var(--couleur-gris-200);
+}
+
+.add-entry-option {
+    display: block;
+    height: 100%;
+
+    border: none;
+
+    appearance: none;
+    background-color: transparent;
+
+    font-size: inherit;
+    font-family: inherit;
 }
