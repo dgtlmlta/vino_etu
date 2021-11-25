@@ -39,10 +39,8 @@ export class ListeCelliersComponent implements OnInit {
 
     // Appel du formulaire pour l'ajout d'un cellier
 
-    formulaireAjout(data: any): void {
-        let refModal = this.formAjout.open(AjoutCellierComponent, {
-            data
-        });
+    formulaireAjout(): void {
+        let refModal = this.formAjout.open(AjoutCellierComponent);
 
         const response = refModal.componentInstance.chargerCelliers.subscribe(() => { this.chargerCelliers() });
     }

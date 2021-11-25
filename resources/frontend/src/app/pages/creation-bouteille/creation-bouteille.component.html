@@ -4,7 +4,7 @@
             <a class="retour" (click)='back()'><mat-icon>arrow_back</mat-icon>Retour</a>
         </header>
         <div class="formulaire-contenu">
-            <mat-form-field appearance="fill" class="input-case">
+            <mat-form-field appearance="outline" class="input-case">
                 <mat-label for="nom" class="required">Nom</mat-label>
                 <input matInput type="text" id="nom" formControlName="nom"class="step__input">
                 <mat-error *ngIf="erreur.nom.touched && erreur.nom.invalid" class="alert alert-danger">
@@ -12,7 +12,7 @@
                 </mat-error>
             </mat-form-field>
 
-            <mat-form-field appearance="fill" class="input-case">
+            <mat-form-field appearance="outline" class="input-case">
                 <mat-label for="prix">prix</mat-label>
                 <input matInput type="text" id="prix" formControlName="prix"class="step__input">
                 <mat-error *ngIf="erreur.prix.touched && erreur.prix.invalid" class="alert alert-danger">
@@ -20,7 +20,7 @@
                 </mat-error>
             </mat-form-field>
 
-            <mat-form-field appearance="fill" class="input-case">
+            <mat-form-field appearance="outline" class="input-case">
                 <mat-label for="format">format</mat-label>
                 <input matInput type="text" id="format" formControlName="format"class="step__input">
                 <mat-error *ngIf="erreur.format.touched && erreur.format.invalid" class="alert alert-danger">
@@ -28,7 +28,7 @@
                 </mat-error>
             </mat-form-field>
 
-            <mat-form-field appearance="fill" class="input-case">
+            <mat-form-field appearance="outline" class="input-case">
                 <mat-label for="pays_id" class="required">Choisir l'origine</mat-label>
                 <mat-select formControlName="pays_id">
                     <mat-option *ngFor="let pays of listePays" [value]="pays.id">
@@ -40,7 +40,7 @@
                 </mat-error>
             </mat-form-field>
 
-            <mat-form-field appearance="fill" class="input-case">
+            <mat-form-field appearance="outline" class="input-case">
                 <mat-label for="categories_id" class="required">Choisir la catégorie</mat-label>
                 <mat-select formControlName="categories_id">
                     <mat-option *ngFor="let categorie of listeCategories" [value]="categorie.id">
@@ -52,12 +52,14 @@
                 </mat-error>
             </mat-form-field>
 
-            <mat-form-field appearance="fill" class="input-case">
+            <mat-form-field appearance="outline" class="input-case">
                 <mat-label for="url_image">Image</mat-label>
                 <input matInput type="text" id="url_image" formControlName="url_image"class="step__input">
+                <mat-hint>Entrer un Url valide</mat-hint>
                 <mat-error *ngIf="erreur.url_image.touched && erreur.url_image.invalid" class="alert alert-danger">
                     <div *ngIf="erreur.url_image.errors?.required">Ce champ est obligatoire</div>
                 </mat-error>
+
             </mat-form-field>
         </div>
 
