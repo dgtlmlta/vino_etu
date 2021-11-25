@@ -1,10 +1,14 @@
-
-.mat-confirm-bouton{
-    display: flex;
-    justify-content: space-evenly;
-}
-
 .mat-confirm-bouton button{
     background-color: var(--couleur-primaire);
     color: #fff;
 }
+
+.mat-confirm-bouton .stroked-button{
+    border: 2px solid var(--couleur-primaire); 
+    padding: 0 15px;
+    line-height: 36px;
+    background-color: transparent;
+    color: var(--couleur-primaire);
+    font-weight: 600;
+}
+
