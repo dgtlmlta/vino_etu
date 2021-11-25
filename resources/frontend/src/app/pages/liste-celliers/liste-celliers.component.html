@@ -3,52 +3,65 @@
         <h2 class="titre">Mes Celliers</h2>
     </div>
 
-    <div *ngFor="let cellier of listeCelliers" class="resultat-cellier">
-        <header class="nom-cellier">
-            <div>
-                <h3>
-                    <a class="inline-link" routerLink="/celliers/{{cellier.id}}" [state]="cellier">{{ cellier.nom }}</a>
-                </h3>
+    <ng-container *ngIf="listeContientCellier(); then listeCellierPlein; else  listeCellierVide"></ng-container>
 
-                <small>{{cellier.description}}</small>
-            </div>
+    <ng-template #listeCellierPlein>
+        <div *ngFor="let cellier of listeCelliers" class="resultat-cellier">
+            <header class="nom-cellier">
+                <div>
+                    <h3>
+                        <a class="inline-link" routerLink="/celliers/{{cellier.id}}" [state]="cellier">{{ cellier.nom }}</a>
+                    </h3>
+    
+                    <small>{{cellier.description}}</small>
+                </div>
+    
+                <div class="action-cellier">
+                    <button class="button-edit" mat-button (click)="formulaireModification(cellier)">
+                        <mat-icon>edit</mat-icon>
+                    </button>
+    
+                    <button class="button-delete" mat-button (click)="supprimerCellier(cellier.id)">
+                        <mat-icon>delete</mat-icon>
+                    </button>
+                </div>
+            </header>
+    
+            <dl>
+                <div *ngIf='cellier.total_bouteilles_vin_blanc'>
+                    <dt><strong>Vin blanc : </strong></dt>
+                    <dd>&nbsp;{{cellier.total_bouteilles_vin_blanc}} bouteilles</dd>
+                </div>
+                <div *ngIf='cellier.total_bouteilles_vin_rouge'>
+                    <dt><strong>Vin rouge : </strong></dt>
+                    <dd>&nbsp;{{cellier.total_bouteilles_vin_rouge}} bouteilles</dd>
+                </div>
+                <div *ngIf='cellier.total_bouteilles_spiritueux'>
+                    <dt><strong>Spiritueux : </strong></dt>
+                    <dd>&nbsp;{{cellier.total_bouteilles_spiritueux}} bouteilles</dd>
+                </div>
+                <div *ngIf='cellier.total_bouteilles_porto_et_vin_fortifie'>
+                    <dt><strong>Porto et vin fortifié : </strong></dt>
+                    <dd>&nbsp;{{cellier.total_bouteilles_porto_et_vin_fortifie}} bouteilles</dd>
+                </div>
+                <div *ngIf='cellier.total_bouteilles_sake'>
+                    <dt><strong>Saké : </strong></dt>
+                    <dd>&nbsp;{{cellier.total_bouteilles_sake}} bouteilles</dd>
+                </div>
+            </dl>
+        </div>
+    </ng-template>
 
-            <div class="action-cellier">
-                <button class="button-edit" mat-button (click)="formulaireModification(cellier)">
-                    <mat-icon>edit</mat-icon>
-                </button>
+    <ng-template #listeCellierVide>
+        <section class="listeVide">
+            <h2>Oops!</h2>
+            <p>Vous n'avez pas de cellier dans la liste.</p>
+          </section>
+    </ng-template>
 
-                <button class="button-delete" mat-button (click)="supprimerCellier(cellier.id)">
-                    <mat-icon>delete</mat-icon>
-                </button>
-            </div>
-        </header>
 
-        <dl>
-            <div *ngIf='cellier.total_bouteilles_vin_blanc'>
-                <dt><strong>Vin blanc : </strong></dt>
-                <dd>&nbsp;{{cellier.total_bouteilles_vin_blanc}} bouteilles</dd>
-            </div>
-            <div *ngIf='cellier.total_bouteilles_vin_rouge'>
-                <dt><strong>Vin rouge : </strong></dt>
-                <dd>&nbsp;{{cellier.total_bouteilles_vin_rouge}} bouteilles</dd>
-            </div>
-            <div *ngIf='cellier.total_bouteilles_spiritueux'>
-                <dt><strong>Spiritueux : </strong></dt>
-                <dd>&nbsp;{{cellier.total_bouteilles_spiritueux}} bouteilles</dd>
-            </div>
-            <div *ngIf='cellier.total_bouteilles_porto_et_vin_fortifie'>
-                <dt><strong>Porto et vin fortifié : </strong></dt>
-                <dd>&nbsp;{{cellier.total_bouteilles_porto_et_vin_fortifie}} bouteilles</dd>
-            </div>
-            <div *ngIf='cellier.total_bouteilles_sake'>
-                <dt><strong>Saké : </strong></dt>
-                <dd>&nbsp;{{cellier.total_bouteilles_sake}} bouteilles</dd>
-            </div>
-        </dl>
-    </div>
 
     <div class="action-ajouter">
-        <button class="bouton-fab" mat-raised-button (click)="formulaireAjout(listeCelliers)">+ Ajouter un cellier</button>
+        <button class="bouton-fab" mat-raised-button (click)="formulaireAjout()">+ Ajouter un cellier</button>
     </div>
 </div>

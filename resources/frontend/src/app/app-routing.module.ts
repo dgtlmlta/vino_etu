@@ -17,6 +17,7 @@ import { ModifierUtilisateurComponent } from '@pages/modifier-utilisateur/modifi
 import { CreationBouteilleComponent } from '@pages/creation-bouteille/creation-bouteille.component';
 import { ListeAchatsComponent } from '@pages/liste-achats/liste-achats.component';
 import { ListeAchatsResolver } from '@services/liste-achats.resolver';
+import { ListeCelliersResolver } from '@services/liste-celliers.resolver';
 
 const routes: Routes = [
     {
@@ -40,6 +41,9 @@ const routes: Routes = [
         path: "celliers",
         component: ListeCelliersComponent,
         canActivate: [AuthGuard],
+        resolve: {
+            listeCelliers: ListeCelliersResolver
+        }
     },
     {
         path: "profil",

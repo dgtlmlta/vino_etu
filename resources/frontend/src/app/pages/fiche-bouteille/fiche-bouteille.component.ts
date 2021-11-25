@@ -30,7 +30,6 @@ export class FicheBouteilleComponent implements OnInit {
         // Utiliser le resolver pour charger le data de la bouteille
         this.actRoute.data.subscribe(data => {
             this.bouteille = data.bouteille;
-            console.log(this.bouteille);
         });
     }
 

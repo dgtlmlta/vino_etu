@@ -4,7 +4,7 @@
             <button class="fermer-modal" (click)='close()'><mat-icon>close</mat-icon></button>
         </header>
         <div class="formulaire-contenu">
-            <mat-form-field appearance="fill" class="input-case">
+            <mat-form-field appearance="outline" class="input-case">
                 <mat-label for="cellierId" class="required">Choisir le cellier </mat-label>
                 <mat-select formControlName="cellierId" [compareWith]="comparerCellierId">
                     <mat-option *ngFor="let cellier of listeCelliers" [value]="cellier.id">
@@ -20,7 +20,7 @@
                 </mat-error>
             </mat-form-field>
 
-            <mat-form-field appearance="fill" class="input-case">
+            <mat-form-field appearance="outline" class="input-case">
                 <mat-label for="inventaire" class="required">Quantité </mat-label>
                 <input matInput type="text" id="inventaire" formControlName="inventaire" class="step__input">
                 <mat-error *ngIf="erreur.inventaire.touched && erreur.inventaire.invalid" class="alert alert-danger">
@@ -28,27 +28,27 @@
                 </mat-error>
             </mat-form-field>
 
-            <mat-form-field appearance="fill" class="input-case">
+            <mat-form-field appearance="outline" class="input-case">
                 <mat-label for="millesime">Millesime</mat-label>
                 <input matInput type="text" id="millesime" formControlName="millesime">
             </mat-form-field>
 
-            <mat-form-field appearance="fill" class="input-case">
+            <mat-form-field appearance="outline" class="input-case">
                 <mat-label for="date_acquisition">Date d'achat</mat-label>
                 <input matInput type="date" id=date_acquisition formControlName="date_acquisition" class="step__input">
             </mat-form-field>
 
-            <mat-form-field appearance="fill" class="input-case">
+            <mat-form-field appearance="outline" class="input-case">
                 <mat-label for="prix_paye">Prix</mat-label>
                 <input matInput type="text" id="prix_paye" formControlName="prix_paye" class="step__input" (blur)="formatterPrix()">
             </mat-form-field>
 
-            <mat-form-field appearance="fill" class="input-case">
+            <mat-form-field appearance="outline" class="input-case">
                 <mat-label for="conservation">Conservation</mat-label>
                 <input matInput type="text" id=conservation formControlName="conservation" class="step__input">
             </mat-form-field>
 
-            <mat-form-field appearance="fill" class="input-case">
+            <mat-form-field appearance="outline" class="input-case">
                 <mat-label for="notes_personnelles">Notes</mat-label>
                 <input matInput type="text" id=notes_personnelles formControlName="notes_personnelles"
                     class="step__input">

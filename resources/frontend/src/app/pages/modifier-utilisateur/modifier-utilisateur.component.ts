@@ -72,8 +72,6 @@ export class ModifierUtilisateurComponent implements OnInit {
 
   // Fonction pour modifier les information de l'utilisateur
   putUtilisateur(nouvelleInfo:any){
-    console.log(nouvelleInfo);
-
     this.servBouteilleDeVin.modifierUtilisateur(this.userId, nouvelleInfo).subscribe(() => {
       this.openSnackBar('Vous avez modifié les informations personnelle avec succès', 'Fermer');
 

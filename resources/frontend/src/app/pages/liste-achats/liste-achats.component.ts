@@ -29,7 +29,6 @@ export class ListeAchatsComponent implements OnInit {
      // Charger la liste d'achat de l'utilisateur.
      this.actRoute.data.subscribe(data => {
       this.listeAchat = data.listeAchat;
-      console.log(data);
   });
 
   }
@@ -41,7 +40,6 @@ export class ListeAchatsComponent implements OnInit {
 
       this.idListeAchatBouteille = bouteilleSelected[0].id;
       this.bouteilleId = bouteilleSelected[0].bouteilles_id;
-      console.log(this.bouteilleId)
       
       let refModal = this.modalAction.open(ActionListeAchatComponent, {
         data: bouteilleSelected[0]
@@ -58,7 +56,6 @@ export class ListeAchatsComponent implements OnInit {
     this.servBouteilleDeVin.getListeAchatParUtilisateur(this.authService.getIdUtilisateurAuthentifie())
      .subscribe((data: any) => {
          this.listeAchat = data;
-         console.log(data);
      })
   }
 

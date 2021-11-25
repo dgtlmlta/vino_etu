@@ -50,7 +50,6 @@ export class CreerCompteComponent implements OnInit {
         }
         this.servBouteilleDeVin.ajouterUtilisateur(data)
             .subscribe((reponse) => {
-                console.log(reponse);
                 this.router.navigate([`/connection`], { state: { email: this.formulaire.value.email}});
                 this.snackbar.open(`Bienvenue! vous avez créer votre compte`, "Fermer", {duration: 3000, panelClass: 'notif'});
 

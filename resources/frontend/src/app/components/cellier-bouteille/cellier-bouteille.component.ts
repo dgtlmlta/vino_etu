@@ -74,7 +74,6 @@ export class CellierBouteilleComponent implements OnInit {
     ) { }
 
     ngOnInit(): void {
-        console.log(this.cellierId);
     }
 
 

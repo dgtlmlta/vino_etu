@@ -64,7 +64,6 @@ export class CellierComponent implements OnInit {
         // Utiliser le resolver pour charger le data des bouteilles du cellier
         this.actRoute.data.subscribe(data => {
             this.bouteillesCellier = this.bouteillesCellierInitiales = data.bouteillesCellier;
-            console.log(this.bouteillesCellier);
         });
     }
 
