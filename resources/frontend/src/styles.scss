@@ -375,6 +375,7 @@ summary > span::after {
 
 details[open] summary > span::after {
     transform: rotate(405deg);
+    -webkit-transform: rotate(405deg);
 }
 
 /* Hack pour Safari */
