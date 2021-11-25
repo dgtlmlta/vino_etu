@@ -80,7 +80,7 @@ export class ListeBouteilleComponent implements OnInit {
         .onAction()
         .subscribe(
             () => this.router.navigate(['/listeAchats'])
-        );;
+        );
     }
 
     // Récupérer et formater la chaine de caractères insérée dans l'espace pour faire la recherche

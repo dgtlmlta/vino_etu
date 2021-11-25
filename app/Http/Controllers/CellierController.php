@@ -16,6 +16,16 @@ class CellierController extends Controller {
         //
     }
 
+    public function obtenirOriginesPourCellier($id) {
+        return DB::table('bouteilles_achetees as ba')
+            ->join("celliers_bouteilles_achetees as cba", "cba.bouteilles_achetees_id", "=", "ba.id")
+            ->join("celliers as cel", "cba.celliers_id", "=", "cel.id")
+            ->select("origine")
+            ->where("cel.id", $id)
+            ->distinct()
+            ->get();
+    }
+
     public function afficherCelliersParUtilisateur(Request $request) {
         return Cellier::obtenirCelliersParUtilisateur($request->userId);
     }
