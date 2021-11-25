@@ -14,6 +14,8 @@ import { BouteilleDeVinService } from '@services/bouteille-de-vin.service';
 })
 export class ConnectionComponent implements OnInit {
 
+    // Form group
+
     formConnection = new FormGroup({
         email: new FormControl('', [
             Validators.required,

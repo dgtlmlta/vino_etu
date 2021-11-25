@@ -11,9 +11,6 @@ import { BouteilleDeVinService } from '@services/bouteille-de-vin.service';
 })
 export class CreerCompteComponent implements OnInit {
 
-    rempli = false;
-    soumise = false;
-
     formulaire = new FormGroup({
         first_name: new FormControl('', [Validators.required, Validators.minLength(3)]),
         last_name: new FormControl('', [Validators.required, Validators.minLength(3)]),
@@ -38,14 +35,11 @@ export class CreerCompteComponent implements OnInit {
 
     // Fonction pour la creation d'un nouvel utilisateur
     utilisateur() {
-        console.log(this.formulaire.value);
-        this.soumise = true;
 
         if (this.formulaire.invalid) {
             this.formulaire.markAllAsTouched();
             return;
         }
-        this.rempli = true;
 
         const data = {
             first_name: this.formulaire.value.first_name,

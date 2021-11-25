@@ -16,6 +16,7 @@ export class MatConfirmDialogComponent implements OnInit {
     ngOnInit(): void {
     }
 
+    // Fonction pour fermer le modal de confirmation
     close() {
         this.dialogRef.close(false);
     }

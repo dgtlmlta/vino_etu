@@ -1,3 +1,22 @@
+// style du conteneur
+
+.main-content {
+    margin-bottom: 0.5rem;
+}
+
+// styles pour le titre de la page
+
+.titre {
+    display: flex;
+    justify-content: center;
+    font-family: 'Dancing Script', cursive;
+    font-size: 2rem;
+    margin: 18px 0;
+    color: #4c1920;
+}
+
+// styles du formulaire de création d'un compte
+
 .formulaire {
     flex-direction: column;
     align-items: center;
@@ -7,8 +26,10 @@
     color: black;
 }
 
-div {
-    margin-bottom: 0.5rem;
+// styles des inputs
+
+.mat-form-field{
+    display: block;
 }
 
 .formulaire input {
@@ -21,12 +42,7 @@ div {
     box-sizing: border-box;
 }
 
-input:not([type=radio]),
-select{
-    width: 100%;
-    box-sizing: border-box;
-}
-
+// styles du boutons de création d'un compte
 
 .formulaire button {
     text-transform: uppercase;
@@ -44,17 +60,3 @@ select{
     margin-top: 1rem;
     margin-bottom: 2.34rem;
 }
-
-.titre {
-    display: flex;
-    justify-content: center;
-    font-family: 'Dancing Script', cursive;
-    font-size: 2rem;
-    margin: 18px 0;
-    color: #4c1920;
-}
-
-.mat-form-field{
-    display: block;
-}
-

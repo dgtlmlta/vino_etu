@@ -1,3 +1,5 @@
+// styles du titre
+
 .titre {
     display: flex;
     justify-content: center;
@@ -6,6 +8,8 @@
     margin: 20px 0;
     color: var(--couleur-primaire);
 }
+
+// styles de la liste l'orsque qu'elle contient des bouteilles
 
 .mat-select-list {
     padding: 0 10px;
@@ -29,6 +33,9 @@ img {
     font-size: 16px;
 }
 
+
+// styles de la liste l'orsque qu'elle est vide 
+
 .listeVide {
     text-align: center;
 }
@@ -37,7 +44,6 @@ img {
     font-family: 'Dancing Script', cursive;
     font-size: 2rem;
     margin: 15px 0;
-    color: #4c1920;
 }
 
 

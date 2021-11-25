@@ -258,6 +258,12 @@ export class AuthService {
     }
 
 
+    /**
+     *
+     * Récupérer le Id de la liste d'achat, retourne null si il n'y a pas d'utilisateur actif.
+     *
+     * @returns {string|null}
+     */
     getIdListeAchat(): number|null {
         return (this.utilisateurAuthentifie) ?
             this.utilisateurAuthentifie.liste_achat_id :
