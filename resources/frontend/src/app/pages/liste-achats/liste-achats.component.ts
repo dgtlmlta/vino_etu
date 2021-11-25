@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { MatDialog } from '@angular/material/dialog';
 import { ActivatedRoute } from '@angular/router';
-import { ActionListeAchatComponent } from '@pages/action-liste-achat/action-liste-achat.component';
+import { ActionListeAchatComponent } from '@components/action-liste-achat/action-liste-achat.component';
 import { AuthService } from '@services/auth.service';
 import { BouteilleDeVinService } from '@services/bouteille-de-vin.service';
 

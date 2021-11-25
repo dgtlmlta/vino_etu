@@ -16,9 +16,13 @@ import { StringHelpersService } from '@services/helpers/string-helpers.service';
     styleUrls: ['./ajout-bouteille.component.scss']
 })
 export class AjoutBouteilleComponent implements OnInit {
+
+
     bouteilleAchetee: any;
     bouteilleData: any;
     listeCelliers!: any[];
+
+    // Form group
 
     ajoutBouteille = new FormGroup({
         millesime: new FormControl(''),
@@ -75,7 +79,7 @@ export class AjoutBouteilleComponent implements OnInit {
         return this.ajoutBouteille.controls;
     }
 
-    // fermer le modal avec un X
+    // fonction pour fermer le modal avec un X
     close(): void {
         this.formulaireRef.close();
     }

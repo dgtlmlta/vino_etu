@@ -1,17 +1,14 @@
+// styles des input 
 .mat-form-field {
     display: block;
     font-size: 0.815rem;
 }
 
-.card-header{
-    display: block;
-}
-
-
 .mat-form-field-underline{
     display: none;
 }
 
+// styles pour le boutons de retour 
 
 .retour{
     display: flex;
@@ -23,6 +20,8 @@
     justify-content: space-between;
     margin-top: 1rem;
  }
+
+// styles des boutons du formulaire d'ajout d'une bouteille personnalisée
 
 .mat-dialog-actions {
     display: flex;

@@ -1,7 +1,16 @@
 
+// styles des inputs
+
 .mat-form-field {
     display: block;
 }
+
+.label-flex{
+    display: flex;
+}
+
+
+// styles pour les boutons du modal de modification d"un cellier
 
 .mat-dialog-actions {
     justify-content: center;
@@ -11,13 +20,3 @@
     background-color: #4c1920;
     color: white;
 }
-
-.mat-form-field{
-    display: block;
-}
-
-.label-flex{
-    display: flex;
-}
-
-

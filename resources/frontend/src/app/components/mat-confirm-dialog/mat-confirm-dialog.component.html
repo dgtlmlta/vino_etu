@@ -1,10 +1,14 @@
-<div>
-    <div class="content-container">
-        <button class="fermer-modal" (click)='closeDialog()'><mat-icon>close</mat-icon></button>
-        <p class="content-span full-width">{{ data.message }}</p>
-    </div>
+<section>
+    <header class="card-action">
+        <button class="fermer-modal" (click)='close()'><mat-icon>close</mat-icon></button>
+    </header>
+
+    <mat-dialog-content class="question">
+        <h4 class="content-span full-width">{{ data.message }}</h4>
+    </mat-dialog-content>
+
     <div class="mat-confirm-bouton">
-        <button mat-raised-button id="non" [mat-dialog-close]="false">Non</button>
-        <button class="danger" mat-raised-button id="oui" [mat-dialog-close]="true" >Oui</button>
+        <button mat-button id="non" [mat-dialog-close]="false">Non</button>
+        <button class="danger" mat-button id="oui" [mat-dialog-close]="true" >Oui</button>
     </div>
-</div>
+</section>

@@ -50,7 +50,6 @@ export class ListeBouteilleComponent implements OnInit {
         private servBouteilleDeVin: BouteilleDeVinService,
         private servAuth: AuthService,
         private snackBar: MatSnackBar,
-        //private formBuilder: FormBuilder,
     ) { }
 
     ngOnInit(): void {
@@ -197,7 +196,6 @@ export class ListeBouteilleComponent implements OnInit {
         let userId = this.servAuth.getIdUtilisateurAuthentifie();
 
         this.itemListeAchat = { userId, bouteilleId }
-        console.log(this.itemListeAchat)
 
         this.servBouteilleDeVin.ajouterBouteilleListeAchats(this.itemListeAchat).subscribe(() => {
             this.openSnackBar(`Vous avez ajouté une bouteille à votre liste d'achat`, 'Fermer')

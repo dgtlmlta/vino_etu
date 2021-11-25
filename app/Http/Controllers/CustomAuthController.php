@@ -82,7 +82,8 @@ class CustomAuthController extends Controller {
 
         // Création du cellier initial de l'utilisateur.
         $nouveauCellier = Cellier::create([
-            "nom"      => "Mon premier cellier",
+            "nom"      => "Premier cellier",
+            "description"      => "Mon premier cellier",
             "users_id" => $utilisateur->id,
         ]);
 
@@ -196,7 +197,6 @@ class CustomAuthController extends Controller {
         $user->first_name = $request->first_name;
         $user->last_name = $request->last_name;
         $user->city = $request->city;
-        $user->dob = $request->dob;
 
         $user->save();
 
