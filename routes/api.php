@@ -46,7 +46,7 @@ Route::apiResource("bouteilles", BouteilleController::class)->only([
     "show",
 ]);
 
-Route::get("catalogue-bouteilles", [BouteilleController::class, "index"]);
+Route::get("catalogue-bouteilles", [BouteilleController::class, "index"])->middleware("auth:sanctum");
 
 // Récupérer la liste des pays
 Route::get("liste-pays", [PaysController::class, "index"]);

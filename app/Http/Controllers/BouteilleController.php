@@ -16,6 +16,10 @@ class BouteilleController extends Controller {
      * @return \Illuminate\Http\Response
      */
     public function index(Request $request) {
+        if(Auth::guard('sanctum')->user()) {
+            $userId = Auth::guard('sanctum')->user()->id;
+        };
+
         $request->limite = 24;
 
         $orderBy = $request->orderBy = "b.nom";
@@ -25,11 +29,11 @@ class BouteilleController extends Controller {
             ->join("pays as p", "p.id", "=", "b.pays_id")
             ->join("categories as c", "c.id", "=", "b.categories_id")
             ->select("*", "p.nom as pays", "c.nom as categorie", "b.nom as nom", "b.id as id")
-            ->where(function ($query) use ($request) {
+            ->where(function ($query) use ($userId) {
                 $query->where("b.users_id", NULL);
 
-                if ($request->userId) {
-                    $query->whereOr("b.users_id", $request->userId);
+                if ($userId) {
+                    $query->orWhere("b.users_id", $userId);
                 }
             });
 
