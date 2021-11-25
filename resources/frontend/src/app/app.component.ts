@@ -21,5 +21,10 @@ export class AppComponent {
             this.domSanitizer.bypassSecurityTrustResourceUrl("assets/icons/noun_wine bottle_2391621.svg")
         );
      }
+
+     // pour afficher le haut de la page suite a un changement de route
+     onActivate($event: any) {
+        window.scroll(0,0);
+    }
 }
 

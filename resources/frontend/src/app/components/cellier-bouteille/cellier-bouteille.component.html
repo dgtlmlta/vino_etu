@@ -46,7 +46,7 @@
         </mat-expansion-panel-header>
 
         <dl>
-            <div>
+            <div *ngIf="bouteille.description">
                 <dt><strong>Description</strong></dt>
                 <dl>{{ bouteille.description }}</dl>
             </div>
