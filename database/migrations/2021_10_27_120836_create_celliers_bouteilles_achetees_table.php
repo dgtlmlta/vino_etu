@@ -3,6 +3,7 @@
 use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
+use phpDocumentor\Reflection\Types\Nullable;
 
 class CreateCelliersBouteillesAcheteesTable extends Migration
 {
@@ -15,7 +16,7 @@ class CreateCelliersBouteillesAcheteesTable extends Migration
     {
         Schema::create('celliers_bouteilles_achetees', function (Blueprint $table) {
             $table->id();
-            $table->foreignId("celliers_id")->constrained();
+            $table->foreignId("celliers_id")->nullable()->constrained()->nullOnDelete();
             $table->foreignId("bouteilles_achetees_id")->constrained("bouteilles_achetees");
             $table->smallInteger("inventaire", false, true)->unsigned();
             $table->timestamps();

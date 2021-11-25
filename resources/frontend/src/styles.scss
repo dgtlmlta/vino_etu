@@ -260,6 +260,14 @@ mat-dialog-container.mat-dialog-container {
    padding-block: var(--espacement-petit);
 }
 
+/* Afficher les boutons des modals vers la droite */
+
+.mat-confirm-bouton{
+    display: flex;
+    justify-content: flex-end;
+    gap: var(--espacement);
+}
+
 /* Aligner la loupe dans les champs de recherche */
 mat-label {
     display: flex;
