@@ -25,11 +25,11 @@
             </details>
 
             <details>
-                <summary><span>Pays</span></summary>
+                <summary><span>Origine</span></summary>
                 <fieldset [formGroup]="filtres">
                     <mat-form-field appearance="fill" class="input-case">
                         <mat-select id="paysId" formControlName="paysId" (selectionChange)="initierRechercheFiltree()">
-                            <mat-option value="" selected aria-selected>Tous les pays</mat-option>
+                            <mat-option value="" selected aria-selected>Toutes les origines</mat-option>
                             <mat-option *ngFor="let origine of origines" [value]="origine">
                                 {{ origine }}
                             </mat-option>

@@ -92,7 +92,7 @@ export class CellierComponent implements OnInit {
         // Charger les origines pour les filtres
         this.servBouteilleDeVin.getOriginesParCellier(this.cellierId)
             .subscribe(data => {
-                console.log(data);
+                this.origines = data;
             })
     }
 
