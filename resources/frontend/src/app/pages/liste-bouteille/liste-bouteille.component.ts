@@ -8,6 +8,7 @@ import { Pays } from '@interfaces/pays';
 import { AuthService } from '@services/auth.service';
 import { BouteilleDeVinService } from '@services/bouteille-de-vin.service';
 import { FiltresRecherche } from 'app/filtres-recherche';
+import { validerEcartPrix } from 'app/validators/validerEcartPrix';
 import { Subject } from 'rxjs';
 import { debounceTime, distinctUntilChanged } from 'rxjs/operators';
 
@@ -40,7 +41,10 @@ export class ListeBouteilleComponent implements OnInit {
         prixMin: new FormControl(""),
         prixMax: new FormControl(""),
         categories: new FormArray([]),
-    });
+    }, {
+        validators: validerEcartPrix
+        }
+    );
 
 
     constructor(
@@ -157,6 +161,12 @@ export class ListeBouteilleComponent implements OnInit {
             return;
         }
 
+        // Ne pas initier la recherche si le formulaire est invalide
+        if(this.filtres.invalid) {
+            console.log(this.filtres.errors);
+            return;
+        }
+
         const filtres = this.batirFiltres() ?? undefined;
 
         if (this.rechercheSujet.observers.length === 0) {
@@ -253,5 +263,4 @@ export class ListeBouteilleComponent implements OnInit {
             );
         })
     }
-
 }
