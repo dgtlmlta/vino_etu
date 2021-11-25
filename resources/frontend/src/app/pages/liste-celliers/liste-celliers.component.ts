@@ -72,23 +72,27 @@ export class ListeCelliersComponent implements OnInit {
 
     // Fonction pour supprimer une bouteille dans le cellier et envoyer une notification de confirmation
     supprimerCellier(idCellier: any) {
-
-        console.log(idCellier);
-
         this.servBouteilleDeVin.confirmDialog('Voulez vous supprimer le cellier ?')
             .afterClosed().subscribe(res => {
                 if (res) {
                     this.servBouteilleDeVin.supprimerUnCellier(idCellier).subscribe(() => {
                         this.chargerCelliers();
-                        this.effacerCellierActif();
+                        this.effacerCellierActifSiDetruit(idCellier);
                         this.snackbar.open('Vous avez supprimer votre cellier', 'Fermer');
                     });
                 }
             })
     }
 
-    effacerCellierActif() {
-        if(this.elementsActifs.getCellierActif()) {
+    /**
+     *
+     * Supprime le cellier actif du service si celui-ci est détruit de la base de données.
+     *
+     * @param id id du cellier récemment supprimé
+     */
+    effacerCellierActifSiDetruit(id: number) {
+        if(this.elementsActifs.getCellierActif() == id) {
+            console.log("Cellier actif supprimé");
             this.elementsActifs.setCellierActif(null);
         }
     }
