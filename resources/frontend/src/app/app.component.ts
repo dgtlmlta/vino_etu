@@ -22,9 +22,10 @@ export class AppComponent {
         );
      }
 
-     // pour afficher le haut de la page suite a un changement de route
-     onActivate($event: any) {
-        window.scroll(0,0);
+     // fonction pour afficher le haut d'une page après un changement de route
+     onActivate() {
+
+        document.querySelector('main')?.scrollTo(0,0)
     }
 }
 
