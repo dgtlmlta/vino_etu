@@ -1,7 +1,7 @@
 <mat-drawer-container class="main-content">
-
     <mat-drawer class="drawer-default" #sidenav>
-        <div class="drawer-content barre-filtres">
+        <!-- Barre de filtres -->
+        <div class="drawer-content tiroir-filtres">
             <div>
                 <button class="fermer-modal" (click)='sidenav.toggle()'>
                     <mat-icon>close</mat-icon>
@@ -41,12 +41,15 @@
                 <summary><span>Prix</span></summary>
                 <fieldset [formGroup]="filtres">
                     <!-- Afficher les erreurs d'écarts de prix -->
-                    <small class="mat-error" *ngIf="filtres?.errors?.prixMinTropEleve">Le prix minimum doit être inférieur au prix maximum</small>
-                    <small class="mat-error" *ngIf="filtres?.errors?.prixMaxTropBas">Le prix maximum doit être supérieur au prix minimum</small>
+                    <small class="mat-error" *ngIf="filtres?.errors?.prixMinTropEleve">Le prix minimum doit être
+                        inférieur au prix maximum</small>
+                    <small class="mat-error" *ngIf="filtres?.errors?.prixMaxTropBas">Le prix maximum doit être supérieur
+                        au prix minimum</small>
 
                     <mat-form-field appearance="fill" class="input-case">
                         <mat-label for="prixMin">Minimum</mat-label>
-                        <input placeholder="1,00" matInput id="prixMin" formControlName="prixMin" (keyup)="initierRechercheFiltree($event)" pattern="^[\d\.,]*$">
+                        <input placeholder="1,00" matInput id="prixMin" formControlName="prixMin"
+                            (keyup)="initierRechercheFiltree($event)" pattern="^[\d\.,]*$">
                         <mat-error *ngIf="filtrePrixMin?.touched && filtrePrixMin?.invalid">
                             <div *ngIf="filtrePrixMin?.errors?.pattern">Veuillez entrer un montant valide</div>
                         </mat-error>
@@ -54,7 +57,8 @@
 
                     <mat-form-field appearance="fill" class="input-case">
                         <mat-label for="prixMax">Maximum</mat-label>
-                        <input placeholder="1,00" matInput id="prixMax" formControlName="prixMax" (keyup)="initierRechercheFiltree($event)" pattern="^[\d\.,]*$">
+                        <input placeholder="1,00" matInput id="prixMax" formControlName="prixMax"
+                            (keyup)="initierRechercheFiltree($event)" pattern="^[\d\.,]*$">
                         <mat-error *ngIf="filtrePrixMax?.touched && filtrePrixMax?.invalid">
                             <div *ngIf="filtrePrixMax?.errors?.pattern">Veuillez entrer un montant valide</div>
                         </mat-error>
@@ -80,7 +84,7 @@
 
     <mat-drawer-content class="content">
         <header class="content-header">
-            <h2 class="titre">Catalogue de bouteilles</h2>
+            <h2 class="titre titre-page">Catalogue de bouteilles</h2>
 
             <div class="filtrer">
                 <button class="bouton-fab" mat-button (click)="sidenav.toggle()">
@@ -100,40 +104,49 @@
         </header>
 
         <div class="liste-de-bouteilles">
-            <article *ngFor="let uneBouteille of bouteille" class="resultat">
-                <a class="resultat-vin" routerLink="/ficheBouteille/{{uneBouteille.id}}">
-                    <!-- <img src="{{uneBouteille.url_image}}" alt="une bouteille"> -->
-                    <div *ngIf="uneBouteille.url_image; then image else imageDefault"></div>
+            <ng-container *ngIf="listeContientBouteilles(); then aBouteilles; else pasBouteille">
+            </ng-container>
+
+
+            <ng-template #aBouteilles>
+                <article *ngFor="let uneBouteille of bouteille" class="resultat">
+                    <a class="resultat-vin" routerLink="/ficheBouteille/{{uneBouteille.id}}">
+                        <!-- <img src="{{uneBouteille.url_image}}" alt="une bouteille"> -->
+                        <div *ngIf="uneBouteille.url_image; then image else imageDefault"></div>
                         <ng-template #image>
                             <img src="{{uneBouteille.url_image}}" alt="Bouteille du vin" />
                         </ng-template>
                         <ng-template #imageDefault>
-                            <img src="https://www.saq.com/media/wysiwyg/placeholder/category/06.png" alt="Bouteille du vin" />
+                            <img src="https://www.saq.com/media/wysiwyg/placeholder/category/06.png"
+                                alt="Bouteille du vin" />
                         </ng-template>
-
-                    <div class="bouteille-infos flow-content">
-                        <h3>
-                            <a class="inline-link"
-                                routerLink="/ficheBouteille/{{uneBouteille.id}}">{{uneBouteille.nom}}</a>
-                        </h3>
-
-                        <div class="flow-content-centi">
-                            <span class="subtexte">{{uneBouteille.categorie}}</span>
-                            <span class="subtexte">{{uneBouteille.pays}}</span>
-                            <small>{{uneBouteille.format}}</small>
+                        <div class="bouteille-infos flow-content">
+                            <h3>
+                                <a class="inline-link"
+                                    routerLink="/ficheBouteille/{{uneBouteille.id}}">{{uneBouteille.nom}}</a>
+                            </h3>
+                            <div class="flow-content-centi">
+                                <span class="subtexte">{{uneBouteille.categorie}}</span>
+                                <span class="subtexte">{{uneBouteille.pays}}</span>
+                                <small>{{uneBouteille.format}}</small>
+                            </div>
                         </div>
+                    </a>
+                    <div class="ajouterListe">
+                        <button mat-button (click)="ajouterListeAchats(uneBouteille.id)">
+                            <mat-icon>post_add</mat-icon>
+                            liste d'achat
+                        </button>
                     </div>
-                </a>
-                <div class="ajouterListe">
-                    <button mat-button (click)="ajouterListeAchats(uneBouteille.id)">
-                        <mat-icon>post_add</mat-icon>
-                        liste d'achat
-                    </button>
-                </div>
-                <div>
-                    <div class="subtexte"></div>
-                </div>
-            </article>
+                    <div>
+                        <div class="subtexte"></div>
+                    </div>
+                </article>
+            </ng-template>
+
+            <ng-template #pasBouteille>
+                <p class="reponse-aucun-resultat">Vous n'avez pas de bouteille correspondante à cette recherche.</p>
+            </ng-template>
 
             <div class="action-ajouter">
                 <a class="bouton-fab" mat-raised-button routerLink='/bouteilles-personnalise/ajout'>+ Ajouter une

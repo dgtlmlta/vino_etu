@@ -17,45 +17,14 @@ main[_ngcontent-vfb-c129] {
     overflow: hidden;
 }
 
-.content-header{
-    display: flex;
-    justify-content: space-between;
-    margin: 0 10px;
-}
-
 .content-header .titre-container{
     margin: 0 auto;
-}
-
-.content .titre, .content h2{
-    font-family: 'Dancing Script', cursive;
-    font-size: 2rem;
-    margin: 15px 0;
-    color: #4c1920;
-}
-
-.content button, .content .bouton-ajout{
-    background-color: #4c1920;
-    color: #fff;
-    min-width: 50px;
-    padding: 0;
-}
-
-
-/* css pour le side-nav */
-.sidenav-content {
-    text-align: center;
-    padding: 10px;
 }
 
 .mat-drawer{
     width: 75%;
     overflow: scroll;
     height: 100%;
-}
-
-.mat-sidenav-container {
-    min-height: 100%;
 }
 
 .ajouter-bouteille{

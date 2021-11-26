@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Http\Resources\BouteilleResource;
 use App\Models\Bouteille;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
 use Mockery\Undefined;
 
@@ -15,6 +16,10 @@ class BouteilleController extends Controller {
      * @return \Illuminate\Http\Response
      */
     public function index(Request $request) {
+        if(Auth::guard('sanctum')->user()) {
+            $userId = Auth::guard('sanctum')->user()->id;
+        };
+
         $request->limite = 24;
 
         $orderBy = $request->orderBy = "b.nom";
@@ -23,7 +28,14 @@ class BouteilleController extends Controller {
         $requete = DB::table("bouteilles as b")
             ->join("pays as p", "p.id", "=", "b.pays_id")
             ->join("categories as c", "c.id", "=", "b.categories_id")
-            ->select("*", "p.nom as pays", "c.nom as categorie", "b.nom as nom", "b.id as id");
+            ->select("*", "p.nom as pays", "c.nom as categorie", "b.nom as nom", "b.id as id")
+            ->where(function ($query) use ($userId) {
+                $query->where("b.users_id", NULL);
+
+                if ($userId) {
+                    $query->orWhere("b.users_id", $userId);
+                }
+            });
 
         // Annexer les divers filtres à la requête SQL
         $this->annexerFiltres($requete, $request);
@@ -45,21 +57,19 @@ class BouteilleController extends Controller {
      *
      */
     private function annexerFiltres(&$requete, Request $request) {
-        $filtres = [];
-
         if ($request->texteRecherche && $request->texteRecherche !== "") {
             $this->annexerRechercheTextuelle($requete, $request->texteRecherche);
         }
 
-        if($request->categories && count($request->categories) > 0) {
+        if ($request->categories && count($request->categories) > 0) {
             $this->annexerRechercheCategories($requete, $request->categories);
         }
 
-        if($request->paysId && $request->paysId !== "") {
+        if ($request->paysId && $request->paysId !== "") {
             $this->annexerRecherchePays($requete, $request->paysId);
         }
 
-        if(($request->prixMin && $request->prixMin !== "") || ($request->prixMax && $request->prixMax !== "")) {
+        if (($request->prixMin && $request->prixMin !== "") || ($request->prixMax && $request->prixMax !== "")) {
             $limitesPrix = [
                 "prixMin" => $request->prixMin ?? null,
                 "prixMax" => $request->prixMax ?? null,
@@ -81,8 +91,8 @@ class BouteilleController extends Controller {
     private function annexerRechercheTextuelle(&$requete, $recherche) {
         $requete->where(function ($query) use ($recherche) {
             $query->whereRaw("MATCH(b.nom,description,b.format) against (? in boolean mode)", ["$recherche*"])
-            ->orWhereRaw("MATCH(p.nom) against (? in boolean mode)", ["$recherche*"])
-            ->orWhereRaw("MATCH(c.nom) against (? in boolean mode)", ["$recherche*"]);
+                ->orWhereRaw("MATCH(p.nom) against (? in boolean mode)", ["$recherche*"])
+                ->orWhereRaw("MATCH(c.nom) against (? in boolean mode)", ["$recherche*"]);
         });
     }
 
@@ -96,9 +106,9 @@ class BouteilleController extends Controller {
      */
     private function annexerRechercheCategories(&$requete, $categories) {
         // S'assurer que tous les items du arrays sont numériques
-        if(
+        if (
             is_array($categories) &&
-            count($categories) === count(array_filter($categories,'is_numeric'))
+            count($categories) === count(array_filter($categories, 'is_numeric'))
         ) {
             $requete->whereIn("c.id", $categories);
         }
@@ -123,12 +133,12 @@ class BouteilleController extends Controller {
      *
      */
     private function annexerRecherchePrix(&$requete, array $prix) {
-        $requete->where(function($query) use ($prix) {
-            if($prix["prixMin"]) {
+        $requete->where(function ($query) use ($prix) {
+            if ($prix["prixMin"]) {
                 $query->where("b.prix", ">=", $prix["prixMin"]);
             }
 
-            if($prix["prixMax"]) {
+            if ($prix["prixMax"]) {
                 $query->where("b.prix", "<=", $prix["prixMax"]);
             }
         });

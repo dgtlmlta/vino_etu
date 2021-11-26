@@ -46,7 +46,7 @@
         </mat-expansion-panel-header>
 
         <dl>
-            <div>
+            <div *ngIf="bouteille.description">
                 <dt><strong>Description</strong></dt>
                 <dl>{{ bouteille.description }}</dl>
             </div>
@@ -69,6 +69,11 @@
             <div *ngIf="bouteille.prix_paye">
                 <dt><strong>Prix</strong></dt>
                 <dl>{{bouteille.prix_paye | currency : "CAD": "$" : "1.2" : "fr-CA"}}</dl>
+            </div>
+
+            <div *ngIf="bouteille.conservation">
+                <dt><strong>Conservation</strong></dt>
+                <dl>{{bouteille.conservation }}</dl>
             </div>
         </dl>
 

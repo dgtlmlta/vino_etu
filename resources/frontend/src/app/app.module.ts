@@ -47,6 +47,8 @@ import { CreationBouteilleComponent } from './pages/creation-bouteille/creation-
 import {MatMenuModule} from '@angular/material/menu';
 import {MatListModule} from '@angular/material/list';
 import { ActionListeAchatComponent } from './components/action-liste-achat/action-liste-achat.component';
+import { RouteReuseStrategy } from '@angular/router';
+import { CacheRouteReuseStrategy } from './strategies/cache-route-reuse.strategy';
 
 @NgModule({
     declarations: [
@@ -117,6 +119,10 @@ import { ActionListeAchatComponent } from './components/action-liste-achat/actio
                 duration: 3000,
                 panelClass: "notif",
             }
+        },
+        {
+            provide: RouteReuseStrategy,
+            useClass: CacheRouteReuseStrategy,
         },
         DatePipe,
         StringHelpersService,

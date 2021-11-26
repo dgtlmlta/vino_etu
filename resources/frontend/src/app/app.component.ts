@@ -21,5 +21,11 @@ export class AppComponent {
             this.domSanitizer.bypassSecurityTrustResourceUrl("assets/icons/noun_wine bottle_2391621.svg")
         );
      }
+
+     // fonction pour afficher le haut d'une page après un changement de route
+     onActivate() {
+        document.querySelector('main')?.scrollTo(0,0)
+    }
+
 }
 

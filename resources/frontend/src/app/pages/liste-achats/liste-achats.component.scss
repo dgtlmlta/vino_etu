@@ -1,5 +1,4 @@
 // styles du titre
-
 .titre {
     display: flex;
     justify-content: center;
@@ -17,7 +16,6 @@
 
 .mat-list-base .mat-list-item, .mat-list-base .mat-list-option {
     height: auto;
-    margin: 8px -10px;
 }
 
 .mat-list-option {
@@ -34,7 +32,7 @@ img {
 }
 
 
-// styles de la liste l'orsque qu'elle est vide 
+// styles de la liste l'orsque qu'elle est vide
 
 .listeVide {
     text-align: center;
