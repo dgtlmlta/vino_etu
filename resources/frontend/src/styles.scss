@@ -250,13 +250,13 @@ a.inline-link {
 /* Correction sur les mat-form */
 
 
-.mat-form-field-underline {
+/* .mat-form-field-underline {
     width: 0;
-}
+} */
 
-.mat-form-field-appearance-fill .mat-form-field-flex {
+/* .mat-form-field-appearance-fill .mat-form-field-flex {
     background-color: transparent;
-}
+} */
 
 /* Css pour les notifications (snackBar) */
 [class*="notif"] {
@@ -316,7 +316,7 @@ mat-dialog-container.mat-dialog-container {
 
 /* Aligner la loupe dans les champs de recherche */
 mat-label {
-    display: flex;
+    display: inline-flex;
     align-items: center;
 }
 
