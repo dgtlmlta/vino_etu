@@ -6,6 +6,9 @@
 
     <div *ngIf="bouteille" class="content-bouteille">
         <mat-card class="example-card">
+            <div class="bouton-ajout">
+                <button class="bouton-fab" mat-raised-button (click)="formulaireAjout(bouteille)">+ Ajouter au cellier</button>
+            </div>
             <div *ngIf="bouteille.url_image; then image else imageDefault"></div>
             <ng-template #image>
                 <img mat-card-image src="{{bouteille.url_image}}" alt="Bouteille du vin" />
@@ -13,8 +16,6 @@
             <ng-template #imageDefault>
                 <img mat-card-image  src="https://www.saq.com/media/wysiwyg/placeholder/category/06.png" alt="Bouteille de vin" />
             </ng-template>
-
-            <!-- <img mat-card-image src="{{bouteille.url_image}}" appImgFallback alt="Bouteille du vin" /> -->
 
             <mat-card-header class="card-header">
                 <h2>{{bouteille.nom}}</h2>
@@ -27,11 +28,11 @@
                         <dt><strong>Prix</strong></dt>
                         <dd>{{bouteille.prix | currency : "CAD" : "$" : "1.2" : "fr-CA"}}</dd>
                     </div>
-
                     <div *ngIf="bouteille.format">
                         <dt><strong>Format</strong></dt>
                         <dd>{{bouteille.format}}</dd>
                     </div>
+            
 
                     <div *ngIf="bouteille.categorie">
                         <dt><strong>Catégorie</strong></dt>
@@ -49,11 +50,6 @@
                         <mat-icon>local_grocery_store</mat-icon><a class="inline-link" href="{{bouteille.url_achat}}">Acheter à la SAQ</a>
                     </div>
                 </div>
-
-                <mat-card-actions>
-                    <button class="bouton-fab" mat-raised-button (click)="formulaireAjout(bouteille)">+ Ajouter cette bouteille à mon cellier</button>
-                </mat-card-actions>
-                
             </mat-card-content>
         </mat-card>
     </div>

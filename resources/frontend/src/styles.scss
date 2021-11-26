@@ -249,6 +249,9 @@ a.inline-link {
 
 /* Correction sur les mat-form */
 
+.mat-form-field-wrapper {
+    padding-bottom: 1rem;
+}
 
 .mat-form-field-underline {
     width: 0;
@@ -293,7 +296,7 @@ a.inline-link {
 
 /* Taille de tous les modals */
 mat-dialog-container.mat-dialog-container {
-    width: 80vw;
+    width: 95vw;
     max-height: 80vh;
 }
 
@@ -316,7 +319,7 @@ mat-dialog-container.mat-dialog-container {
 
 /* Aligner la loupe dans les champs de recherche */
 mat-label {
-    display: flex;
+    display: inline-flex;
     align-items: center;
 }
 
@@ -420,16 +423,16 @@ summary > span {
 }
 
 summary > span::after {
-    content: "+";
+    content: "▼";
 
     transition-property: transform;
     transition-duration: 300ms;
     transition-timing-function: cubic-bezier(0.23, 1, 0.32, 1);
-}
+} 
 
 details[open] summary > span::after {
-    transform: rotate(405deg);
-    -webkit-transform: rotate(405deg);
+    transform: rotate(540deg);
+    -webkit-transform: rotate(540deg); // pour safari
 }
 
 /* Hack pour Safari */

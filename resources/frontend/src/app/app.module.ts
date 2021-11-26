@@ -49,6 +49,7 @@ import {MatListModule} from '@angular/material/list';
 import { ActionListeAchatComponent } from './components/action-liste-achat/action-liste-achat.component';
 import { RouteReuseStrategy } from '@angular/router';
 import { CacheRouteReuseStrategy } from './strategies/cache-route-reuse.strategy';
+import {BidiModule} from '@angular/cdk/bidi';
 
 @NgModule({
     declarations: [
@@ -96,6 +97,7 @@ import { CacheRouteReuseStrategy } from './strategies/cache-route-reuse.strategy
         FormsModule,
         MatMenuModule,
         MatListModule,
+        BidiModule,
     ],
     providers: [
         BouteilleDeVinService,

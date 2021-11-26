@@ -31,7 +31,7 @@
             <input matInput type="text" id="email" name="email" formControlName="email">
             <mat-error *ngIf="erreur.email.touched && erreur.email.invalid" class="alert alert-danger">
                 <div *ngIf="erreur.email.errors?.required">Ce champ est obligatoire</div>
-                <div *ngIf="erreur.email.errors?.email">Veuillez rentrer un courriel valide</div>
+                <div *ngIf="erreur.email.errors?.pattern">Veuillez rentrer un courriel valide</div>
             </mat-error>
         </mat-form-field>
 
