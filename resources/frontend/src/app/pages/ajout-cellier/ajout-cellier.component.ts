@@ -48,8 +48,8 @@ export class AjoutCellierComponent implements OnInit {
 
     // Fonction qui permet l'ajout d'un nouveau cellier par un utilisateur authentifie
     postCellier(cellier: any) {
-        // Ne pas envoyer la requête si le form est invalide
-        if(this.ajoutCellier.invalid){
+
+        if (this.ajoutCellier.invalid) {
             this.ajoutCellier.markAllAsTouched();
             return;
         }

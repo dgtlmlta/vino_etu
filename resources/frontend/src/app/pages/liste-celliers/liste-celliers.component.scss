@@ -58,6 +58,10 @@
     color: var(--couleur-primaire);
 }
 
+.nom-cellier h3 a {
+    text-decoration: none;
+}
+
 .nom-cellier .mat-icon:hover {
     cursor: pointer;
 }
