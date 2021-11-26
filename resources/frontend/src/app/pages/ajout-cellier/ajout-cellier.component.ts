@@ -53,6 +53,11 @@ export class AjoutCellierComponent implements OnInit {
             return;
         }
 
+        if (this.ajoutCellier.invalid) {
+            this.ajoutCellier.markAllAsTouched();
+            return;
+        }
+
         this.idUtilisateur = this.servAuth.getIdUtilisateurAuthentifie();
 
         this.nouveauCellier = { ...cellier, "users_id": this.idUtilisateur }
