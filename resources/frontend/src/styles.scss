@@ -423,16 +423,16 @@ summary > span {
 }
 
 summary > span::after {
-    content: "+";
+    content: "▼";
 
     transition-property: transform;
     transition-duration: 300ms;
     transition-timing-function: cubic-bezier(0.23, 1, 0.32, 1);
-}
+} 
 
 details[open] summary > span::after {
-    transform: rotate(405deg);
-    -webkit-transform: rotate(405deg);
+    transform: rotate(540deg);
+    -webkit-transform: rotate(540deg); // pour safari
 }
 
 /* Hack pour Safari */
