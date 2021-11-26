@@ -21,13 +21,13 @@ export class BouteillesCatalogueResolver implements Resolve<boolean> {
 
     resolve(
         route: ActivatedRouteSnapshot,
-        state: RouterStateSnapshot): Observable<boolean> {
-
+        state: RouterStateSnapshot
+    ): Observable<boolean> | boolean {
         return this.servBouteilleDeVin.getListeBouteille()
             .pipe(
                 map(data => {
                     return data.data;
                 })
-            );;
+            );
     }
 }
