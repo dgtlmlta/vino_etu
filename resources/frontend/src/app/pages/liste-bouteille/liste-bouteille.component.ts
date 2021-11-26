@@ -2,7 +2,7 @@ import { HttpParams } from '@angular/common/http';
 import { Component, OnInit } from '@angular/core';
 import { FormArray, FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
 import { MatSnackBar } from '@angular/material/snack-bar';
-import { Router } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { Categorie } from '@interfaces/categorie';
 import { Pays } from '@interfaces/pays';
 import { AuthService } from '@services/auth.service';
@@ -49,15 +49,17 @@ export class ListeBouteilleComponent implements OnInit {
 
     constructor(
         private servBouteilleDeVin: BouteilleDeVinService,
+        private actRoute: ActivatedRoute,
         private servAuth: AuthService,
         private snackBar: MatSnackBar,
         private router: Router,
     ) { }
 
     ngOnInit(): void {
-        this.servBouteilleDeVin.getListeBouteille()
-            .subscribe(
-                bouteille => this.bouteillesInitiales = this.bouteille = bouteille.data
+        this.actRoute.data.subscribe(
+                (data: any) => {
+                    this.bouteillesInitiales = this.bouteille = data.listeBouteilles
+                }
             );
 
         this.servBouteilleDeVin.getToutesCategories()
@@ -264,5 +266,13 @@ export class ListeBouteilleComponent implements OnInit {
                 new FormControl(false)
             );
         })
+    }
+
+    listeContientBouteilles(): boolean {
+        if(this.bouteille && this.bouteille.length > 0) {
+            return true;
+        }
+
+        return false;
     }
 }

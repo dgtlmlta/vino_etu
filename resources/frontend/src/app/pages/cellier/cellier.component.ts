@@ -97,41 +97,6 @@ export class CellierComponent implements OnInit {
     }
 
 
-
-    /* // Récupérer les 3 caractères inséré dans l'espace pour faire la recherche
-    recherche($event: any): void {
-        if (this.texteRecherche.value === "" && this.bouteillesCellier != this.bouteillesCellierInitiales) {
-            this.bouteillesCellier = this.bouteillesCellierInitiales;
-            return;
-        }
-
-        if (this.rechercheSujet.observers.length === 0) {
-            this.subRechercheSujet = this.rechercheSujet
-                .pipe(debounceTime(400), distinctUntilChanged())
-                .subscribe(recherche => {
-                    this.effectuerRechercheFiltree();
-                });
-        }
-
-        this.rechercheSujet.next(this.texteRecherche.value);
-    }
-
-    // Fonction de recherche d'un bouteille dans le cellier
-    effectuerRechercheFiltree(): void {
-        this.estFiltre = true;
-
-        this.servBouteilleDeVin
-            .getBouteillesParCellier(
-                this.cellierId,
-                {
-                    texteRecherche: this.texteRecherche.value.replace("-", " ")
-                }
-            )
-            .subscribe(bouteillesCellier => {
-                this.bouteillesCellier = bouteillesCellier.data;
-            });
-    } */
-
     /**
      *
      * Charger les bouteilles contenues dans le présent cellier
@@ -295,6 +260,7 @@ export class CellierComponent implements OnInit {
                 this.cellierId,
                 filtres)
             .subscribe(bouteilles => {
+                this.estFiltre = true;
                 this.bouteillesCellier = bouteilles.data;
             });
     }
