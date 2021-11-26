@@ -15,6 +15,7 @@ import { BouteilleDeVinService } from './bouteille-de-vin.service';
 export class BouteillesCatalogueResolver implements Resolve<boolean> {
     constructor(
         private servBouteilleDeVin: BouteilleDeVinService,
+        private router: Router,
     ) {
 
     }

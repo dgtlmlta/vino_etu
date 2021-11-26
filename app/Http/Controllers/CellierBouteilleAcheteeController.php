@@ -52,7 +52,6 @@ class CellierBouteilleAcheteeController extends Controller {
      * @return \Illuminate\Http\Response
      */
     public function store(Cellier $cellier, Request $request) {
-        // BouteilleAchetee::create($request->all());
 
         $bouteilleAchetee = new BouteilleAchetee();
 
@@ -70,6 +69,7 @@ class CellierBouteilleAcheteeController extends Controller {
         $bouteilleAchetee->format             = $request->format;
         $bouteilleAchetee->categories_id      = $request->categories_id;
         $bouteilleAchetee->users_id           = $request->users_id;
+        $bouteilleAchetee->bouteilles_id      = $request->id;
         $bouteilleAchetee->save();
 
         $bouteilleCellier = new CellierBouteilleAchetee();
