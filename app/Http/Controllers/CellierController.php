@@ -22,6 +22,7 @@ class CellierController extends Controller {
             ->join("celliers as cel", "cel.id", "=", "cba.celliers_id")
             ->where("cel.id", $id)
             ->distinct()
+            ->orderBy("ba.origine")
             ->get(["ba.origine"])
             ->pluck("origine");
     }
@@ -190,32 +191,15 @@ class CellierController extends Controller {
     private function annexerRecherchePrix(&$requete, array $prix) {
         $requete->where(function ($query) use ($prix) {
             if ($prix["prixMin"]) {
-                $query->where("b.prix", ">=", $prix["prixMin"]);
+                $query->where("ba.prix_paye", ">=", $prix["prixMin"]);
             }
 
             if ($prix["prixMax"]) {
-                $query->where("b.prix", "<=", $prix["prixMax"]);
+                $query->where("ba.prix_paye", "<=", $prix["prixMax"]);
             }
         });
     }
 
-    /**
-     *
-     * Bâtir le tableau de filtres à partir des paramètres reçus en requête
-     *
-     * @param Request $request objet request avec les filtres
-     * @return array
-     *
-     */
-    private function batirTableauFiltres(Request $request) {
-        $filtres = [];
-
-        if ($request->texteRecherche && $request->texteRecherche !== "") {
-            $filtres["texteRecherche"] = $request->texteRecherche;
-        }
-
-        return $filtres;
-    }
 
     /**
      * Store a newly created resource in storage.
