@@ -5,10 +5,6 @@
         </header>
         <div class="formulaire-contenu">
             <mat-form-field appearance="outline">
-                <mat-label for="testId">Choisir l'id' </mat-label>
-                <input matInput id="testId" type="text">
-            </mat-form-field>
-            <mat-form-field appearance="outline">
                 <mat-label for="cellierId" class="required">Choisir le cellier </mat-label>
                 <mat-select formControlName="cellierId" [compareWith]="comparerCellierId">
                     <mat-option *ngFor="let cellier of listeCelliers" [value]="cellier.id">
