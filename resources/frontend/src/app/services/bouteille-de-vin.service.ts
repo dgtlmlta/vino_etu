@@ -14,7 +14,7 @@ import { map } from 'rxjs/operators';
 export class BouteilleDeVinService {
 
     private url:string = "http://127.0.0.1:8000/api";
-    // private url: string = "http://kalimotxo-vino.akira.dev/api";
+    //private url: string = "http://kalimotxo-vino.akira.dev/api";
     // private url: string = "http://192.168.50.238/api"
     // private url: string = new URL(window.location.href).origin + "/api";
 
@@ -360,6 +360,10 @@ export class BouteilleDeVinService {
             .pipe(
                 map(data => data.data)
             );
+    }
+
+    getOriginesParCellier(idCellier: number) {
+        return this.http.get<any>(`${this.url}/origines-par-cellier/${idCellier}`)
     }
 }
 

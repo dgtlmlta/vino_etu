@@ -1,42 +1,39 @@
 <div class="main-content">
     <div class="content-header">
-        <h2 class="titre">Ma liste d'achat</h2>
+        <h2 class="titre-page">Ma liste d'achat</h2>
     </div>
 
-  <ng-container *ngIf="listeAchatContientBouteille(); then listePleine; else listeVide">
-  </ng-container>
+    <ng-container *ngIf="listeAchatContientBouteille(); then listePleine; else listeVide">
+    </ng-container>
 
-  <ng-template #listePleine>
-    <mat-selection-list #listeBouteilles [(ngModel)]='bouteilleSelected' (ngModelChange)='actionDansLaListe($event)'>
-      <mat-list-option *ngFor='let bouteille of listeAchat' [value]="bouteille">
-        <mat-list-item class="item">
-            <!-- <img alt="bouteille de la liste" src="{{bouteille.url_image}}"> -->
-            <div *ngIf="bouteille.url_image; then image else imageDefault"></div>
-              <ng-template #image>
-                  <img src="{{bouteille.url_image}}" alt="Bouteille du vin" />
-              </ng-template>
-              <ng-template #imageDefault>
-                  <img src="https://www.saq.com/media/wysiwyg/placeholder/category/06.png" alt="Bouteille du vin" />
-              </ng-template>
-            <span class="itemNom">{{bouteille.nom}}</span>
-        </mat-list-item>
-        <mat-divider></mat-divider>
-      </mat-list-option>
-    </mat-selection-list>
-  </ng-template>
+    <ng-template #listePleine>
+        <mat-selection-list #listeBouteilles [(ngModel)]='bouteilleSelected'
+            (ngModelChange)='actionDansLaListe($event)'>
+            <mat-list-option *ngFor='let bouteille of listeAchat' [value]="bouteille">
+                <mat-list-item class="item">
+                    <!-- <img alt="bouteille de la liste" src="{{bouteille.url_image}}"> -->
+                    <div *ngIf="bouteille.url_image; then image else imageDefault"></div>
+                    <ng-template #image>
+                        <img src="{{bouteille.url_image}}" alt="Bouteille du vin" />
+                    </ng-template>
+                    <ng-template #imageDefault>
+                        <img src="https://www.saq.com/media/wysiwyg/placeholder/category/06.png"
+                            alt="Bouteille du vin" />
+                    </ng-template>
+                    <span class="itemNom">{{bouteille.nom}}</span>
+                </mat-list-item>
+                <mat-divider></mat-divider>
+            </mat-list-option>
+        </mat-selection-list>
+    </ng-template>
 
-  <ng-template #listeVide>
-    <section class="listeVide">
-      <h2>Oops!</h2>
-      <p>Vous n'avez pas de bouteille dans la liste.</p>
-      <a routerLink="/bouteilles">Ajoutez en une !</a>
-    </section>
-  </ng-template>
+    <ng-template #listeVide>
+        <section class="listeVide">
+            <h2>Oops!</h2>
+            <p>Vous n'avez pas de bouteille dans la liste.</p>
+            <a routerLink="/bouteilles">Ajoutez en une !</a>
+        </section>
+    </ng-template>
 
 
 </div>
-
-
-
-
-

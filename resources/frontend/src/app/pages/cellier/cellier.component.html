@@ -1,63 +1,129 @@
-<mat-sidenav-container class="main-content">
+<mat-drawer-container class="main-content">
 
-    <mat-sidenav #sidenav [mode]="mode">
-        <p><button mat-button (click)="sidenav.toggle()">Toggle</button></p>
-    </mat-sidenav>
+    <mat-drawer class="drawer-default" #sidenav>
+        <!-- Barre de filtres -->
+        <div class="drawer-content tiroir-filtres">
+            <div>
+                <button class="fermer-modal" (click)='sidenav.toggle()'>
+                    <mat-icon>close</mat-icon>
+                </button>
+            </div>
 
-    <div class="content">
-        <div class="content-header">
-            <div class="titre-container">
-                <h2 class="titre">{{ cellier.nom }}</h2>
+            <details>
+                <summary><span>Catégories</span></summary>
+
+                <fieldset [formGroup]="filtres">
+                    <ng-container formArrayName="categories">
+                        <mat-checkbox class="checkbox-pleine-largeur" [formControlName]="i" labelPosition="before"
+                            (change)="initierRechercheFiltree()"
+                            *ngFor="let categorie of listeCategoriesEnFormArray.controls; let i = index">
+                            {{ categories[i].nom }}
+                        </mat-checkbox>
+
+                    </ng-container>
+                </fieldset>
+            </details>
+
+            <details>
+                <summary><span>Origine</span></summary>
+                <fieldset [formGroup]="filtres">
+                    <mat-form-field appearance="fill" class="input-case">
+                        <mat-select id="paysId" formControlName="origine" (selectionChange)="initierRechercheFiltree()">
+                            <mat-option value="" selected aria-selected>Toutes les origines</mat-option>
+                            <mat-option *ngFor="let origine of origines" [value]="origine">
+                                {{ origine }}
+                            </mat-option>
+                        </mat-select>
+                    </mat-form-field>
+                </fieldset>
+            </details>
+
+            <details>
+                <summary><span>Prix</span></summary>
+                <fieldset [formGroup]="filtres">
+                    <!-- Afficher les erreurs d'écarts de prix -->
+                    <small class="mat-error" *ngIf="filtres?.errors?.prixMinTropEleve">Le prix minimum doit être inférieur au prix maximum</small>
+                    <small class="mat-error" *ngIf="filtres?.errors?.prixMaxTropBas">Le prix maximum doit être supérieur au prix minimum</small>
+
+                    <mat-form-field appearance="fill" class="input-case">
+                        <mat-label for="prixMin">Minimum</mat-label>
+                        <input placeholder="1,00" matInput id="prixMin" formControlName="prixMin" (keyup)="initierRechercheFiltree($event)" pattern="^[\d\.,]*$">
+                        <mat-error *ngIf="filtrePrixMin?.touched && filtrePrixMin?.invalid">
+                            <div *ngIf="filtrePrixMin?.errors?.pattern">Veuillez entrer un montant valide</div>
+                        </mat-error>
+                    </mat-form-field>
+
+                    <mat-form-field appearance="fill" class="input-case">
+                        <mat-label for="prixMax">Maximum</mat-label>
+                        <input placeholder="1,00" matInput id="prixMax" formControlName="prixMax" (keyup)="initierRechercheFiltree($event)" pattern="^[\d\.,]*$">
+                        <mat-error *ngIf="filtrePrixMax?.touched && filtrePrixMax?.invalid">
+                            <div *ngIf="filtrePrixMax?.errors?.pattern">Veuillez entrer un montant valide</div>
+                        </mat-error>
+                    </mat-form-field>
+                </fieldset>
+            </details>
+        </div>
+    </mat-drawer>
+    <!-- Fin de la barre de filtres -->
+
+    <mat-drawer-content class="content">
+        <header class="content-header">
+            <h2 class="titre titre-page">
+                {{ cellier.nom }}
+            </h2>
+
+            <div class="filtrer">
+                <button class="bouton-fab" mat-flat-button color="accent" (click)="sidenav.toggle()">
+                    <mat-icon>filter_alt</mat-icon>
+                    Filtres
+                </button>
+
+                <mat-form-field class="recherche">
+                    <mat-label>
+                        <mat-icon>search</mat-icon>Trouvez une bouteille
+                    </mat-label>
+                    <ng-container [formGroup]="filtres">
+                        <input matInput (keyup)="initierRechercheFiltree()" formControlName="texteRecherche">
+                    </ng-container>
+                </mat-form-field>
             </div>
-            <div class="action-button">
-                <p class="bouton-filtre">
-                    <button mat-button (click)="sidenav.toggle()">
-                        <mat-icon>filter_alt</mat-icon>
-                    </button>
-                </p>
-            </div>
+        </header>
+
+        <div class="liste-de-bouteilles">
+            <ng-container *ngIf="cellierContientBouteille(); then bouteille; else pasBouteille">
+            </ng-container>
+
+            <ng-template #bouteille>
+                <section class="liste-de-bouteilles">
+                    <div *ngFor="let uneBouteille of bouteillesCellier">
+                        <app-cellier-bouteille [uneBouteille]='uneBouteille' (chargerBouteilles)="chargerBouteilles()"
+                            [cellierId]="cellierId">
+                        </app-cellier-bouteille>
+                    </div>
+                </section>
+            </ng-template>
+
+            <ng-template #pasBouteille>
+                <section class="ajouter-bouteille">
+                    <ng-container *ngIf="estFiltre; then msgFiltre; else msgInitial">
+                    </ng-container>
+
+                    <ng-template #msgFiltre>
+                        <p>Vous n'avez pas de bouteille correspondante à cette recherche.</p>
+                    </ng-template>
+
+                    <ng-template #msgInitial>
+                        <h2>Oops!</h2>
+                        <p>Vous n'avez pas de bouteille.</p>
+                    </ng-template>
+                </section>
+            </ng-template>
         </div>
 
-        <mat-form-field class="recherche">
-            <mat-label>
-                <mat-icon>search</mat-icon>Trouvez une bouteille
-            </mat-label>
-            <input matInput (keyup)="recherche($event)" [formControl]="texteRecherche">
-        </mat-form-field>
-
-        <ng-container *ngIf="cellierContientBouteille(); then bouteille; else pasBouteille">
-        </ng-container>
-
-        <ng-template #bouteille>
-            <section class="liste-de-bouteilles">
-                <div *ngFor="let uneBouteille of bouteillesCellier">
-                    <app-cellier-bouteille [uneBouteille]='uneBouteille' (chargerBouteilles)="chargerBouteilles()"
-                        [cellierId]="cellierId">
-                    </app-cellier-bouteille>
-                </div>
-            </section>
-        </ng-template>
-
-        <ng-template #pasBouteille>
-            <section class="ajouter-bouteille">
-                <ng-container *ngIf="estFiltre; then msgFiltre; else msgInitial">
-                </ng-container>
-
-                <ng-template #msgFiltre>
-                    <p>Vous n'avez pas de bouteille correspondante à cette recherche.</p>
-                </ng-template>
-
-                <ng-template #msgInitial>
-                    <h2>Oops!</h2>
-                    <p>Vous n'avez pas de bouteille.</p>
-                </ng-template>
-            </section>
-        </ng-template>
-    </div>
-
-    <div class="action-ajouter">
-        <button class="bouton-fab" mat-raised-button (click)="ajouterBouteilleAuCellier()">+ Ajouter une bouteille au
-            cellier</button>
-    </div>
-
-</mat-sidenav-container>
+        <div class="action-ajouter">
+            <button class="bouton-fab" mat-raised-button (click)="ajouterBouteilleAuCellier()">
+                + Ajouter une bouteille au cellier
+            </button>
+        </div>
+    </mat-drawer-content>
+</mat-drawer-container>

@@ -8,7 +8,7 @@
     align-items: center;
 }
 
-// styles du titre 
+// styles du titre
 
 .formulaire h2{
     font-size: 3rem;
@@ -40,10 +40,8 @@ label {
 // styles pour le bouton de connection
 
 .formulaire button {
-    text-transform: uppercase;
     border: none;
-    font-size: 0.725rem;
-    color: #ffffff;
+    color: var(--couleur-gris-200);
     font-weight: bold;
     background-color: #4c1920;
     width: 10rem;

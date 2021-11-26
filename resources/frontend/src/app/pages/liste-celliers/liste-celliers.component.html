@@ -1,6 +1,6 @@
 <div class="main-content">
     <div class="content-header">
-        <h2 class="titre">Mes Celliers</h2>
+        <h2 class="titre-page">Mes Celliers</h2>
     </div>
 
     <ng-container *ngIf="listeContientCellier(); then listeCellierPlein; else  listeCellierVide"></ng-container>
@@ -12,21 +12,21 @@
                     <h3>
                         <a class="inline-link" routerLink="/celliers/{{cellier.id}}" [state]="cellier">{{ cellier.nom }}</a>
                     </h3>
-    
+
                     <small>{{cellier.description}}</small>
                 </div>
-    
+
                 <div class="action-cellier">
                     <button class="button-edit" mat-button (click)="formulaireModification(cellier)">
                         <mat-icon>edit</mat-icon>
                     </button>
-    
+
                     <button class="button-delete" mat-button (click)="supprimerCellier(cellier.id)">
                         <mat-icon>delete</mat-icon>
                     </button>
                 </div>
             </header>
-    
+
             <dl>
                 <div *ngIf='cellier.total_bouteilles_vin_blanc'>
                     <dt><strong>Vin blanc : </strong></dt>

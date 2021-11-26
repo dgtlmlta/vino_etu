@@ -191,6 +191,7 @@ main .main-content {
 
 mat-drawer.drawer-default {
     background-color: var(--couleur-gris-200);
+    width: 75%;
 }
 
 .mat-sidenav {
@@ -220,11 +221,17 @@ a.inline-link {
 }
 
 /* champs obligatoires */
-
 .required::after {
     content: "\00a0*";
     color: var(--couleur-primaire);
 }
+
+.titre-page {
+    font-family: "Dancing Script", cursive;
+    text-align: center;
+    font-size: 2rem;
+}
+
 
 /* Correction sur les mat-button */
 .mat-mini-fab:not([class*="mat-elevation-z"]) {
@@ -233,6 +240,10 @@ a.inline-link {
 
 .mat-form-field{
     padding-bottom: var(--espacement);
+}
+
+.mat-form-field.recherche {
+    padding-bottom: 0;
 }
 
 
@@ -285,7 +296,7 @@ a.inline-link {
 
 /* Taille de tous les modals */
 mat-dialog-container.mat-dialog-container {
-    width: 80vw;
+    width: 95vw;
     max-height: 80vh;
 }
 
@@ -308,7 +319,7 @@ mat-dialog-container.mat-dialog-container {
 
 /* Aligner la loupe dans les champs de recherche */
 mat-label {
-    display: flex;
+    display: inline-flex;
     align-items: center;
 }
 
@@ -393,7 +404,7 @@ mat-checkbox {
     overflow: initial;
 }
 
-.barre-filtres details {
+.tiroir-filtres details {
     padding-block-start: var(--espacement-petit);
     padding-block-end: var(--espacement-petit);
 }
@@ -433,11 +444,11 @@ details summary::-webkit-details-marker {
     display: none;
 }
 
-.barre-filtres > details + details {
+.tiroir-filtres > details + details {
     border-block-start: 1px solid var(--voile-noir-100);
 }
 
-.barre-filtres > details:first-of-type {
+.tiroir-filtres > details:first-of-type {
     border-block-start: none;
 }
 .mat-list-base .mat-list-item .mat-list-text,
@@ -470,4 +481,45 @@ details summary::-webkit-details-marker {
 
     font-size: inherit;
     font-family: inherit;
+}
+
+
+/********* Recherche et filtres */
+.tiroir-filtres {
+    padding: var(--espacement);
+}
+
+fieldset {
+    appearance: none;
+    border: none;
+
+    display: flex;
+    flex-direction: column;
+}
+
+mat-checkbox {
+    border-block-end: 1px solid var(--voile-noir-100);
+}
+
+mat-checkbox:last-of-type {
+    border-block-end: none;
+}
+
+.filtrer {
+    display: flex;
+    align-items: center;
+    gap: var(--espacement)
+}
+
+.filtrer .recherche {
+    flex-basis: 60%;
+    flex-grow: 1;
+}
+
+button {
+    font-size: inherit;
+}
+
+.reponse-aucun-resultat {
+    text-align: center;
 }

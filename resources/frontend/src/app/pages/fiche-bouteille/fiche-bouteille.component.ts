@@ -35,7 +35,7 @@ export class FicheBouteilleComponent implements OnInit {
 
     // Revenir à la page précédente
     back(): void {
-        this.location.back()
+        this.router.navigate(["/bouteilles"])
     }
 
     // Appel du formulaire d'ajout d'un bouteille

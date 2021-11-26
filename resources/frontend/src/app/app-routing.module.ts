@@ -18,6 +18,7 @@ import { CreationBouteilleComponent } from '@pages/creation-bouteille/creation-b
 import { ListeAchatsComponent } from '@pages/liste-achats/liste-achats.component';
 import { ListeAchatsResolver } from '@services/liste-achats.resolver';
 import { ListeCelliersResolver } from '@services/liste-celliers.resolver';
+import { BouteillesCatalogueResolver } from '@services/bouteilles-catalogue.resolver';
 
 const routes: Routes = [
     {
@@ -36,6 +37,9 @@ const routes: Routes = [
     {
         path: "bouteilles",
         component: ListeBouteilleComponent,
+        resolve: {
+            listeBouteilles: BouteillesCatalogueResolver
+        }
     },
     {
         path: "celliers",

@@ -46,7 +46,7 @@ Route::apiResource("bouteilles", BouteilleController::class)->only([
     "show",
 ]);
 
-Route::get("catalogue-bouteilles", [BouteilleController::class, "index"]);
+Route::get("catalogue-bouteilles", [BouteilleController::class, "index"])->middleware("auth:sanctum");
 
 // Récupérer la liste des pays
 Route::get("liste-pays", [PaysController::class, "index"]);
@@ -115,4 +115,7 @@ Route::group(['middleware' => ["auth:sanctum"]], function () {
 
     //Deconnexion
     Route::post('deconnexion', [CustomAuthController::class, "deconnexion"]);
+
+    // Récupérer les différentes origines existantes dans un cellier donné
+    Route::get("origines-par-cellier/{id}", [CellierController::class, "obtenirOriginesPourCellier"]);
 });
