@@ -145,7 +145,7 @@
             </ng-template>
 
             <ng-template #pasBouteille>
-                <p class="reponse-aucun-resultat">Vous n'avez pas de bouteille correspondante à cette recherche.</p>
+                <p *ngIf="estFiltre" class="reponse-aucun-resultat">Vous n'avez pas de bouteille correspondante à cette recherche.</p>
             </ng-template>
 
             <div class="action-ajouter">

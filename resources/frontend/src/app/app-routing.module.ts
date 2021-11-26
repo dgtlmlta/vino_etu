@@ -37,9 +37,9 @@ const routes: Routes = [
     {
         path: "bouteilles",
         component: ListeBouteilleComponent,
-        resolve: {
+        /* resolve: {
             listeBouteilles: BouteillesCatalogueResolver
-        }
+        } */
     },
     {
         path: "celliers",

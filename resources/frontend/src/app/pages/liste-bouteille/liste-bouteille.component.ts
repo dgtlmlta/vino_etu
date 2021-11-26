@@ -10,7 +10,7 @@ import { BouteilleDeVinService } from '@services/bouteille-de-vin.service';
 import { FiltresRecherche } from 'app/filtres-recherche';
 import { validerEcartPrix } from 'app/validators/validerEcartPrix';
 import { Subject } from 'rxjs';
-import { debounceTime, distinctUntilChanged } from 'rxjs/operators';
+import { debounceTime, distinctUntilChanged, map } from 'rxjs/operators';
 
 
 @Component({
@@ -23,13 +23,14 @@ export class ListeBouteilleComponent implements OnInit {
 
     itemListeAchat: any;
 
-
     // Sujet (observable) permettant de "debouncer" l'envoi de la recherche à la base de données
     rechercheSujet: Subject<HttpParams> = new Subject<HttpParams>();
 
     // Tableaux pour les options de filtres
     categories: Categorie[] = [];
     pays: Pays[] = [];
+
+    estFiltre: boolean = false;
 
     // Sauvegarder la liste initiale de bouteilles afin de s'éviter une requête http/sql pour un "reset"
     bouteillesInitiales: any;
@@ -56,11 +57,18 @@ export class ListeBouteilleComponent implements OnInit {
     ) { }
 
     ngOnInit(): void {
-        this.actRoute.data.subscribe(
+        this.servBouteilleDeVin.getListeBouteille()
+            .subscribe(
+                (data: any) => {
+                    this.bouteillesInitiales = this.bouteille = data.data;
+                }
+            );
+
+        /* this.actRoute.data.subscribe(
                 (data: any) => {
                     this.bouteillesInitiales = this.bouteille = data.listeBouteilles
                 }
-            );
+            ); */
 
         this.servBouteilleDeVin.getToutesCategories()
             .subscribe((categories: any) => {
@@ -195,6 +203,7 @@ export class ListeBouteilleComponent implements OnInit {
         this.servBouteilleDeVin
             .getListeBouteille(filtres)
             .subscribe(bouteilles => {
+                this.estFiltre = true;
                 this.bouteille = bouteilles.data;
             });
     }
