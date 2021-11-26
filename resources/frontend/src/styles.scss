@@ -253,13 +253,13 @@ a.inline-link {
     padding-bottom: 1rem;
 }
 
-/* .mat-form-field-underline {
+.mat-form-field-underline {
     width: 0;
-} */
+}
 
-/* .mat-form-field-appearance-fill .mat-form-field-flex {
+.mat-form-field-appearance-fill .mat-form-field-flex {
     background-color: transparent;
-} */
+}
 
 /* Css pour les notifications (snackBar) */
 [class*="notif"] {
@@ -428,11 +428,11 @@ summary > span::after {
     transition-property: transform;
     transition-duration: 300ms;
     transition-timing-function: cubic-bezier(0.23, 1, 0.32, 1);
-} 
+}
 
 details[open] summary > span::after {
-    transform: rotate(540deg);
-    -webkit-transform: rotate(540deg); // pour safari
+    transform: rotate(180deg);
+    -webkit-transform: rotate(180deg); // pour safari
 }
 
 /* Hack pour Safari */

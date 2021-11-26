@@ -16,8 +16,11 @@ class BouteilleSeeder extends Seeder {
     static public function insererProduitsParCategorie($nombre = 24, $page = 1, $categorie_url = "vin/vin-rouge") {
         // Carotgraphier l'id de la catégorie selon l'url reçu
         $categoriesUrlIdMapping = [
-            "vin/vin-blanc" => "1",
-            "vin/vin-rouge" => "2",
+            "vin/vin-blanc"      => "1",
+            "vin/vin-rouge"      => "2",
+            "spiritueux"         => "3",
+            "porto-et-vin-fortifie" => "4",
+            "sake"               => "5",
         ];
 
         $categorieId = $categoriesUrlIdMapping[$categorie_url];
@@ -147,16 +150,33 @@ class BouteilleSeeder extends Seeder {
      */
     public function run() {
         $categories = [
-            "vin/vin-blanc",
-            "vin/vin-rouge",
+            "vinRouge" => [
+                "path" => "vin/vin-rouge",
+                "pages" => 4
+            ],
+            "vinBlanc" => [
+                "path" => "vin/vin-blanc",
+                "pages" => 4
+            ],
+            "spiritueux" => [
+                "path" => "spiritueux",
+                "pages" => 4
+            ],
+            "porto" => [
+                "path" => "porto-et-vin-fortifie",
+                "pages" => 4
+            ],
+            "sake" => [
+                "path" => "sake",
+                "pages" => 1
+            ],
         ];
 
         $affichageParPage = 24;
-        $nombrePage = 2;
 
         foreach ($categories as $categorie) {
-            for ($i = 1; $i <= $nombrePage; $i++) {
-                $this->insererProduitsParCategorie($affichageParPage, $i, $categorie);
+            for ($i = 1; $i <= $categorie["pages"]; $i++) {
+                $this->insererProduitsParCategorie($affichageParPage, $i, $categorie["path"]);
             }
         }
     }

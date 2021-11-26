@@ -26,7 +26,7 @@
             <details>
                 <summary><span>Origine</span></summary>
                 <fieldset [formGroup]="filtres">
-                    <mat-form-field appearance="fill" class="input-case">
+                    <mat-form-field class="input-case">
                         <mat-select id="paysId" formControlName="paysId" (selectionChange)="initierRechercheFiltree()">
                             <mat-option value="" selected aria-selected>Tous les pays</mat-option>
                             <mat-option *ngFor="let pays of pays" [value]="pays.id">
@@ -46,7 +46,7 @@
                     <small class="mat-error" *ngIf="filtres?.errors?.prixMaxTropBas">Le prix maximum doit être supérieur
                         au prix minimum</small>
 
-                    <mat-form-field appearance="fill" class="input-case">
+                    <mat-form-field class="input-case">
                         <mat-label for="prixMin">Minimum</mat-label>
                         <input placeholder="1,00" matInput id="prixMin" formControlName="prixMin"
                             (keyup)="initierRechercheFiltree($event)" pattern="^[\d\.,]*$">
@@ -55,7 +55,7 @@
                         </mat-error>
                     </mat-form-field>
 
-                    <mat-form-field appearance="fill" class="input-case">
+                    <mat-form-field class="input-case">
                         <mat-label for="prixMax">Maximum</mat-label>
                         <input placeholder="1,00" matInput id="prixMax" formControlName="prixMax"
                             (keyup)="initierRechercheFiltree($event)" pattern="^[\d\.,]*$">
@@ -92,7 +92,7 @@
                     Filtres
                 </button>
 
-                <mat-form-field class="recherche">
+                <mat-form-field appearance="fill" class="recherche">
                     <mat-label>
                         <mat-icon>search</mat-icon>Trouvez une bouteille
                     </mat-label>

@@ -19,7 +19,7 @@ import { CreerCompteComponent } from '@pages/creer-compte/creer-compte.component
 import { BouteilleResolverServiceService } from '@services/bouteille-resolver-service.service';
 import { FicheBouteilleComponent } from './pages/fiche-bouteille/fiche-bouteille.component';
 import { MatButtonModule } from '@angular/material/button';
-import { MatFormFieldModule } from '@angular/material/form-field';
+import { MatFormFieldModule, MAT_FORM_FIELD_DEFAULT_OPTIONS } from '@angular/material/form-field';
 import { MatInputModule } from '@angular/material/input';
 import { CellierBouteilleComponent } from './components/cellier-bouteille/cellier-bouteille.component';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
@@ -44,12 +44,12 @@ import { ModifierUtilisateurComponent } from './pages/modifier-utilisateur/modif
 import { ModifierCellierComponent } from './pages/modifier-cellier/modifier-cellier.component';
 import { ListeAchatsComponent } from './pages/liste-achats/liste-achats.component';
 import { CreationBouteilleComponent } from './pages/creation-bouteille/creation-bouteille.component';
-import {MatMenuModule} from '@angular/material/menu';
-import {MatListModule} from '@angular/material/list';
+import { MatMenuModule } from '@angular/material/menu';
+import { MatListModule } from '@angular/material/list';
 import { ActionListeAchatComponent } from './components/action-liste-achat/action-liste-achat.component';
 import { RouteReuseStrategy } from '@angular/router';
 import { CacheRouteReuseStrategy } from './strategies/cache-route-reuse.strategy';
-import {BidiModule} from '@angular/cdk/bidi';
+import { BidiModule } from '@angular/cdk/bidi';
 
 @NgModule({
     declarations: [
@@ -74,7 +74,6 @@ import {BidiModule} from '@angular/cdk/bidi';
         ListeAchatsComponent,
         CreationBouteilleComponent,
         ActionListeAchatComponent,
-
     ],
     imports: [
         BrowserModule,
@@ -97,7 +96,6 @@ import {BidiModule} from '@angular/cdk/bidi';
         FormsModule,
         MatMenuModule,
         MatListModule,
-        NoopAnimationsModule,
         BidiModule,
     ],
     providers: [
@@ -121,6 +119,12 @@ import {BidiModule} from '@angular/cdk/bidi';
             useValue: {
                 duration: 3000,
                 panelClass: "notif",
+            }
+        },
+        {
+            provide: MAT_FORM_FIELD_DEFAULT_OPTIONS,
+            useValue: {
+                appearance: 'outline'
             }
         },
         {
